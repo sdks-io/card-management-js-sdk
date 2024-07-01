@@ -5,16 +5,12 @@
  */
 
 import { lazy, object, optional, Schema } from '../schema';
-import { SummaryRequest, summaryRequestSchema } from './summaryRequest';
+import { Filters1, filters1Schema } from './filters1';
 
 export interface CardSummaryRequest {
-  /**
-   * Encapsulates the details of a Summary Request.
-   * Summary Request fields are same as the Search Request base class and no new fields are required.
-   */
-  filters?: SummaryRequest;
+  filters?: Filters1;
 }
 
 export const cardSummaryRequestSchema: Schema<CardSummaryRequest> = object({
-  filters: ['Filters', optional(lazy(() => summaryRequestSchema))],
+  filters: ['Filters', optional(lazy(() => filters1Schema))],
 });

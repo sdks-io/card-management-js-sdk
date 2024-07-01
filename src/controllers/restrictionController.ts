@@ -5,7 +5,6 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { ErrorObjectError } from '../errors/errorObjectError';
 import {
   AccountRestrictionRequest,
   accountRestrictionRequestSchema,
@@ -14,6 +13,22 @@ import {
   AccountRestrictionResponse,
   accountRestrictionResponseSchema,
 } from '../models/accountRestrictionResponse';
+import {
+  BudleDetailsRequest,
+  budleDetailsRequestSchema,
+} from '../models/budleDetailsRequest';
+import {
+  BundleDetailsResponse,
+  bundleDetailsResponseSchema,
+} from '../models/bundleDetailsResponse';
+import {
+  CardRestrictionReq,
+  cardRestrictionReqSchema,
+} from '../models/cardRestrictionReq';
+import {
+  CardRestrictionResponse,
+  cardRestrictionResponseSchema,
+} from '../models/cardRestrictionResponse';
 import {
   CreateBundleRequest,
   createBundleRequestSchema,
@@ -31,22 +46,6 @@ import {
   deleteBundleResponseSchema,
 } from '../models/deleteBundleResponse';
 import {
-  RestrictionCardRequest,
-  restrictionCardRequestSchema,
-} from '../models/restrictionCardRequest';
-import {
-  RestrictionCardResponse,
-  restrictionCardResponseSchema,
-} from '../models/restrictionCardResponse';
-import {
-  RestrictionSearchCardRequest,
-  restrictionSearchCardRequestSchema,
-} from '../models/restrictionSearchCardRequest';
-import {
-  RestrictionSearchCardResponse,
-  restrictionSearchCardResponseSchema,
-} from '../models/restrictionSearchCardResponse';
-import {
   SearchAccountLimitRequest,
   searchAccountLimitRequestSchema,
 } from '../models/searchAccountLimitRequest';
@@ -55,13 +54,21 @@ import {
   searchAccountLimitResponseSchema,
 } from '../models/searchAccountLimitResponse';
 import {
-  SummaryOfBundleRequest,
-  summaryOfBundleRequestSchema,
-} from '../models/summaryOfBundleRequest';
+  SearchCardRestrictionReq,
+  searchCardRestrictionReqSchema,
+} from '../models/searchCardRestrictionReq';
 import {
-  SummaryOfBundleResponse,
-  summaryOfBundleResponseSchema,
-} from '../models/summaryOfBundleResponse';
+  SearchCardRestrictionRes,
+  searchCardRestrictionResSchema,
+} from '../models/searchCardRestrictionRes';
+import {
+  SummaryofbundleResponse,
+  summaryofbundleResponseSchema,
+} from '../models/summaryofbundleResponse';
+import {
+  SummaryofbundlerRequest,
+  summaryofbundlerRequestSchema,
+} from '../models/summaryofbundlerRequest';
 import {
   UpdateBundleRequest,
   updateBundleRequestSchema,
@@ -72,8 +79,192 @@ import {
 } from '../models/updateBundleResponse';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { ApiError } from '@apimatic/core';
+import { FleetmanagementV2RestrictionSearchcard401Error } from '../errors/fleetmanagementV2RestrictionSearchcard401Error';
+import { FleetmanagementV2RestrictionSearchcard500Error } from '../errors/fleetmanagementV2RestrictionSearchcard500Error';
 
 export class RestrictionController extends BaseController {
+  /**
+   * This API will allows querying card details including the day/time and product restrictions.
+   *
+   * #### Supported operations
+   *
+   * * Search by list of cards or bundle
+   *
+   * * Include card bundle details (optional)
+   *
+   *
+   *
+   * @param apikey       This is the API key of the specific environment which
+   *                                                        needs to be passed by the client.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
+   *                                                        requests and responses. This will be played back in the
+   *                                                        response from the request.
+   * @param body         Restriction search card request body
+   * @return Response from the API call
+   */
+  async searchCardRestriction(
+    apikey: string,
+    requestId: string,
+    body?: SearchCardRestrictionReq,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<SearchCardRestrictionRes>> {
+    const req = this.createRequest(
+      'POST',
+      '/fleetmanagement/v2/restriction/searchcard'
+    );
+    const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
+      requestId: [requestId, string()],
+      body: [body, optional(searchCardRestrictionReqSchema)],
+    });
+    req.header('apikey', mapped.apikey);
+    req.header('RequestId', mapped.requestId);
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      FleetmanagementV2RestrictionSearchcard401Error,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      FleetmanagementV2RestrictionSearchcard500Error,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
+    return req.callAsJson(searchCardRestrictionResSchema, requestOptions);
+  }
+
+  /**
+   * The Card Limit and Restriction API is REST-based and employs Basic and ApiKey authentication. The
+   * API endpoints accept JSON-encoded request bodies, return JSON-encoded responses and use standard
+   * HTTP response codes.
+   *
+   *
+   *
+   * All resources are located in the Shell Card Platform.  The Shell Card Platform is the overall
+   * platform that encompasses all the internal Shell systems used to manage resources. The internal
+   * workings of the platform are not important when interacting with the API. However, it is worth
+   * noting that the platform uses a microservice architecture to communicate with various backend
+   * systems and some API calls are processed asynchronously.
+   *
+   *
+   *
+   * All endpoints use the `POST` verb for retrieving, updating, creating and deleting resources in the
+   * Shell Card Platform. The endpoints that retrieve resources from the Shell Card Platform allow
+   * flexible search parameters in the API request body.
+   *
+   *
+   *
+   * **Important Note** - This operation allows setting or updating the restrictions on existing cards.
+   * (For up to 3 cards in a single call).
+   *
+   *
+   *
+   * All restrictions of the cards are submitted and executed after successful below condition.
+   *
+   * •	The card exists.
+   *
+   * •	Day time restriction cannot be set to restrict the use of a card on all days of the week i.e., the
+   * values for all the days in the restriction cannot be set to false.
+   *
+   * •	Either of the usage, daytime, location or product restriction ‘Reset’ is set to ‘True’ or applied
+   * on the card.
+   *
+   * •	All the limits in the usage restriction profile for a card is not set to ‘0’/null.
+   *
+   * •	If IsVelocityCeiling is ‘true’, API will validate below condition:
+   *
+   * Usage restrictions for a card are lower than Customer Card Type level limits, if there are no
+   * customer level overrides available then lower than OU card type limits.
+   *
+   * •	In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
+   * should be less than or equal to Weekly, Weekly should be less than or equal to Monthly, Monthly
+   * should be less than or equal to Yearly (Annually). Exception being null/blank will be skipped. i.e.,
+   * Daily value should be less than equal to Monthly value if Weekly value is null/blank. Lifetime limit
+   * is not considered for usage restrictions limits validation.
+   *
+   * •	Apply the card type limit to Gateway when a value is NULL in the input. However, if the card type
+   * limit is NULL for the same field, then no limit will be applied in Gateway.
+   *
+   * •	If ‘SetDefaultOnVelocityUpdate’ is ‘true’ then the operation will apply customer cardtype or OU
+   * level velocity limits on existing cards when restrictions are modified without providing custom
+   * values for all fields.
+   *
+   *
+   *
+   * @param apikey       This is the API key of the specific environment which needs to
+   *                                                  be passed by the client.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
+   *                                                  and responses. This will be played back in the response from the
+   *                                                  request.
+   * @param body         Card Restriction request body
+   * @return Response from the API call
+   */
+  async applyRestriction(
+    apikey: string,
+    requestId: string,
+    body?: CardRestrictionReq,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<CardRestrictionResponse>> {
+    const req = this.createRequest(
+      'POST',
+      '/fleetmanagement/v2/restriction/card'
+    );
+    const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
+      requestId: [requestId, string()],
+      body: [body, optional(cardRestrictionReqSchema)],
+    });
+    req.header('apikey', mapped.apikey);
+    req.header('RequestId', mapped.requestId);
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
+    return req.callAsJson(cardRestrictionResponseSchema, requestOptions);
+  }
+
   /**
    * This API enables clients to create a new card bundle and apply restrictions.
    *
@@ -113,34 +304,59 @@ export class RestrictionController extends BaseController {
    *
    * *  `0007` - Error returned if request parameters fail validation e.g. mandatory check.
    *
+   * @param apikey       This is the API key of the specific environment which needs to
+   *                                                   be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
    *                                                   and responses. This will be played back in the response from the
    *                                                   request.
-   * @param body         Create Bundle Request body
+   * @param body         CreateBundle request body
    * @return Response from the API call
    */
-  async restrictionBundleCreate(
+  async createBundle(
+    apikey: string,
     requestId: string,
     body?: CreateBundleRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CreateBundleResponse>> {
     const req = this.createRequest(
       'POST',
-      '/card-restrictions/v1/bundles/create'
+      '/fleetmanagement/v1/restriction/createbundle'
     );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
       body: [body, optional(createBundleRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(createBundleResponseSchema, requestOptions);
   }
 
@@ -190,34 +406,59 @@ export class RestrictionController extends BaseController {
    * *  `0007` - Error returned if request parameters fail validation e.g. at least one card must be
    * provided in the input.
    *
+   * @param apikey       This is the API key of the specific environment which needs to
+   *                                                   be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
    *                                                   and responses. This will be played back in the response from the
    *                                                   request.
-   * @param body         Update Bundle Request body
+   * @param body         Update Bundle request body
    * @return Response from the API call
    */
-  async restrictionBundleUpdate(
+  async updateBundle(
+    apikey: string,
     requestId: string,
     body?: UpdateBundleRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UpdateBundleResponse>> {
     const req = this.createRequest(
       'POST',
-      '/card-restrictions/v1/bundles/update'
+      '/fleetmanagement/v1/restriction/updatebundle'
     );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
       body: [body, optional(updateBundleRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(updateBundleResponseSchema, requestOptions);
   }
 
@@ -238,34 +479,59 @@ export class RestrictionController extends BaseController {
    *
    * *  `0007` - Error returned if request parameters fail validation e.g. mandatory check.
    *
+   * @param apikey       This is the API key of the specific environment which needs to
+   *                                                   be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
    *                                                   and responses. This will be played back in the response from the
    *                                                   request.
-   * @param body         Delete Bundle Request body
+   * @param body         Update Bundle request body
    * @return Response from the API call
    */
-  async restrictionBundleDelete(
+  async deleteBundle(
+    apikey: string,
     requestId: string,
     body?: DeleteBundleRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<DeleteBundleResponse>> {
     const req = this.createRequest(
       'POST',
-      '/card-restrictions/v1/bundles/delete'
+      '/fleetmanagement/v1/restriction/deletebundle'
     );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
       body: [body, optional(deleteBundleRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(deleteBundleResponseSchema, requestOptions);
   }
 
@@ -287,204 +553,259 @@ export class RestrictionController extends BaseController {
    *
    * * Get summary of bundles by list of bundle Ids
    *
+   * @param apikey       This is the API key of the specific environment which needs
+   *                                                       to be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
-   *                                                      requests and responses. This will be played back in the
-   *                                                      response from the request.
-   * @param body         Summary Bundle Request body
+   *                                                       requests and responses. This will be played back in the
+   *                                                       response from the request.
+   * @param body         Summary of Bundle request body
    * @return Response from the API call
    */
-  async restrictionBundleSummary(
+  async summaryofbundles(
+    apikey: string,
     requestId: string,
-    body?: SummaryOfBundleRequest,
+    body?: SummaryofbundlerRequest,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<SummaryOfBundleResponse>> {
+  ): Promise<ApiResponse<SummaryofbundleResponse>> {
     const req = this.createRequest(
       'POST',
-      '/card-restrictions/v1/bundles/Summary'
+      '/fleetmanagement/v1/restriction/summaryofbundles'
     );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
-      body: [body, optional(summaryOfBundleRequestSchema)],
+      body: [body, optional(summaryofbundlerRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
-    return req.callAsJson(summaryOfBundleResponseSchema, requestOptions);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
+    return req.callAsJson(summaryofbundleResponseSchema, requestOptions);
   }
 
   /**
-   * This API allows to set or update the restrictions for existing cards or newly ordered cards under
-   * the same payer.
+   * This API allows setting or updating the usage restrictions of an existing account.
    *
    *
    *
-   * #### Supported operations
-   *
-   * * Set or reset usage restrictions for cards
-   *
-   * * Set or reset day/time restrictions for cards
-   *
-   * * Set or reset product restrictions for cards
-   *
-   * * Set or reset location restrictions for cards
-   *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
-   *                                                      requests and responses. This will be played back in the
-   *                                                      response from the request.
-   * @param body         Summary Bundle Request body
-   * @return Response from the API call
-   */
-  async cardRestriction(
-    requestId: string,
-    body?: RestrictionCardRequest,
-    requestOptions?: RequestOptions
-  ): Promise<ApiResponse<RestrictionCardResponse>> {
-    const req = this.createRequest('POST', '/card-restrictions/v2/card');
-    const mapped = req.prepareArgs({
-      requestId: [requestId, string()],
-      body: [body, optional(restrictionCardRequestSchema)],
-    });
-    req.header('RequestId', mapped.requestId);
-    req.header('Content-Type', 'application/json');
-    req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
-    return req.callAsJson(restrictionCardResponseSchema, requestOptions);
-  }
-
-  /**
-   * This operation allows setting or updating the usage restrictions of an existing account.
+   * Then validation rules applied for this API.
    *
    *
    *
-   * #### Validation rules
+   * •	The account exists.
    *
-   *
-   *
-   * *	The account exists.
-   *
-   * *	Day time restriction cannot be set to restrict the use of a card, under the account, on all days
+   * •	Day time restriction cannot be set to restrict the use of a card, under the account, on all days
    * of the week.
    *
-   * *	Either of the usage, daytime or location is either marked for reset or new restriction values
+   * •	Either of the usage, daytime or location is either marked for reset or new restriction values
    * provided for the account.
    *
-   * *	In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
+   * •	In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
    * should be less than or equal to Weekly, Weekly should be less than or equal to Monthly. Exception
    * being 0/blank will be skipped, i.e., Daily value should be less than equal to Monthly value if
    * Weekly value is 0/blank.
    *
    *
    *
+   * @param apikey       This is the API key of the specific environment which
+   *                                                         needs to be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
    *                                                         requests and responses. This will be played back in the
    *                                                         response from the request.
-   * @param body         Summary Bundle Request body
+   * @param body         Account Restriction request body
    * @return Response from the API call
    */
-  async accountRestriction(
+  async restrictionAccount(
+    apikey: string,
     requestId: string,
     body?: AccountRestrictionRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<AccountRestrictionResponse>> {
-    const req = this.createRequest('POST', '/card-restrictions/v1/Account');
+    const req = this.createRequest(
+      'POST',
+      '/fleetmanagement/v1/restriction/account'
+    );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
       body: [body, optional(accountRestrictionRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(accountRestrictionResponseSchema, requestOptions);
   }
 
   /**
-   * This operation will allow user to get account level limits for the given account.
+   * This API will allow user to get account level limits for the given account. It returns the velocity
+   * limits if its overridden at the account else the values will be null/empty.
    *
-   * It returns the velocity limits if its overridden at the account else the values will be null/empty.
-   *
+   * @param apikey       This is the API key of the specific environment which
+   *                                                         needs to be passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
    *                                                         requests and responses. This will be played back in the
    *                                                         response from the request.
-   * @param body         Summary Bundle Request body
+   * @param body         Search Account Limit RequestBody
    * @return Response from the API call
    */
   async searchAccountLimit(
+    apikey: string,
     requestId: string,
     body?: SearchAccountLimitRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<SearchAccountLimitResponse>> {
     const req = this.createRequest(
       'POST',
-      '/card-restrictions/v1/searchaccountlimit'
+      '/fleetmanagement/v1/restriction/searchaccountlimit'
     );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
       body: [body, optional(searchAccountLimitRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(searchAccountLimitResponseSchema, requestOptions);
   }
 
   /**
-   * This API will allows querying card details including the day/time and product restrictions.
+   * This API allows to get the details of a specific card bundle. It returns the bundle basic details
+   * along with the cards in the bundle and restrictions applied on them.
    *
-   * #### Supported operations
-   *
-   * * Search by list of cards or bundle
-   *
-   * * Include card bundle details (optional)
-   *
-   *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
-   *                                                            requests and responses. This will be played back in the
-   *                                                            response from the request.
-   * @param body         Summary Bundle Request body
+   * @param apikey       This is the API key of the specific environment which needs to
+   *                                                   be passed by the client.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
+   *                                                   and responses. This will be played back in the response from the
+   *                                                   request.
+   * @param body         Bundle Details Request body
    * @return Response from the API call
    */
-  async searchCardRestriction(
+  async bundledetails(
+    apikey: string,
     requestId: string,
-    body?: RestrictionSearchCardRequest,
+    body?: BudleDetailsRequest,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<RestrictionSearchCardResponse>> {
-    const req = this.createRequest('POST', '/card-restrictions/v2/search');
+  ): Promise<ApiResponse<BundleDetailsResponse>> {
+    const req = this.createRequest(
+      'POST',
+      '/fleetmanagement/v1/restriction/bundledetails'
+    );
     const mapped = req.prepareArgs({
+      apikey: [apikey, string()],
       requestId: [requestId, string()],
-      body: [body, optional(restrictionSearchCardRequestSchema)],
+      body: [body, optional(budleDetailsRequestSchema)],
     });
+    req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
-    req.authenticate([{ bearerToken: true }]);
-    return req.callAsJson(restrictionSearchCardResponseSchema, requestOptions);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ basicAuth: true }]);
+    return req.callAsJson(bundleDetailsResponseSchema, requestOptions);
   }
 }

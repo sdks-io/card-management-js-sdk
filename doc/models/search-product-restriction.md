@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `products` | [`ProductAllOf0[] \| undefined`](../../doc/models/product-all-of-0.md) | Optional | - |
+| `products` | [`RestrictionProduct[] \| undefined`](../../doc/models/restriction-product.md) | Optional | - |
 | `productGroups` | [`ProductGroup[] \| undefined`](../../doc/models/product-group.md) | Optional | - |
 
 ## Example (as JSON)

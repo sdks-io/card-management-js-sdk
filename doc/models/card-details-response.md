@@ -19,22 +19,22 @@
 | `localCurrencySymbol` | `string \| null \| undefined` | Optional | Currency symbol of local currency. |
 | `cardId` | `number \| undefined` | Optional | Unique Card Id in Cards platform. |
 | `pAN` | `string \| null \| undefined` | Optional | Card PAN. In the response body the PAN will be masked if the option is enabled in the Shell Card Platform. |
-| `statusId` | [`CardDetailsResponseStatusIdEnum \| undefined`](../../doc/models/card-details-response-status-id-enum.md) | Optional | Possible Id’s and description:<br><br>* 1  Active<br>* 7  Blocked Card<br>* 8  Expired<br>* 9  Cancelled<br>* 10  New<br>* 23  Pending Renewal<br>* 31  Replaced<br>* 41  Temporary Block (Customer)<br>* 42  Temporary Block (Shell)<br>* 43  Fraud<br>* 101 Active (Block in progress) *<br>* 102 Blocked Card (Unblock in progress) *<br>* 103 Active (Cancel in progress) *<br>* 104 Active (Marked as damaged) *<br>* 105 New (Cancel as damaged) *<br>* 106 Active(Scheduled for block) ”#<br>* 107 Blocked Card(Scheduled for unblock)*#<br>* 108 Blocked Card (Cancel in progress) *<br><br>> Note:<br>> •  Items marked with * are intermediate statuses  to indicate that there are pending requests in progress. , The response can contain these intermediate statuses only if the IncludeIntermediateStatus flag is true.<br>> •  The placeholder “<Shell Card Platform Status>” in the items marked with # will be replaced with the Shell Card Platform status description. E.g., “Active (Scheduled for block)” |
+| `statusId` | [`CardDetailsResponseStatusIdEnum \| undefined`](../../doc/models/card-details-response-status-id-enum.md) | Optional | - |
 | `status` | `string \| undefined` | Optional | Possible Id’s and description:<br><br>* 1  Active<br>* 7  Blocked Card<br>* 8  Expired<br>* 9  Cancelled<br>* 10  New<br>* 23  Pending Renewal<br>* 31  Replaced<br>* 41  Temporary Block (Customer)<br>* 42  Temporary Block (Shell)<br>* 43  Fraud<br>* 101 Active (Block in progress) *<br>* 102 Blocked Card (Unblock in progress) *<br>* 103 Active (Cancel in progress) *<br>* 104 Active (Marked as damaged) *<br>* 105 New (Cancel as damaged) *<br>* 106 Active(Scheduled for block) ”#<br>* 107 Blocked Card(Scheduled for unblock) *#<br>* 108 Blocked Card (Cancel in progress) *<br><br>> Note:<br>> •  Items marked with * are intermediate statuses  to indicate that there are pending requests in progress. , The response can contain these intermediate statuses only if the IncludeIntermediateStatus flag is true.<br>> •  The placeholder “<Shell Card Platform Status>” in the items marked with # will be replaced with the Shell Card Platform status description. E.g., “Active (Scheduled for block)” |
 | `odometerPrompt` | `boolean \| undefined` | Optional | True if odometer input is enabled on the card, else false |
 | `fleetIdPrompt` | `boolean \| undefined` | Optional | True if fleet id input is enabled, else false |
-| `pINType` | [`CardDetailsResponsePINTypeEnum \| undefined`](../../doc/models/card-details-response-pin-type-enum.md) | Optional | PIN type:<br><br>* `Card` - Card PIN<br>* `Fleet` - Fleet PIN |
+| `pINType` | [`CardDetailsResponsePINTypeEnum \| undefined`](../../doc/models/card-details-response-pin-type-enum.md) | Optional | - |
 | `hasPIN` | `boolean \| undefined` | Optional | True if card has PIN, else false |
 | `isSelfSelectedPIN` | `boolean \| undefined` | Optional | True if card has Self Selected PIN, else false |
 | `temporaryBlockAllowed` | `boolean \| undefined` | Optional | True if card can be blocked temporarily, else false |
 | `unblockAllowed` | `boolean \| undefined` | Optional | True/False True if card can be Unblocked, else false |
 | `permanentBlockAllowed` | `boolean \| undefined` | Optional | True if card can be blocked permanently, else false |
 | `issueNumber` | `number \| undefined` | Optional | Issue number of the card |
-| `reissueSetting` | [`CardDetailsResponseReissueSettingEnum \| null \| undefined`](../../doc/models/card-details-response-reissue-setting-enum.md) | Optional | Reissue setting of the card. If the card is superseded (i.e. a replacement/new card is issued) then reissue setting of the latest card issued. Reissue setting:<br><br>* `True` - Card will be Reissued when nearing its expiry date<br>* `False` - Card will not be Reissued |
-| `internationalPOSLanguageID` | [`CardDetailsResponseInternationalPOSLanguageIDEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-id-enum.md) | Optional | POS language identifier. Language Id:<br><br>* `1` - German<br>* `2` - French<br>* `3` - Bulgarian<br>* `4` - Croatian<br>* `5` - Czech<br>* `6` - Danish<br>* `7` - Finnish<br>* `8` - English<br>* `9` - Greek<br>* `10` - Chinese<br>* `11` - Hungarian<br>* `12` - Italian<br>* `13` - Luxembourgish<br>* `14` - Malay<br>* `15` - Dutch<br>* `16` - Norwegian, Bokmal<br>* `17` - Urdu<br>* `18` - Polish<br>* `19` - Portuguese<br>* `20` - Romanian<br>* `21` - Russian<br>* `22` - Slovak<br>* `23` - Slovenian<br>* `24` - Spanish<br>* `25` - Swedish<br>* `26` - Turkish<br>* `27` - Thai<br>* `28` - Filipino<br>* `29` - Estonian<br>* `30` - Latvian<br>* `31` - Lithuanian |
-| `internationalPOSLanguageCode` | [`CardDetailsResponseInternationalPOSLanguageCodeEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-code-enum.md) | Optional | POS language code. Language code:<br><br>* `deu` - German<br>* `fra` - French<br>* `bul` - Bulgarian<br>* `hrv` - Croatian<br>* `ces` - Czech<br>* `dan` - Danish<br>* `fin` - Finnish<br>* `eng` - English<br>* `ell` - Greek<br>* `zho` - Chinese<br>* `hun` - Hungarian<br>* `ita` - Italian<br>* `ltz` - Luxembourgish<br>* `msa` - Malay<br>* `nld` - Dutch<br>* `nob` - Norwegian, Bokmal<br>* `urd` - Urdu<br>* `pol` - Polish<br>* `por` - Portuguese<br>* `ron` - Romanian<br>* `rus` - Russian<br>* `slk` - Slovak<br>* `slv` - Slovenian<br>* `spa` - Spanish<br>* `swe` - Swedish<br>* `tur` - Turkish<br>* `tha` - Thai<br>* `fil` - Filipino<br>* `est` - Estonian<br>* `lav` - Latvian<br>* `lit` - Lithuanian |
-| `localPOSLanguageID` | [`CardDetailsResponseLocalPOSLanguageIDEnum \| undefined`](../../doc/models/card-details-response-local-pos-language-id-enum.md) | Optional | POS language identifier. Language Id:<br><br>* `1` - German<br>* `2` - French<br>* `3` - Bulgarian<br>* `4` - Croatian<br>* `5` - Czech<br>* `6` - Danish<br>* `7` - Finnish<br>* `8` - English<br>* `9` - Greek<br>* `10` - Chinese<br>* `11` - Hungarian<br>* `12` - Italian<br>* `13` - Luxembourgish<br>* `14` - Malay<br>* `15` - Dutch<br>* `16` - Norwegian, Bokmal<br>* `17` - Urdu<br>* `18` - Polish<br>* `19` - Portuguese<br>* `20` - Romanian<br>* `21` - Russian<br>* `22` - Slovak<br>* `23` - Slovenian<br>* `24` - Spanish<br>* `25` - Swedish<br>* `26` - Turkish<br>* `27` - Thai<br>* `28` - Filipino<br>* `29` - Estonian<br>* `30` - Latvian<br>* `31` - Lithuanian |
-| `localPOSLanguageCode` | [`CardDetailsResponseLocalPOSLanguageCodeEnum \| undefined`](../../doc/models/card-details-response-local-pos-language-code-enum.md) | Optional | POS language code. Language code:<br><br>* `deu` - German<br>* `fra` - French<br>* `bul` - Bulgarian<br>* `hrv` - Croatian<br>* `ces` - Czech<br>* `dan` - Danish<br>* `fin` - Finnish<br>* `eng` - English<br>* `ell` - Greek<br>* `zho` - Chinese<br>* `hun` - Hungarian<br>* `ita` - Italian<br>* `ltz` - Luxembourgish<br>* `msa` - Malay<br>* `nld` - Dutch<br>* `nob` - Norwegian, Bokmal<br>* `urd` - Urdu<br>* `pol` - Polish<br>* `por` - Portuguese<br>* `ron` - Romanian<br>* `rus` - Russian<br>* `slk` - Slovak<br>* `slv` - Slovenian<br>* `spa` - Spanish<br>* `swe` - Swedish<br>* `tur` - Turkish<br>* `tha` - Thai<br>* `fil` - Filipino<br>* `est` - Estonian<br>* `lav` - Latvian<br>* `lit` - Lithuanian |
+| `reissueSetting` | `unknown \| undefined` | Optional | - |
+| `internationalPOSLanguageID` | [`CardDetailsResponseInternationalPOSLanguageIDEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-id-enum.md) | Optional | - |
+| `internationalPOSLanguageCode` | [`CardDetailsResponseInternationalPOSLanguageCodeEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-code-enum.md) | Optional | - |
+| `localPOSLanguageID` | [`CardDetailsResponseInternationalPOSLanguageIDEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-id-enum.md) | Optional | - |
+| `localPOSLanguageCode` | [`CardDetailsResponseInternationalPOSLanguageCodeEnum \| undefined`](../../doc/models/card-details-response-international-pos-language-code-enum.md) | Optional | - |
 | `cardTypeCode` | `string \| null \| undefined` | Optional | ISO code of the card i.e. first 7 digits of the PAN. |
 | `cardTypeId` | `number \| null \| undefined` | Optional | Card Type ID |
 | `cardTypeName` | `string \| null \| undefined` | Optional | Card Type Name |
@@ -70,13 +70,13 @@
 | `renewedCardStatus` | `string \| undefined` | Optional | Renewed card status description. |
 | `renewedCardExpiryDate` | `string \| undefined` | Optional | Renewed card expiry date. |
 | `renewedCardIssueNumber` | `number \| null \| undefined` | Optional | Renewed card issue number. |
-| `renewedCardReissueSetting` | [`CardDetailsResponseRenewedCardReissueSettingEnum \| undefined`](../../doc/models/card-details-response-renewed-card-reissue-setting-enum.md) | Optional | Reissue setting of the renewed new card. Reissue Setting:<br><br>* `True` - Card will be sent to production<br>* `False` - Parent Card is Dormant or the Card is not to be produced |
+| `renewedCardReissueSetting` | [`CardDetailsResponseRenewedCardReissueSettingEnum \| undefined`](../../doc/models/card-details-response-renewed-card-reissue-setting-enum.md) | Optional | - |
 | `creationDate` | `string \| null \| undefined` | Optional | Card Creation Date time |
 | `effectiveDate` | `string \| null \| undefined` | Optional | Effective date for the Card |
 | `lastModifiedDate` | `string \| null \| undefined` | Optional | Card last modified date |
 | `bundleId` | `string \| null \| undefined` | Optional | Bundle Id associated with card in the Gateway. This field will have a null value if the card is not associated with any bundle in Gateway or the value of IncludeBundleDetails in request is false. |
-| `cardDeliveryAddress` | [`CardDetailsResponseCardDeliveryAddress \| undefined`](../../doc/models/card-details-response-card-delivery-address.md) | Optional | Delivery address. |
-| `pINDeliveryAddress` | [`CardDetailsResponsePINDeliveryAddress \| undefined`](../../doc/models/card-details-response-pin-delivery-address.md) | Optional | Delivery address. |
+| `cardDeliveryAddress` | [`CardDeliveryAddress \| undefined`](../../doc/models/card-delivery-address.md) | Optional | - |
+| `pINDeliveryAddress` | [`PINDeliveryAddress \| undefined`](../../doc/models/pin-delivery-address.md) | Optional | - |
 | `cardBlockSchedules` | [`CardDetailsResponseCardBlockSchedulesItemsAllOf0[] \| null \| undefined`](../../doc/models/card-details-response-card-block-schedules-items-all-of-0.md) | Optional | **Constraints**: *Unique Items Required* |
 | `error` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
 | `requestId` | `string \| undefined` | Optional | API Request |
@@ -97,17 +97,12 @@
   "PAN": "7002861007636000020",
   "OdometerPrompt": true,
   "FleetIdPrompt": true,
-  "PINType": "Card",
   "HasPIN": true,
   "IsSelfSelectedPIN": true,
   "TemporaryBlockAllowed": true,
   "UnblockAllowed": true,
   "PermanentBlockAllowed": true,
   "IssueNumber": 1,
-  "InternationalPOSLanguageID": 8,
-  "InternationalPOSLanguageCode": "eng",
-  "LocalPOSLanguageID": 8,
-  "LocalPOSLanguageCode": "eng",
   "CardTypeCode": "7077861",
   "CardTypeId": 1,
   "CardTypeName": "Philippines CRT 7077861",

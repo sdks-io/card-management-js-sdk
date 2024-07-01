@@ -5,17 +5,23 @@
  */
 
 import { array, lazy, object, optional, Schema } from '../schema';
-import { ProductAllOf0, productAllOf0Schema } from './productAllOf0';
 import { ProductGroup, productGroupSchema } from './productGroup';
+import {
+  RestrictionProduct,
+  restrictionProductSchema,
+} from './restrictionProduct';
 
 export interface SearchProductRestriction {
-  products?: ProductAllOf0[];
+  products?: RestrictionProduct[];
   productGroups?: ProductGroup[];
 }
 
 export const searchProductRestrictionSchema: Schema<SearchProductRestriction> = object(
   {
-    products: ['Products', optional(array(lazy(() => productAllOf0Schema)))],
+    products: [
+      'Products',
+      optional(array(lazy(() => restrictionProductSchema))),
+    ],
     productGroups: [
       'ProductGroups',
       optional(array(lazy(() => productGroupSchema))),

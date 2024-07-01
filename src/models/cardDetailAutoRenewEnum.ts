@@ -18,4 +18,6 @@ export enum CardDetailAutoRenewEnum {
 /**
  * Schema for CardDetailAutoRenewEnum
  */
-export const  cardDetailAutoRenewEnumSchema: Schema<CardDetailAutoRenewEnum> = numberEnum(CardDetailAutoRenewEnum);
+export const cardDetailAutoRenewEnumSchema: Schema<CardDetailAutoRenewEnum> = numberEnum(
+  CardDetailAutoRenewEnum
+);

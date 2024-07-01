@@ -13,10 +13,7 @@ import {
   Schema,
   string,
 } from '../schema';
-import {
-  PINDeliveryDetails,
-  pINDeliveryDetailsSchema,
-} from './pINDeliveryDetails';
+import { PINDeliverTo, pINDeliverToSchema } from './pINDeliverTo';
 
 /** Request entity object for PINReminderCardDetails */
 export interface PINReminderCardDetails {
@@ -61,11 +58,7 @@ export interface PINReminderCardDetails {
    * Note: - PINContactType “3” is only allowed for Paper delivery
    */
   pINContactType?: number;
-  /**
-   * PINDeliverDetails entity. The fields of this entity are described below.
-   * This is mandatory if PINContactType is 4 else optional and ignored.
-   */
-  pINDeliverTo?: PINDeliveryDetails;
+  pINDeliverTo?: PINDeliverTo;
 }
 
 export const pINReminderCardDetailsSchema: Schema<PINReminderCardDetails> = object(
@@ -76,9 +69,6 @@ export const pINReminderCardDetailsSchema: Schema<PINReminderCardDetails> = obje
     cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],
     pINAdviceType: ['PINAdviceType', number()],
     pINContactType: ['PINContactType', optional(number())],
-    pINDeliverTo: [
-      'PINDeliverTo',
-      optional(lazy(() => pINDeliveryDetailsSchema)),
-    ],
+    pINDeliverTo: ['PINDeliverTo', optional(lazy(() => pINDeliverToSchema))],
   }
 );

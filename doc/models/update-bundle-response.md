@@ -9,24 +9,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `requestId` | `string \| undefined` | Optional | API Request Id |
-| `status` | `string \| undefined` | Optional | API Response Status |
-| `errors` | [`ErrorDetails \| undefined`](../../doc/models/error-details.md) | Optional | - |
+| `requestId` | `string \| null \| undefined` | Optional | Request Id of the API call |
+| `requestActionStatus` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
+| `dayTimeRestrictionStatus` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
+| `locationRestrictionStatus` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
+| `productRestrictionStatus` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
+| `usageRestrictionStatus` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
+| `error` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "RequestId": "RequestId4",
-  "Status": "Status0",
-  "Errors": {
+  "RequestId": "2ace3991-5d03-4a68-ac68-ca9119b25101",
+  "RequestActionStatus": {
+    "Code": "Code6",
+    "Description": "Description0"
+  },
+  "DayTimeRestrictionStatus": {
     "Code": "Code4",
-    "Title": "Title6",
-    "Detail": "Detail6",
-    "AdditionalInfo": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "Description": "Description2"
+  },
+  "LocationRestrictionStatus": {
+    "Code": "Code6",
+    "Description": "Description0"
+  },
+  "ProductRestrictionStatus": {
+    "Code": "Code8",
+    "Description": "Description8"
   }
 }
 ```

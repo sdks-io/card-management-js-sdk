@@ -46,4 +46,6 @@ export enum CardDetailsResponseLocalPOSLanguageIDEnum {
 /**
  * Schema for CardDetailsResponseLocalPOSLanguageIDEnum
  */
-export const  cardDetailsResponseLocalPOSLanguageIDEnumSchema: Schema<CardDetailsResponseLocalPOSLanguageIDEnum> = numberEnum(CardDetailsResponseLocalPOSLanguageIDEnum);
+export const cardDetailsResponseLocalPOSLanguageIDEnumSchema: Schema<CardDetailsResponseLocalPOSLanguageIDEnum> = numberEnum(
+  CardDetailsResponseLocalPOSLanguageIDEnum
+);

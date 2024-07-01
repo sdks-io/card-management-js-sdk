@@ -6,13 +6,11 @@
 
 import { Configuration, Environment } from './configuration';
 import { RetryConfiguration } from './core';
-import { UrlEnum } from './models/urlEnum';
 
 /** Default values for the configuration parameters of the client. */
 export const DEFAULT_CONFIGURATION: Configuration = {
   timeout: 0,
-  environment: Environment.Production,
-  url: UrlEnum.EnumApitestshellcomtest,
+  environment: Environment.SIT,
 };
 
 /** Default values for retry configuration parameters. */

@@ -14,7 +14,10 @@ import {
   Schema,
   string,
 } from '../schema';
-import { UsageRestrictions, usageRestrictionsSchema } from './usageRestrictions';
+import {
+  UsageRestrictionsCard,
+  usageRestrictionsCardSchema,
+} from './usageRestrictionsCard';
 
 export interface AccountRestrictionRequest {
   /**
@@ -24,7 +27,7 @@ export interface AccountRestrictionRequest {
    * 1 for Philippines
    * 5 for UK
    */
-  colCoId?: number;
+  colCoId?: number | null;
   /**
    * Collecting Company Code (Shell Code) of the selected payer.
    * Mandatory for serviced OUs such as Romania, Latvia, Lithuania, Estonia, Ukraine etc. It is optional for other countries if ColCoID is provided.
@@ -32,7 +35,7 @@ export interface AccountRestrictionRequest {
    * 86 for Philippines
    * 5 for UK
    */
-  colCoCode?: number;
+  colCoCode?: number | null;
   /**
    * Payer Id of the selected payer.
    * Optional if PayerNumber is passed else Mandatory
@@ -44,32 +47,44 @@ export interface AccountRestrictionRequest {
    * Optional if PayerId is passed else Mandatory
    * Example: GB000000123
    */
-  payerNumber?: string;
+  payerNumber?: string | null;
+  /**
+   * Account ID of the customer on which the restrictions will be applied.
+   * Optional if AccountNumber is passed, else Mandatory.
+   * Example: 123456
+   */
+  accountId?: number | null;
   /**
    * Account Number of the customer on which the restrictions will be applied.
    * Optional if AccountId is passed, else Mandatory.
+   * Example: GB000000123
    */
-  accountNumber?: string;
+  accountNumber?: string | null;
   /**
+   * True/False.
    * If true, the usage restrictions applied on the account will be removed.
    * Optional
    * Default: False
    */
-  resetUsageRestrictions?: boolean;
-  usageRestrictions?: UsageRestrictions;
+  resetUsageRestrictions?: boolean | null;
+  usageRestrictions?: UsageRestrictionsCard | null;
 }
 
 export const accountRestrictionRequestSchema: Schema<AccountRestrictionRequest> = object(
   {
-    colCoId: ['ColCoId', optional(number())],
-    colCoCode: ['ColCoCode', optional(number())],
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
     payerId: ['PayerId', optional(nullable(number()))],
-    payerNumber: ['PayerNumber', optional(string())],
-    accountNumber: ['AccountNumber', optional(string())],
-    resetUsageRestrictions: ['ResetUsageRestrictions', optional(boolean())],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    resetUsageRestrictions: [
+      'ResetUsageRestrictions',
+      optional(nullable(boolean())),
+    ],
     usageRestrictions: [
       'UsageRestrictions',
-      optional(lazy(() => usageRestrictionsSchema)),
+      optional(nullable(lazy(() => usageRestrictionsCardSchema))),
     ],
   }
 );

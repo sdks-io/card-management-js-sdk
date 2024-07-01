@@ -7,13 +7,11 @@
 import { BearerTokenManager } from './bearerTokenManager';
 import { HttpClientOptions } from './clientAdapter';
 import { OAuthToken } from './models/oAuthToken';
-import { UrlEnum } from './models/urlEnum';
 
 /** An interface for all configuration parameters required by the SDK. */
 export interface Configuration {
   timeout: number;
   environment: Environment;
-  url: UrlEnum;
   basicAuthCredentials?: {
     username: string;
     password: string;
@@ -22,9 +20,12 @@ export interface Configuration {
     oAuthClientId: string;
     oAuthClientSecret: string;
     oAuthToken?: OAuthToken;
-    oAuthTokenProvider?: (lastOAuthToken: OAuthToken | undefined,
-      authManager: BearerTokenManager) => Promise<OAuthToken>;
+    oAuthTokenProvider?: (
+      lastOAuthToken: OAuthToken | undefined,
+      authManager: BearerTokenManager
+    ) => Promise<OAuthToken>;
     oAuthOnTokenUpdate?: (token: OAuthToken) => void;
+    oAuthClockSkew?: number;
   };
   httpClientOptions?: Partial<HttpClientOptions>;
   unstable_httpClientOptions?: any;
@@ -32,5 +33,6 @@ export interface Configuration {
 
 /** Environments available for API */
 export enum Environment {
-  Production = 'production',
+  SIT = 'SIT',
+  Production = 'Production',
 }

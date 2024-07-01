@@ -5,10 +5,6 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { DefaultError } from '../errors/defaultError';
-import {
-  ErrorUserAccessError1Error,
-} from '../errors/errorUserAccessError1Error';
 import { AccountRequest, accountRequestSchema } from '../models/accountRequest';
 import {
   AccountResponse,
@@ -49,9 +45,9 @@ import {
   customerDetailResponseSchema,
 } from '../models/customerDetailResponse';
 import {
-  LoggedInUserRequest,
-  loggedInUserRequestSchema,
-} from '../models/loggedInUserRequest';
+  FleetmanagementV1UserLoggedinuserRequest,
+  fleetmanagementV1UserLoggedinuserRequestSchema,
+} from '../models/fleetmanagementV1UserLoggedinuserRequest';
 import {
   LoggedInUserResponse,
   loggedInUserResponseSchema,
@@ -68,28 +64,37 @@ import {
 } from '../models/updateCardGroupResponse';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { ApiError } from '@apimatic/core';
+import { FleetmanagementV1CustomerCustomer403Error } from '../errors/fleetmanagementV1CustomerCustomer403Error';
+import { FleetmanagementV1CustomerPayers400Error } from '../errors/fleetmanagementV1CustomerPayers400Error';
+import { FleetmanagementV1CustomerPayers404Error } from '../errors/fleetmanagementV1CustomerPayers404Error';
+import { FleetmanagementV1UserLoggedinuser400Error } from '../errors/fleetmanagementV1UserLoggedinuser400Error';
+import { FleetmanagementV1UserLoggedinuser401Error } from '../errors/fleetmanagementV1UserLoggedinuser401Error';
+import { FleetmanagementV1UserLoggedinuser403Error } from '../errors/fleetmanagementV1UserLoggedinuser403Error';
+import { FleetmanagementV1UserLoggedinuser404Error } from '../errors/fleetmanagementV1UserLoggedinuser404Error';
+import { FleetmanagementV1UserLoggedinuser500Error } from '../errors/fleetmanagementV1UserLoggedinuser500Error';
 
 export class CustomerController extends BaseController {
   /**
    * This API allows querying the user data of the logged in user.</br>
-   *
    * This API will return the user access details such as payers and/or accounts. </br>
-   *
    * This API will also validate that logged in user has access to the requested API, on failure it will
    * return HasAPIAccess flag as false in response.</br>
    *
-   * @param apikey       This is the API key of the specific environment which needs to
-   *                                                   be passed by the client.
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
-   *                                                   and responses. This will be played back in the response from the
-   *                                                   request.
+   * @param apikey       This is the API key of the specific
+   *                                                                        environment which needs to be passed by the
+   *                                                                        client.
+   * @param requestId    Mandatory UUID (according to RFC 4122
+   *                                                                        standards) for requests and responses. This
+   *                                                                        will be played back in the response from
+   *                                                                        the request.
    * @param body         Logged in user request body
    * @return Response from the API call
    */
-  async loggedinUser(
+  async loggedinuser(
     apikey: string,
     requestId: string,
-    body?: LoggedInUserRequest,
+    body?: FleetmanagementV1UserLoggedinuserRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<LoggedInUserResponse>> {
     const req = this.createRequest(
@@ -99,17 +104,37 @@ export class CustomerController extends BaseController {
     const mapped = req.prepareArgs({
       apikey: [apikey, string()],
       requestId: [requestId, string()],
-      body: [body, optional(loggedInUserRequestSchema)],
+      body: [body, optional(fleetmanagementV1UserLoggedinuserRequestSchema)],
     });
     req.header('apikey', mapped.apikey);
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      FleetmanagementV1UserLoggedinuser400Error,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      FleetmanagementV1UserLoggedinuser401Error,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      FleetmanagementV1UserLoggedinuser403Error,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      FleetmanagementV1UserLoggedinuser404Error,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      FleetmanagementV1UserLoggedinuser500Error,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(loggedInUserResponseSchema, requestOptions);
   }
@@ -165,11 +190,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      FleetmanagementV1CustomerPayers400Error,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      FleetmanagementV1CustomerPayers404Error,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(payerResponseSchema, requestOptions);
   }
@@ -209,11 +254,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      FleetmanagementV1CustomerCustomer403Error,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(customerDetailResponseSchema, requestOptions);
   }
@@ -249,11 +314,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(accountResponseSchema, requestOptions);
   }
@@ -288,11 +373,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(cardTypeResponseSchema, requestOptions);
   }
@@ -302,21 +407,17 @@ export class CustomerController extends BaseController {
    * supports paging.\
    *
    *
-   *
    * When the card group type is configured as ‘Vertical’ in cards platform, this operation will return
    * all card groups from the given account or if no account is passed in the input, then will return
    * card groups from all the accounts under the payer.
-   *
    *
    *
    * When the card group type is configured as ‘Horizontal’ in cards platform, this API will return all
    * card groups configured directly under the payer.
    *
    *
-   *
    * Accounts with cancelled status will not be considered for cardgroups search for the configured (E.g.,
    * SFH) set of client apps.
-   *
    *
    *
    * @param apikey       This is the API key of the specific environment which needs to be
@@ -327,7 +428,7 @@ export class CustomerController extends BaseController {
    * @param body         Request Body
    * @return Response from the API call
    */
-  async cardGroups(
+  async cardgroups(
     apikey: string,
     requestId: string,
     body?: CardGroupRequest,
@@ -346,11 +447,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(cardGroupResponseSchema, requestOptions);
   }
@@ -389,9 +510,7 @@ export class CustomerController extends BaseController {
    *
    * * BCBSummary
    *
-   * * Mobile Payment
-   *
-   * * Registration
+   * * Mobile Payment Registration
    *
    * * Fund Transfer (Scheduled & Realtime)
    *
@@ -404,7 +523,7 @@ export class CustomerController extends BaseController {
    * @param body         request body
    * @return Response from the API call
    */
-  async auditReport(
+  async auditreport(
     apikey: string,
     requestId: string,
     body?: AuditRequest,
@@ -423,11 +542,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(auditResponseSchema, requestOptions);
   }
@@ -468,7 +607,7 @@ export class CustomerController extends BaseController {
    * @param body         CreateCardGroup request body
    * @return Response from the API call
    */
-  async createCardGroup(
+  async createcardgroup(
     apikey: string,
     requestId: string,
     body?: CreateCardGroupRequest,
@@ -487,11 +626,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(createCardGroupResponseSchema, requestOptions);
   }
@@ -522,7 +681,7 @@ export class CustomerController extends BaseController {
    * @param body         request body of customer card group
    * @return Response from the API call
    */
-  async updateCardGroup(
+  async updatecardgroup(
     apikey: string,
     requestId: string,
     body?: UpdateCardGroupRequest,
@@ -541,11 +700,31 @@ export class CustomerController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(updateCardGroupResponseSchema, requestOptions);
   }

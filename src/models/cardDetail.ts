@@ -15,18 +15,12 @@ import {
   Schema,
   string,
 } from '../schema';
-import {
-  CardDeliveryContact,
-  cardDeliveryContactSchema,
-} from './cardDeliveryContact';
+import { CardContact, cardContactSchema } from './cardContact';
 import {
   CardDetailAutoRenewEnum,
   cardDetailAutoRenewEnumSchema,
 } from './cardDetailAutoRenewEnum';
-import {
-  PINDeliveryContact,
-  pINDeliveryContactSchema,
-} from './pINDeliveryContact';
+import { PINContact, pINContactSchema } from './pINContact';
 
 /** Request entity object for CardDetail */
 export interface CardDetail {
@@ -176,11 +170,7 @@ export interface CardDetail {
    * 2.	New Delivery Address
    */
   cardDeliveryType: number | null;
-  /**
-   * Request entity object for CardDeliveryContact
-   * Mandatory when CardDeliveryType is 2 else ignored.
-   */
-  cardContact?: CardDeliveryContact;
+  cardContact?: CardContact;
   /**
    * PIN delivery address type selection.<br />
    * Optional<br />
@@ -200,11 +190,7 @@ export interface CardDetail {
    * 4.	None <br /> **Note:** Paper delivery not applicable for selfselctedPIN type
    */
   pINAdviceType: number | null;
-  /**
-   * Request entity object for PINDeliveryContact
-   * Mandatory when PINDeliveryAddressType is ‘3’ (New delivery address). Else, ignored.
-   */
-  pINContact?: PINDeliveryContact;
+  pINContact?: PINContact;
   /**
    * True/False.<br />
    * Optional.<br />
@@ -306,13 +292,6 @@ export interface CardDetail {
    * Optional
    */
   clientReferenceId?: string | null;
-  /**
-   * Whether to reissue card automatically when nearing the expiry.
-   * Allowed values: -
-   * 1.    As per card type setting (Default).
-   * 2.    Card will be Reissued when nearing its expiry date.
-   * 3.    Card will not be Reissued.
-   */
   autoRenew?: CardDetailAutoRenewEnum;
 }
 
@@ -342,13 +321,13 @@ export const cardDetailSchema: Schema<CardDetail> = object({
   isNewCardGroup: ['IsNewCardGroup', optional(boolean())],
   embossCardGroup: ['EmbossCardGroup', optional(boolean())],
   cardDeliveryType: ['CardDeliveryType', nullable(number())],
-  cardContact: ['CardContact', optional(lazy(() => cardDeliveryContactSchema))],
+  cardContact: ['CardContact', optional(lazy(() => cardContactSchema))],
   pINDeliveryAddressType: [
     'PINDeliveryAddressType',
     optional(nullable(number())),
   ],
   pINAdviceType: ['PINAdviceType', nullable(number())],
-  pINContact: ['PINContact', optional(lazy(() => pINDeliveryContactSchema))],
+  pINContact: ['PINContact', optional(lazy(() => pINContactSchema))],
   notifyCaller: ['NotifyCaller', optional(boolean())],
   caller: ['Caller', optional(nullable(string()))],
   notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],

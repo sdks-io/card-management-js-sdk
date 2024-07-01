@@ -17,4 +17,6 @@ export enum CardDetailsResponseReissueSettingEnum {
 /**
  * Schema for CardDetailsResponseReissueSettingEnum
  */
-export const  cardDetailsResponseReissueSettingEnumSchema: Schema<CardDetailsResponseReissueSettingEnum> = stringEnum(CardDetailsResponseReissueSettingEnum);
+export const cardDetailsResponseReissueSettingEnumSchema: Schema<CardDetailsResponseReissueSettingEnum> = stringEnum(
+  CardDetailsResponseReissueSettingEnum
+);

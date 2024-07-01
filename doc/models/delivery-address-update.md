@@ -14,8 +14,8 @@ List of cards for delivery address update. Maximum number of cards that can be p
 | `cardId` | `number \| undefined` | Optional | Card Id of the card.<br>Optional if  PAN is passed, else Mandatory. |
 | `pAN` | `string \| undefined` | Optional | PAN of the card.<br>Optional if CardId is passed, else Mandatory.<br><br>Note: -<br>PAN & ExpiryDate parameters will be considered only if CardId & PANID are not provided. |
 | `cardExpiryDate` | `string \| undefined` | Optional | Expiry date of the card.<br>Mandatory if PAN is passed, else optional.<br>Format: yyyyMMdd |
-| `useCustomerDefaultAddress` | `boolean` | Required | Whether to use the default delivery address configured at customer (or card group) level as the delivery address for this card.<br>Mandatory<br>Note: If value is false then ‘UpdateCardRenewalAddress’ is mandatory. If value set to ‘True’ then<br>‘UpdateCardRenewalAddress’ may be null/empty. It will be ignored if provided.<br>**Default**: `false` |
-| `updateCardRenewalAddress` | [`UpdateCardRenewalAddress \| undefined`](../../doc/models/update-card-renewal-address.md) | Optional | Delivery address of card. This address will be used for card reissue and PIN reminders in future.<br>Note: Mandatory when ‘UseCustomerDefaultAddress’ is set to ‘false’. The field is ignored otherwise. |
+| `useCustomerDefaultAddress` | `boolean` | Required | Whether to use the default delivery address configured at customer (or card group) level as the delivery address for this card.<br>Mandatory<br>Note: If value is false then ‘UpdateCardRenewalAddress’ is mandatory. If value set to ‘True’ then<br>‘UpdateCardRenewalAddress’ may be null/empty. It will be ignored if provided. |
+| `updateCardRenewalAddress` | [`UpdateCardRenewalAddress2 \| undefined`](../../doc/models/update-card-renewal-address-2.md) | Optional | - |
 
 ## Example (as JSON)
 

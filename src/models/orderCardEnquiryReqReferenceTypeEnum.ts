@@ -18,4 +18,6 @@ export enum OrderCardEnquiryReqReferenceTypeEnum {
 /**
  * Schema for OrderCardEnquiryReqReferenceTypeEnum
  */
-export const  orderCardEnquiryReqReferenceTypeEnumSchema: Schema<OrderCardEnquiryReqReferenceTypeEnum> = numberEnum(OrderCardEnquiryReqReferenceTypeEnum);
+export const orderCardEnquiryReqReferenceTypeEnumSchema: Schema<OrderCardEnquiryReqReferenceTypeEnum> = numberEnum(
+  OrderCardEnquiryReqReferenceTypeEnum
+);

@@ -67,11 +67,26 @@ export interface AuditRequest {
    */
   pageSize?: number;
   /**
-   * To search for requests submitted until this date.
+   * Type of requests to be fetched.
    * Optional
-   * Format: yyyyMMdd
-   * Example: 20200130
-   * If ToDate is not provided and FromDate is provided, then ToDate will be considered as current date or 30 days from FromDate, whichever is earlier. However, when both FromDate and ToDate is not provided then last 30 days will be considered for filtering.
+   * Allowed values:
+   * •	OrderCard
+   * •	CreateCardGroup
+   * •	PINReminder
+   * •	MoveCard
+   * •	UpdateCardStatus
+   * •	UpdateCardGroup
+   * •	AutoRenew
+   * •	BulkCardOrder
+   * •	BulkCardBlock
+   * •	BulkCardOrderMultiAccount
+   * •	MobilePaymentRegistration
+   * •	UpdateCompanyInfo
+   * •	BCOSummary
+   * •	BCOMultiAccountSummary
+   * •	BCBSummary
+   * •	FundTransfer
+   * •	DeliveryAddressUpdate
    */
   requestedOperation?: string[];
   /**

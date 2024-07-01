@@ -15,31 +15,51 @@ import {
   string,
 } from '../schema';
 import {
-  CreateBundleRequestRestrictions,
-  createBundleRequestRestrictionsSchema,
-} from './createBundleRequestRestrictions';
+  BundleRestriction,
+  bundleRestrictionSchema,
+} from './bundleRestriction';
 
 export interface CreateBundleRequest {
   /**
-   * Collecting Company Id  of the selected payer.
+   * Collecting Company Id of the selected payer.
    * Optional if ColCoCode is passed else Mandatory.
    * Example:
-   * 1-Philippines
-   * 5-UK
+   * 1 for Philippines
+   * 5 for UK
    */
-  colCoId?: number;
+  colCoId?: number | null;
+  /**
+   * Collecting Company Code (Shell Code) of the selected payer.
+   * Mandatory for serviced OUs such as Romania, Latvia, Lithuania, Estonia, Ukraine etc. It is optional for other countries if ColCoID is provided.
+   * Example:
+   * 86 for Philippines
+   * 5 for UK
+   */
+  colCoCode?: number | null;
   /**
    * Payer Id of the selected payer.
-   * Optional if PayerNumber is passed else Mandatory
+   * Either PayerId or PayerNumber or both must be passed.
    * Example: 123456
    */
-  payerId?: number;
+  payerId?: number | null;
+  /**
+   * Payer Number of the selected payer.
+   * Either PayerId or PayerNumber or both must be passed.
+   * Example: GB000000123
+   */
+  payerNumber?: string;
   /**
    * Account ID of the customer.
    * Either AccountId or AccountNumber or both must be passed.
    * Example: 123456
    */
-  accountId?: number;
+  accountId?: number | null;
+  /**
+   * Account Number of the customer.
+   * Either AccountId or AccountNumber or both must be passed.
+   * Example: GB000000123
+   */
+  accountNumber?: string | null;
   /**
    * Identifier of the bundle in external system.
    * Optional.
@@ -49,52 +69,29 @@ export interface CreateBundleRequest {
    * A bundle description.
    * Optional.
    */
-  description: string;
+  description?: string;
   /**
    * List of Card PANs to be added in the bundle.
    * Mandatory.
    * Example: 7002051006629890645
    * When PAN matches with multiple cards, the restriction will be applied on the latest issued card.
    */
-  cards: string[];
-  /**
-   * Collecting Company Code (Shell Code) of the selected payer.
-   * Mandatory for serviced OUs such as Romania, Latvia, Lithuania, Estonia, Ukraine etc. It is optional for other countries if ColCoID is provided.
-   * Example:
-   * 86-Philippines
-   * 5-UK
-   */
-  colCoCode?: number | null;
-  /**
-   * Payer Number (Ex: GB000000123) of the selected payer.
-   * Optional if PayerId is passed else Mandatory
-   */
-  payerNumber?: string;
-  /**
-   * Account Number of the customer.
-   * Either AccountId or AccountNumber or both must be passed.
-   * Example: GB000000123
-   */
-  accountNumber?: string | null;
-  /**
-   * Restrictions to be applied on the bundle.
-   * Mandatory
-   */
-  restrictions?: CreateBundleRequestRestrictions;
+  cards?: string[];
+  restrictions?: BundleRestriction | null;
 }
 
 export const createBundleRequestSchema: Schema<CreateBundleRequest> = object({
-  colCoId: ['ColCoId', optional(number())],
-  payerId: ['PayerId', optional(number())],
-  accountId: ['AccountId', optional(number())],
-  externalBundleId: ['ExternalBundleId', optional(nullable(string()))],
-  description: ['Description', string()],
-  cards: ['Cards', array(string())],
+  colCoId: ['ColCoId', optional(nullable(number()))],
   colCoCode: ['ColCoCode', optional(nullable(number()))],
+  payerId: ['PayerId', optional(nullable(number()))],
   payerNumber: ['PayerNumber', optional(string())],
+  accountId: ['AccountId', optional(nullable(number()))],
   accountNumber: ['AccountNumber', optional(nullable(string()))],
+  externalBundleId: ['ExternalBundleId', optional(nullable(string()))],
+  description: ['Description', optional(string())],
+  cards: ['Cards', optional(array(string()))],
   restrictions: [
     'Restrictions',
-    optional(lazy(() => createBundleRequestRestrictionsSchema)),
+    optional(nullable(lazy(() => bundleRestrictionSchema))),
   ],
 });

@@ -14,9 +14,9 @@ import {
   string,
 } from '../schema';
 import {
-  UpdateCardRenewalAddress,
-  updateCardRenewalAddressSchema,
-} from './updateCardRenewalAddress';
+  UpdateCardRenewalAddress2,
+  updateCardRenewalAddress2Schema,
+} from './updateCardRenewalAddress2';
 
 /** List of cards for delivery address update. Maximum number of cards that can be provided in the list is 50 */
 export interface DeliveryAddressUpdate {
@@ -45,11 +45,7 @@ export interface DeliveryAddressUpdate {
    * ‘UpdateCardRenewalAddress’ may be null/empty. It will be ignored if provided.
    */
   useCustomerDefaultAddress: boolean;
-  /**
-   * Delivery address of card. This address will be used for card reissue and PIN reminders in future.
-   * Note: Mandatory when ‘UseCustomerDefaultAddress’ is set to ‘false’. The field is ignored otherwise.
-   */
-  updateCardRenewalAddress?: UpdateCardRenewalAddress;
+  updateCardRenewalAddress?: UpdateCardRenewalAddress2;
 }
 
 export const deliveryAddressUpdateSchema: Schema<DeliveryAddressUpdate> = object(
@@ -60,7 +56,7 @@ export const deliveryAddressUpdateSchema: Schema<DeliveryAddressUpdate> = object
     useCustomerDefaultAddress: ['UseCustomerDefaultAddress', boolean()],
     updateCardRenewalAddress: [
       'UpdateCardRenewalAddress',
-      optional(lazy(() => updateCardRenewalAddressSchema)),
+      optional(lazy(() => updateCardRenewalAddress2Schema)),
     ],
   }
 );

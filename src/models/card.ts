@@ -15,7 +15,10 @@ import {
   Schema,
   string,
 } from '../schema';
-import { CardBlockSchedule, cardBlockScheduleSchema } from './cardBlockSchedule';
+import {
+  CardBlockSchedule,
+  cardBlockScheduleSchema,
+} from './cardBlockSchedule';
 
 export interface Card {
   /** Account ID */

@@ -17,4 +17,6 @@ export enum CardDetailsResponsePINTypeEnum {
 /**
  * Schema for CardDetailsResponsePINTypeEnum
  */
-export const  cardDetailsResponsePINTypeEnumSchema: Schema<CardDetailsResponsePINTypeEnum> = stringEnum(CardDetailsResponsePINTypeEnum);
+export const cardDetailsResponsePINTypeEnumSchema: Schema<CardDetailsResponsePINTypeEnum> = stringEnum(
+  CardDetailsResponsePINTypeEnum
+);

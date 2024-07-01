@@ -33,4 +33,6 @@ export enum CardDetailsResponseStatusIdEnum {
 /**
  * Schema for CardDetailsResponseStatusIdEnum
  */
-export const  cardDetailsResponseStatusIdEnumSchema: Schema<CardDetailsResponseStatusIdEnum> = numberEnum(CardDetailsResponseStatusIdEnum);
+export const cardDetailsResponseStatusIdEnumSchema: Schema<CardDetailsResponseStatusIdEnum> = numberEnum(
+  CardDetailsResponseStatusIdEnum
+);

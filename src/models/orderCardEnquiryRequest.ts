@@ -5,16 +5,12 @@
  */
 
 import { lazy, object, optional, Schema } from '../schema';
-import {
-  OrderCardEnquiryReq,
-  orderCardEnquiryReqSchema,
-} from './orderCardEnquiryReq';
+import { Filters2, filters2Schema } from './filters2';
 
 export interface OrderCardEnquiryRequest {
-  /** This class holds Order Card Enquiry list based on which the Order Card Enquiry need to be filtered. */
-  filters?: OrderCardEnquiryReq;
+  filters?: Filters2;
 }
 
 export const orderCardEnquiryRequestSchema: Schema<OrderCardEnquiryRequest> = object(
-  { filters: ['Filters', optional(lazy(() => orderCardEnquiryReqSchema))] }
+  { filters: ['Filters', optional(lazy(() => filters2Schema))] }
 );

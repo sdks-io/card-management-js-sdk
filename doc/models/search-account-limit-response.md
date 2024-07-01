@@ -9,45 +9,23 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `requestId` | `string \| undefined` | Optional | - |
-| `status` | `string \| undefined` | Optional | - |
-| `data` | [`SearchAccountLimitResponseData \| undefined`](../../doc/models/search-account-limit-response-data.md) | Optional | - |
+| `requestId` | `string \| null \| undefined` | Optional | Request Id of the API call |
+| `accountId` | `number \| undefined` | Optional | Account ID of the customer. |
+| `accountNumber` | `string \| undefined` | Optional | Account Number<br>Example: GB99215176 |
+| `referenceProduct` | `string \| undefined` | Optional | 3 digit Shell global fuel product code, if already set up.<br>Example: 021 |
+| `restrictionCondition` | `string \| undefined` | Optional | The restriction condition code.<br>Example: DECLINE_ALERT |
+| `velocityLimits` | [`AccountVelocityLimit[] \| undefined`](../../doc/models/account-velocity-limit.md) | Optional | - |
+| `error` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "RequestId": "RequestId0",
-  "Status": "Status6",
-  "Data": {
-    "AccountId": 62,
-    "AccountNumber": "AccountNumber8",
-    "ReferenceProduct": "ReferenceProduct8",
-    "RestrictionCondition": "RestrictionCondition4",
-    "VelocityLimits": [
-      {
-        "Type": "Type0",
-        "Period": "Period2",
-        "Limit": 24.94,
-        "Accumulation": 132.24,
-        "Balance": 189.6
-      },
-      {
-        "Type": "Type0",
-        "Period": "Period2",
-        "Limit": 24.94,
-        "Accumulation": 132.24,
-        "Balance": 189.6
-      },
-      {
-        "Type": "Type0",
-        "Period": "Period2",
-        "Limit": 24.94,
-        "Accumulation": 132.24,
-        "Balance": 189.6
-      }
-    ]
-  }
+  "RequestId": "2ace3991-5d03-4a68-ac68-ca9119b25101",
+  "AccountId": 114,
+  "AccountNumber": "AccountNumber2",
+  "ReferenceProduct": "ReferenceProduct2",
+  "RestrictionCondition": "RestrictionCondition0"
 }
 ```
 

@@ -14,10 +14,7 @@ import {
   Schema,
   string,
 } from '../schema';
-import {
-  ReplaceCardSettings,
-  replaceCardSettingsSchema,
-} from './replaceCardSettings';
+import { CardSettings, cardSettingsSchema } from './cardSettings';
 
 /** Request entity object for UpdateCardRequest  list */
 export interface UpdateCard {
@@ -65,8 +62,7 @@ export interface UpdateCard {
    * In case of damaged card request, the replacement card request will be processed immediately.
    */
   orderCardReplacement?: boolean;
-  /** Request entity object for ReplaceCardSettings */
-  cardSettings?: ReplaceCardSettings;
+  cardSettings?: CardSettings;
   /**
    * Reason id for updating the card status.
    * Either Reason ID or Text is madatory when TargetStatus is ‘Block’ or ‘Damaged’. Else ignored.
@@ -153,10 +149,7 @@ export const updateCardSchema: Schema<UpdateCard> = object({
   notifyCaller: ['NotifyCaller', optional(boolean())],
   notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
   orderCardReplacement: ['OrderCardReplacement', optional(boolean())],
-  cardSettings: [
-    'CardSettings',
-    optional(lazy(() => replaceCardSettingsSchema)),
-  ],
+  cardSettings: ['CardSettings', optional(lazy(() => cardSettingsSchema))],
   reasonId: ['ReasonId', optional(number())],
   reasonText: ['ReasonText', optional(nullable(string()))],
   targetStatus: ['TargetStatus', optional(nullable(number()))],

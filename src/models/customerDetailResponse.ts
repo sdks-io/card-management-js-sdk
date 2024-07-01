@@ -16,7 +16,10 @@ import {
   string,
 } from '../schema';
 import { Address, addressSchema } from './address';
-import { DeliveryAddresses, deliveryAddressesSchema } from './deliveryAddresses';
+import {
+  DeliveryAddresses,
+  deliveryAddressesSchema,
+} from './deliveryAddresses';
 import { ErrorStatus, errorStatusSchema } from './errorStatus';
 import { PINAdviceTypes, pINAdviceTypesSchema } from './pINAdviceTypes';
 

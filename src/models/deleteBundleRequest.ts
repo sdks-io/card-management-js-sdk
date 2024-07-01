@@ -8,13 +8,6 @@ import { number, object, optional, Schema, string } from '../schema';
 
 export interface DeleteBundleRequest {
   /**
-   * Collecting Company Id of the selected payer.
-   * Optional if ColCoCode is passed else Mandatory.
-   * Example:
-   * 1 for Philippines
-   */
-  colCoId?: number;
-  /**
    * Collecting Company Code (Shell Code) of the selected payer.
    * Mandatory for serviced OUs such as Romania, Latvia, Lithuania, Estonia, Ukraine etc. It is optional for other countries if ColCoID is provided.
    * Example:
@@ -22,6 +15,14 @@ export interface DeleteBundleRequest {
    * 5 for UK
    */
   colCoCode?: number;
+  /**
+   * Collecting Company Code (Shell Code) of the selected payer.
+   * Mandatory for serviced OUs such as Romania, Latvia, Lithuania, Estonia, Ukraine etc. It is optional for other countries if ColCoID is provided.
+   * Example:
+   * 86 for Philippines
+   * 5 for UK
+   */
+  colCoId?: number;
   /**
    * Payer Number of the selected payer.
    * Either PayerId or PayerNumber or both must be passed.
@@ -54,8 +55,8 @@ export interface DeleteBundleRequest {
 }
 
 export const deleteBundleRequestSchema: Schema<DeleteBundleRequest> = object({
-  colCoId: ['ColCoId', optional(number())],
   colCoCode: ['ColCoCode', optional(number())],
+  colCoId: ['ColCoId', optional(number())],
   payerNumber: ['PayerNumber', optional(string())],
   payerId: ['PayerId', optional(number())],
   accountId: ['AccountId', optional(number())],

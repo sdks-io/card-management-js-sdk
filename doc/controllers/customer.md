@@ -12,30 +12,28 @@ const customerController = new CustomerController(client);
 
 ## Methods
 
-* [Loggedin User](../../doc/controllers/customer.md#loggedin-user)
+* [Loggedinuser](../../doc/controllers/customer.md#loggedinuser)
 * [Payers](../../doc/controllers/customer.md#payers)
 * [Customer](../../doc/controllers/customer.md#customer)
 * [Accounts](../../doc/controllers/customer.md#accounts)
 * [Card Type](../../doc/controllers/customer.md#card-type)
-* [Card Groups](../../doc/controllers/customer.md#card-groups)
-* [Audit Report](../../doc/controllers/customer.md#audit-report)
-* [Create Card Group](../../doc/controllers/customer.md#create-card-group)
-* [Update Card Group](../../doc/controllers/customer.md#update-card-group)
+* [Cardgroups](../../doc/controllers/customer.md#cardgroups)
+* [Auditreport](../../doc/controllers/customer.md#auditreport)
+* [Createcardgroup](../../doc/controllers/customer.md#createcardgroup)
+* [Updatecardgroup](../../doc/controllers/customer.md#updatecardgroup)
 
 
-# Loggedin User
+# Loggedinuser
 
 This API allows querying the user data of the logged in user.</br>
 This API will return the user access details such as payers and/or accounts. </br>
 This API will also validate that logged in user has access to the requested API, on failure it will return HasAPIAccess flag as false in response.</br>
 
 ```ts
-async loggedinUser(
-  apikey: string,
+async loggedinuser(  apikey: string,
   requestId: string,
-  body?: LoggedInUserRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<LoggedInUserResponse>>
+  body?: FleetmanagementV1UserLoggedinuserRequest,
+requestOptions?: RequestOptions): Promise<ApiResponse<LoggedInUserResponse>>
 ```
 
 ## Parameters
@@ -44,7 +42,7 @@ async loggedinUser(
 |  --- | --- | --- | --- |
 | `apikey` | `string` | Header, Required | This is the API key of the specific environment which needs to be passed by the client. |
 | `requestId` | `string` | Header, Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `body` | [`LoggedInUserRequest \| undefined`](../../doc/models/logged-in-user-request.md) | Body, Optional | Logged in user request body |
+| `body` | [`FleetmanagementV1UserLoggedinuserRequest \| undefined`](../../doc/models/fleetmanagement-v1-user-loggedinuser-request.md) | Body, Optional | Logged in user request body |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -58,7 +56,7 @@ const apikey = 'apikey6';
 
 const requestId = 'RequestId8';
 
-const body: LoggedInUserRequest = {
+const body: FleetmanagementV1UserLoggedinuserRequest = {
   includePayerGroup: false,
   includeEIDDetails: false,
   requestedAPIName: 'Name of the API',
@@ -67,7 +65,7 @@ const body: LoggedInUserRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.loggedinUser(
+  const { result, ...httpResponse } = await customerController.loggedinuser(
   apikey,
   requestId,
   body
@@ -166,11 +164,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`FleetmanagementV1UserLoggedinuser400Error`](../../doc/models/fleetmanagement-v1-user-loggedinuser-400-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`FleetmanagementV1UserLoggedinuser401Error`](../../doc/models/fleetmanagement-v1-user-loggedinuser-401-error.md) |
+| 403 | The server understood the request but refuses to authorize it. | [`FleetmanagementV1UserLoggedinuser403Error`](../../doc/models/fleetmanagement-v1-user-loggedinuser-403-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`FleetmanagementV1UserLoggedinuser404Error`](../../doc/models/fleetmanagement-v1-user-loggedinuser-404-error.md) |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`FleetmanagementV1UserLoggedinuser500Error`](../../doc/models/fleetmanagement-v1-user-loggedinuser-500-error.md) |
 
 
 # Payers
@@ -188,12 +186,10 @@ data queried from each ColCo when payers passed in the input are from
 multiple ColCos.
 
 ```ts
-async payers(
-  apikey: string,
+async payers(  apikey: string,
   requestId: string,
   body?: PayerRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<PayerResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<PayerResponse>>
 ```
 
 ## Parameters
@@ -450,11 +446,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`FleetmanagementV1CustomerPayers400Error`](../../doc/models/fleetmanagement-v1-customer-payers-400-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`FleetmanagementV1CustomerPayers404Error`](../../doc/models/fleetmanagement-v1-customer-payers-404-error.md) |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
 # Customer
@@ -463,12 +459,10 @@ This API allows querying the card delivery addresses of a given account from the
 Only active delivery addresses will be returned.
 
 ```ts
-async customer(
-  apikey: string,
+async customer(  apikey: string,
   requestId: string,
   body?: CustomerDetailRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<CustomerDetailResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CustomerDetailResponse>>
 ```
 
 ## Parameters
@@ -613,11 +607,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | [`FleetmanagementV1CustomerCustomer403Error`](../../doc/models/fleetmanagement-v1-customer-customer-403-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
 # Accounts
@@ -626,12 +620,10 @@ This API allows querying the customer account details from the Shell Cards Platf
 It provides a flexible search criterion and supports paging".
 
 ```ts
-async accounts(
-  apikey: string,
+async accounts(  apikey: string,
   requestId: string,
   body?: AccountRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<AccountResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<AccountResponse>>
 ```
 
 ## Parameters
@@ -784,11 +776,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
 # Card Type
@@ -796,12 +788,10 @@ try {
 This operation allows querying card types that are associated to the given account and are allowed to be shown to users.
 
 ```ts
-async cardType(
-  apikey: string,
+async cardType(  apikey: string,
   requestId: string,
   body?: CardTypeRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<CardTypeResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CardTypeResponse>>
 ```
 
 ## Parameters
@@ -945,14 +935,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Card Groups
+# Cardgroups
 
 This operation allows querying the card group details . It provides flexible search criteria and supports paging.\
 
@@ -963,12 +953,10 @@ When the card group type is configured as ‘Horizontal’ in cards platform, th
 Accounts with cancelled status will not be considered for cardgroups search for the configured (E.g., SFH) set of client apps.
 
 ```ts
-async cardGroups(
-  apikey: string,
+async cardgroups(  apikey: string,
   requestId: string,
   body?: CardGroupRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<CardGroupResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CardGroupResponse>>
 ```
 
 ## Parameters
@@ -1009,7 +997,7 @@ const body: CardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.cardGroups(
+  const { result, ...httpResponse } = await customerController.cardgroups(
   apikey,
   requestId,
   body
@@ -1069,14 +1057,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Audit Report
+# Auditreport
 
 This operation allows users to fetch audit data of account or card operations performed by users of a given customer
 The audit data includes details of below API operations
@@ -1094,18 +1082,15 @@ The audit data includes details of below API operations
 * BCOSummary
 * BCOMultiAccountSummary
 * BCBSummary
-* Mobile Payment
-* Registration
+* Mobile Payment Registration
 * Fund Transfer (Scheduled & Realtime)
 * Delivery Address Update.
 
 ```ts
-async auditReport(
-  apikey: string,
+async auditreport(  apikey: string,
   requestId: string,
   body?: AuditRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<AuditResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<AuditResponse>>
 ```
 
 ## Parameters
@@ -1151,7 +1136,7 @@ const body: AuditRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.auditReport(
+  const { result, ...httpResponse } = await customerController.auditreport(
   apikey,
   requestId,
   body
@@ -1220,14 +1205,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Create Card Group
+# Createcardgroup
 
 This API allows creating a new Card Group in the Shell Cards Platform. It will
 also allow moving of cards (up to 500 cards) into the newly created
@@ -1243,12 +1228,10 @@ card-group.
   successfully
 
 ```ts
-async createCardGroup(
-  apikey: string,
+async createcardgroup(  apikey: string,
   requestId: string,
   body?: CreateCardGroupRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<CreateCardGroupResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CreateCardGroupResponse>>
 ```
 
 ## Parameters
@@ -1291,7 +1274,7 @@ const body: CreateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.createCardGroup(
+  const { result, ...httpResponse } = await customerController.createcardgroup(
   apikey,
   requestId,
   body
@@ -1338,14 +1321,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Update Card Group
+# Updatecardgroup
 
 This API allows updating or removing a Card Group in the Shell Cards Platform.
 
@@ -1355,12 +1338,10 @@ The request for updating or removing of the card group, creationg of a new card 
 validations.
 
 ```ts
-async updateCardGroup(
-  apikey: string,
+async updatecardgroup(  apikey: string,
   requestId: string,
   body?: UpdateCardGroupRequest,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<UpdateCardGroupResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UpdateCardGroupResponse>>
 ```
 
 ## Parameters
@@ -1403,7 +1384,7 @@ const body: UpdateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.updateCardGroup(
+  const { result, ...httpResponse } = await customerController.updatecardgroup(
   apikey,
   requestId,
   body
@@ -1422,21 +1403,27 @@ try {
 
 ```json
 {
-  "MainReference": 0,
-  "UpdateCardGroupReference": 0,
-  "NewCardGroupReference": 0,
+  "MainReference": 56789,
+  "UpdateCardGroupReference": 89,
+  "NewCardGroupReference": 78,
   "MoveCardReferences": [
     {
-      "CardId": 0,
-      "PAN": "string",
-      "Reference": 0
+      "CardId": 125,
+      "PAN": "7002861007636000020",
+      "Reference": 58764
     }
   ],
   "Error": {
-    "Code": "0000",
-    "Description": "Success"
+    "Description": "Success",
+    "Code": "0000"
   },
-  "RequestId": "string"
+  "Warnings": [
+    {
+      "Type": "System Outage",
+      "Message": "System is down for upgradation."
+    }
+  ],
+  "RequestId": "ed557f02-c7d7-4c01-b3e5-11bf3239c8ed"
 }
 ```
 
@@ -1444,9 +1431,9 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | [`DefaultError`](../../doc/models/default-error.md) |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`DefaultError`](../../doc/models/default-error.md) |
-| 403 | The server understood the request but refuses to authorize it. | [`ErrorUserAccessError1Error`](../../doc/models/error-user-access-error-1-error.md) |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`DefaultError`](../../doc/models/default-error.md) |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | [`DefaultError`](../../doc/models/default-error.md) |
+| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
+| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
+| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 

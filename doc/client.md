@@ -5,8 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `url` | `UrlEnum` | This variable specifies the type of environment. Environments:<br><br>* `api.shell.com` - Production<br>* `api-test.shell.com` - SIT<br>*Default*: `UrlEnum.EnumApitestshellcomtest` |
-| `environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
+| `environment` | `Environment` | The API environment. <br> **Default: `Environment.SIT`** |
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
@@ -47,7 +46,7 @@ const client = new Client({
     oAuthClientSecret: 'OAuthClientSecret'
   },
   timeout: 0,
-  environment: Environment.Production,
+  environment: Environment.SIT,
 });
 ```
 

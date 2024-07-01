@@ -16,26 +16,25 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 Run the following command from your project directory to install the package from npm:
 
 ```ts
-npm install card-management-sdk@1.0.0
+npm install card-management-sdk@1.1.0
 ```
 
-For additional package details, see the [Npm page for the card-management-sdk@1.0.0 npm](https://www.npmjs.com/package/card-management-sdk/v/1.0.0).
+For additional package details, see the [Npm page for the card-management-sdk@1.1.0 npm](https://www.npmjs.com/package/card-management-sdk/v/1.1.0).
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `url` | `UrlEnum` | This variable specifies the type of environment. Environments:<br><br>* `api.shell.com` - Production<br>* `api-test.shell.com` - SIT<br>*Default*: `UrlEnum.EnumApitestshellcomtest` |
-| `environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
+| `environment` | `Environment` | The API environment. <br> **Default: `Environment.SIT`** |
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
-| `basicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/basic-authentication.md) | The credential object for basicAuth |
-| `bearerTokenCredentials` | [`BearerTokenCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md) | The credential object for bearerToken |
+| `basicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/basic-authentication.md) | The credential object for basicAuth |
+| `bearerTokenCredentials` | [`BearerTokenCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/oauth-2-client-credentials-grant.md) | The credential object for bearerToken |
 
 ### HttpClientOptions
 
@@ -71,26 +70,37 @@ const client = new Client({
     oAuthClientSecret: 'OAuthClientSecret'
   },
   timeout: 0,
-  environment: Environment.Production,
+  environment: Environment.SIT,
 });
 ```
+
+## Environments
+
+The SDK can be configured to use a different environment for making API calls. Available environments are:
+
+### Fields
+
+| Name | Description |
+|  --- | --- |
+| SIT | **Default** |
+| Production | - |
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`BasicAuth (Basic Authentication)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/basic-authentication.md)
-* [`BearerToken (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md)
+* [`BasicAuth (Basic Authentication)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/basic-authentication.md)
+* [`BearerToken (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [O Auth Authorization](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/controllers/o-auth-authorization.md)
-* [Customer](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/controllers/customer.md)
-* [Restriction](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/controllers/restriction.md)
-* [Card](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/controllers/card.md)
+* [O Auth Authorization](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/controllers/o-auth-authorization.md)
+* [Customer](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/controllers/customer.md)
+* [Restriction](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/controllers/restriction.md)
+* [Card](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/controllers/card.md)
 
 ## Classes Documentation
 
-* [ApiResponse](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/api-response.md)
-* [ApiError](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.0.0/doc/api-error.md)
+* [ApiResponse](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/api-response.md)
+* [ApiError](https://www.github.com/sdks-io/card-management-js-sdk/tree/1.1.0/doc/api-error.md)
 

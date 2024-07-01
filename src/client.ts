@@ -19,7 +19,6 @@ import {
   DEFAULT_RETRY_CONFIG,
 } from './defaultConfiguration';
 import { ApiError } from './core';
-import { pathTemplate, SkipEncode } from './core';
 import {
   AbortError,
   AuthenticatorInterface,
@@ -27,7 +26,7 @@ import {
   HttpClientInterface,
   RetryConfiguration,
 } from './core';
- import { HttpClient } from './clientAdapter';
+import { HttpClient } from './clientAdapter';
 
 const USER_AGENT = 'APIMATIC 3.0';
 
@@ -52,7 +51,7 @@ export class Client implements ClientInterface {
         ? this._config.httpClientOptions.timeout
         : this._config.timeout;
     this._requestBuilderFactory = createRequestHandlerFactory(
-      server => getBaseUri(server, this._config),
+      (server) => getBaseUri(server, this._config),
       createAuthProviderFromConfig(
         this._config,
         () => this.bearerTokenManager
@@ -63,11 +62,7 @@ export class Client implements ClientInterface {
         httpAgent: this._config.httpClientOptions?.httpAgent,
         httpsAgent: this._config.httpClientOptions?.httpsAgent,
       }),
-      [
-        withErrorHandlers,
-        withUserAgent,
-        withAuthenticationByDefault,
-      ],
+      [withErrorHandlers, withUserAgent, withAuthenticationByDefault],
       this._retryConfig
     );
     if (this._config.bearerTokenCredentials) {
@@ -96,13 +91,24 @@ function createHttpClientAdapter(client: HttpClient): HttpClientInterface {
   };
 }
 
-function getBaseUri(server: Server = 'default', config: Configuration): string {
-  if (config.environment === Environment.Production) {
-    if (server === 'default') {
-      return pathTemplate`https://${new SkipEncode(config.url)}`;
+function getBaseUri(
+  server: Server = 'OAuth Server',
+  config: Configuration
+): string {
+  if (config.environment === Environment.SIT) {
+    if (server === 'OAuth Server') {
+      return 'https://api-test.shell.com';
     }
-    if (server === 'access token server') {
-      return 'https://api-test.shell.com/v1/oauth';
+    if (server === 'Shell') {
+      return 'https://api-test.shell.com/test';
+    }
+  }
+  if (config.environment === Environment.Production) {
+    if (server === 'OAuth Server') {
+      return 'https://api.shell.com';
+    }
+    if (server === 'Shell') {
+      return 'https://api.shell.com';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');
@@ -132,7 +138,7 @@ function tap(
 ): SdkRequestBuilderFactory {
   return (...args) => {
     const requestBuilder = requestBuilderFactory(...args);
-    callback.forEach(c => c(requestBuilder));
+    callback.forEach((c) => c(requestBuilder));
     return requestBuilder;
   };
 }
@@ -146,5 +152,5 @@ function withUserAgent(rb: SdkRequestBuilder) {
 }
 
 function withAuthenticationByDefault(rb: SdkRequestBuilder) {
-  rb.authenticate([{ basicAuth: true }, { bearerToken: true }]); 
+  rb.authenticate([{ bearerToken: true }, { basicAuth: true }]);
 }

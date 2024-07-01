@@ -5,11 +5,10 @@
  */
 
 import { lazy, object, optional, Schema, string } from '../schema';
-import { SearchRequest, searchRequestSchema } from './searchRequest';
+import { Filters, filtersSchema } from './filters';
 
 export interface SearchCardRequest {
-  /** Encapsulate the Search details request. */
-  filters?: SearchRequest;
+  filters?: Filters;
   /**
    * Page Size – Number of records to show on a page
    * Optional
@@ -21,7 +20,7 @@ export interface SearchCardRequest {
 }
 
 export const searchCardRequestSchema: Schema<SearchCardRequest> = object({
-  filters: ['Filters', optional(lazy(() => searchRequestSchema))],
+  filters: ['Filters', optional(lazy(() => filtersSchema))],
   pageSize: ['PageSize', optional(string())],
   page: ['Page', optional(string())],
 });

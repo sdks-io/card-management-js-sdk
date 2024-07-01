@@ -16,12 +16,10 @@ Create a new OAuth 2 token.
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async requestTokenBearerToken(
-  authorization: string,
+async requestTokenBearerToken(  authorization: string,
   scope?: string,
   fieldParameters?: Record<string, unknown>,
-  requestOptions?: RequestOptions
-): Promise<ApiResponse<OAuthToken>>
+requestOptions?: RequestOptions): Promise<ApiResponse<OAuthToken>>
 ```
 
 ## Parameters

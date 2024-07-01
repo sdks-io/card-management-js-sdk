@@ -5,11 +5,6 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { DefaultError } from '../errors/defaultError';
-import { ErrorObjectError } from '../errors/errorObjectError';
-import {
-  ErrorUserAccessError1Error,
-} from '../errors/errorUserAccessError1Error';
 import {
   AutoRenewCardRequest,
   autoRenewCardRequestSchema,
@@ -18,10 +13,6 @@ import {
   AutoRenewCardResponse,
   autoRenewCardResponseSchema,
 } from '../models/autoRenewCardResponse';
-import {
-  CancelCardRequest,
-  cancelCardRequestSchema,
-} from '../models/cancelCardRequest';
 import {
   CancelCardResponse,
   cancelCardResponseSchema,
@@ -34,6 +25,22 @@ import {
   CardDetailsResponse,
   cardDetailsResponseSchema,
 } from '../models/cardDetailsResponse';
+import {
+  CardManagementV1CancelRequest,
+  cardManagementV1CancelRequestSchema,
+} from '../models/cardManagementV1CancelRequest';
+import {
+  CardManagementV1OrdercardRequest,
+  cardManagementV1OrdercardRequestSchema,
+} from '../models/cardManagementV1OrdercardRequest';
+import {
+  CardManagementV1PinreminderRequest,
+  cardManagementV1PinreminderRequestSchema,
+} from '../models/cardManagementV1PinreminderRequest';
+import {
+  CardManagementV1UpdatestatusRequest,
+  cardManagementV1UpdatestatusRequestSchema,
+} from '../models/cardManagementV1UpdatestatusRequest';
 import {
   CardMoveRequest,
   cardMoveRequestSchema,
@@ -75,17 +82,9 @@ import {
   orderCardEnquiryResponseSchema,
 } from '../models/orderCardEnquiryResponse';
 import {
-  OrderCardRequest,
-  orderCardRequestSchema,
-} from '../models/orderCardRequest';
-import {
   OrderCardResponse,
   orderCardResponseSchema,
 } from '../models/orderCardResponse';
-import {
-  PINReminderRequest,
-  pINReminderRequestSchema,
-} from '../models/pINReminderRequest';
 import {
   PINReminderResponse,
   pINReminderResponseSchema,
@@ -111,10 +110,6 @@ import {
   searchCardRequestSchema,
 } from '../models/searchCardRequest';
 import {
-  UpdateCardStatusRequest,
-  updateCardStatusRequestSchema,
-} from '../models/updateCardStatusRequest';
-import {
   UpdateCardStatusResponse,
   updateCardStatusResponseSchema,
 } from '../models/updateCardStatusResponse';
@@ -128,12 +123,13 @@ import {
 } from '../models/updateMPayRegStatusResponse';
 import { boolean, optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { ApiError } from '@apimatic/core';
+import { ErrorObjectError } from '../errors/errorObjectError';
 
 export class CardController extends BaseController {
   /**
    * This API allows to search for Shell Cards in the Shell Card Platform. It provides flexible search
    * criteria and supports paging.
-   *
    * #### New version updates
    *
    * * Oauth authentication to access the API
@@ -178,7 +174,7 @@ export class CardController extends BaseController {
    * @param body         requestbody
    * @return Response from the API call
    */
-  async searchCard(
+  async searchcard(
     requestId: string,
     body?: SearchCardRequest,
     requestOptions?: RequestOptions
@@ -191,11 +187,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
+    req.throwOn(
+      400,
+      ErrorObjectError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ErrorObjectError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      404,
+      ErrorObjectError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ErrorObjectError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cardSearchResponseSchema, requestOptions);
   }
@@ -234,7 +246,7 @@ export class CardController extends BaseController {
    * @param body         summary request body
    * @return Response from the API call
    */
-  async cardSummary(
+  async cardsummary(
     requestId: string,
     body?: CardSummaryRequest,
     requestOptions?: RequestOptions
@@ -247,11 +259,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ErrorObjectError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ErrorObjectError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cardSummaryResponseSchema, requestOptions);
   }
@@ -317,30 +345,46 @@ export class CardController extends BaseController {
    *
    * * Individual reference numbers (**OrderCardReference**) for each new card
    *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests and
-   *                                                responses. This will be played back in the response from the
-   *                                                request.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards)
+   *                                                                for requests and responses. This will be played
+   *                                                                back in the response from the request.
    * @param body         Order card request body
    * @return Response from the API call
    */
-  async orderCard(
+  async cardordercard(
     requestId: string,
-    body?: OrderCardRequest,
+    body?: CardManagementV1OrdercardRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<OrderCardResponse>> {
     const req = this.createRequest('POST', '/card-management/v1/ordercard');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      body: [body, optional(orderCardRequestSchema)],
+      body: [body, optional(cardManagementV1OrdercardRequestSchema)],
     });
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(orderCardResponseSchema, requestOptions);
   }
@@ -373,7 +417,7 @@ export class CardController extends BaseController {
    * @param body         Order Card Enquiry request body
    * @return Response from the API call
    */
-  async orderCardEnquiry(
+  async cardordercardenquiry(
     requestId: string,
     body?: OrderCardEnquiryRequest,
     requestOptions?: RequestOptions
@@ -389,11 +433,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(orderCardEnquiryResponseSchema, requestOptions);
   }
@@ -471,30 +531,46 @@ export class CardController extends BaseController {
    * damaged card request will be marked as superseded and the new Block (cancelled) request will be
    * processed.
    *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests and
-   *                                                 responses. This will be played back in the response from the
-   *                                                 request.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
+   *                                                             requests and responses. This will be played back in
+   *                                                             the response from the request.
    * @param body         Update status request body
    * @return Response from the API call
    */
-  async cardCancel(
+  async cardcancel(
     requestId: string,
-    body?: CancelCardRequest,
+    body?: CardManagementV1CancelRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CancelCardResponse>> {
     const req = this.createRequest('POST', '/card-management/v1/cancel');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      body: [body, optional(cancelCardRequestSchema)],
+      body: [body, optional(cardManagementV1CancelRequestSchema)],
     });
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ErrorObjectError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cancelCardResponseSchema, requestOptions);
   }
@@ -603,30 +679,46 @@ export class CardController extends BaseController {
    * Blocked or Blocked permanently (cancelled), then the damaged card request will be marked as
    * superseded and the new Temporary Block or Block (cancelled) will be processed.
    *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for
-   *                                                       requests and responses. This will be played back in the
-   *                                                       response from the request.
+   * @param requestId    Mandatory UUID (according to RFC 4122
+   *                                                                   standards) for requests and responses. This will
+   *                                                                   be played back in the response from the request.
    * @param body         Update status request body
    * @return Response from the API call
    */
-  async cardUpdateStatus(
+  async cardupdatestatus(
     requestId: string,
-    body?: UpdateCardStatusRequest,
+    body?: CardManagementV1UpdatestatusRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UpdateCardStatusResponse>> {
     const req = this.createRequest('POST', '/card-management/v1/updatestatus');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      body: [body, optional(updateCardStatusRequestSchema)],
+      body: [body, optional(cardManagementV1UpdatestatusRequestSchema)],
     });
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(updateCardStatusResponseSchema, requestOptions);
   }
@@ -670,12 +762,32 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
-    req.authenticate([{ basicAuth: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(purchaseCategoryResponseSchema, requestOptions);
   }
 
@@ -699,7 +811,7 @@ export class CardController extends BaseController {
    * @param body         Card details request body
    * @return Response from the API call
    */
-  async cardDetails(
+  async carddetails(
     apikey: string,
     requestId: string,
     body?: CardDetailsRequest,
@@ -715,12 +827,32 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
-    req.authenticate([{ basicAuth: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cardDetailsResponseSchema, requestOptions);
   }
 
@@ -772,6 +904,7 @@ export class CardController extends BaseController {
    * according to the customers local date
    *
    *
+   *
    * @param apikey       This is the API key of the specific environment which needs to be
    *                                               passed by the client.
    * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests and
@@ -795,12 +928,32 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
-    req.authenticate([{ basicAuth: true }]);
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
+    req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cardMoveResponseSchema, requestOptions);
   }
 
@@ -848,30 +1001,46 @@ export class CardController extends BaseController {
    *
    * * A PIN reminder request has not been successfully processed in the last 48 hours for the card
    *
-   * @param requestId    Mandatory UUID (according to RFC 4122 standards) for requests
-   *                                                  and responses. This will be played back in the response from the
-   *                                                  request.
+   * @param requestId    Mandatory UUID (according to RFC 4122 standards)
+   *                                                                  for requests and responses. This will be played
+   *                                                                  back in the response from the request.
    * @param body         PIN reminder request body
    * @return Response from the API call
    */
-  async cardPinReminder(
+  async cardpinreminder(
     requestId: string,
-    body?: PINReminderRequest,
+    body?: CardManagementV1PinreminderRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<PINReminderResponse>> {
     const req = this.createRequest('POST', '/card-management/v1/pinreminder');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      body: [body, optional(pINReminderRequestSchema)],
+      body: [body, optional(cardManagementV1PinreminderRequestSchema)],
     });
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\r\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
+    req.throwOn(
+      400,
+      ErrorObjectError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ErrorObjectError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      404,
+      ErrorObjectError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ErrorObjectError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(pINReminderResponseSchema, requestOptions);
   }
@@ -967,11 +1136,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(scheduleCardBlockResponseSchema, requestOptions);
   }
@@ -1016,7 +1201,7 @@ export class CardController extends BaseController {
    * @param body         Auto renew request body
    * @return Response from the API call
    */
-  async autoRenew(
+  async autorenew(
     requestId: string,
     body?: AutoRenewCardRequest,
     requestOptions?: RequestOptions
@@ -1029,11 +1214,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(autoRenewCardResponseSchema, requestOptions);
   }
@@ -1056,7 +1257,7 @@ export class CardController extends BaseController {
    * @param body         Request body
    * @return Response from the API call
    */
-  async updateMobilePaymentRegistrationStatus(
+  async updatemobilepaymentregistrationstatus(
     requestId: string,
     body?: UpdateMPayRegStatusRequest,
     requestOptions?: RequestOptions
@@ -1072,11 +1273,27 @@ export class CardController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ErrorObjectError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n');
-    req.throwOn(401, ErrorObjectError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n');
-    req.throwOn(403, ErrorObjectError, 'Forbidden');
-    req.throwOn(404, ErrorObjectError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n');
-    req.throwOn(500, ErrorObjectError, 'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n');
+    req.throwOn(
+      400,
+      ErrorObjectError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(403, ApiError, 'Forbidden');
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(updateMPayRegStatusResponseSchema, requestOptions);
   }
@@ -1093,7 +1310,7 @@ export class CardController extends BaseController {
    *                             false.
    * @return Response from the API call
    */
-  async getKey(
+  async getkey(
     requestId: string,
     fleet?: boolean,
     requestOptions?: RequestOptions
@@ -1105,11 +1322,31 @@ export class CardController extends BaseController {
     });
     req.header('RequestId', mapped.requestId);
     req.query('fleet', mapped.fleet);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(generatePINKeyResponseSchema, requestOptions);
   }
@@ -1117,7 +1354,6 @@ export class CardController extends BaseController {
   /**
    * This API allows users to update the card’s delivery addresses (card delivery address used for card
    * re-issue and PIN delivery address used when PIN reminder is requested)
-   *
    * #### Supported operations
    *
    * * card delivery address update
@@ -1127,7 +1363,7 @@ export class CardController extends BaseController {
    * @param body         Delivery Address Update Request Body
    * @return Response from the API call
    */
-  async deliveryAddressUpdate(
+  async deliveryaddressupdate(
     apikey: string,
     body?: DeliveryAddressUpdateRequest,
     requestOptions?: RequestOptions
@@ -1143,11 +1379,31 @@ export class CardController extends BaseController {
     req.header('apikey', mapped.apikey);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, DefaultError, 'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).');
-    req.throwOn(401, DefaultError, 'The request has not been applied because it lacks valid  authentication credentials for the target resource.\r\n');
-    req.throwOn(403, ErrorUserAccessError1Error, 'The server understood the request but refuses to authorize it.\r\n');
-    req.throwOn(404, DefaultError, 'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\r\n');
-    req.throwOn(500, DefaultError, 'The server encountered an unexpected condition the prevented it from fulfilling the request.\r\n');
+    req.throwOn(
+      400,
+      ApiError,
+      'The server cannot or will not process the request  due to something that is perceived to be a client\r\n error (e.g., malformed request syntax, invalid \r\n request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      ApiError,
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
+    );
+    req.throwOn(
+      403,
+      ApiError,
+      'The server understood the request but refuses to authorize it.'
+    );
+    req.throwOn(
+      404,
+      ApiError,
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
+    );
+    req.throwOn(
+      500,
+      ApiError,
+      'The server encountered an unexpected condition the prevented it from fulfilling the request.'
+    );
     req.authenticate([{ basicAuth: true }]);
     return req.callAsJson(deliveryAddressUpdateResponseSchema, requestOptions);
   }
