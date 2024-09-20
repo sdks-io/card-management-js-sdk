@@ -19,9 +19,16 @@ export interface SearchCard {
    * Note: PAN is ignored if CardId is given.
    */
   pAN?: string | null;
+  /**
+   * Card PANID
+   *  optional id cardid given, else mandatory
+   * Note: PANID is ignored if CardId is given.
+   */
+  pANID?: number;
 }
 
 export const searchCardSchema: Schema<SearchCard> = object({
   cardId: ['CardId', optional(nullable(number()))],
   pAN: ['PAN', optional(nullable(string()))],
+  pANID: ['PANID', optional(number())],
 });

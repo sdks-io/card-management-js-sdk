@@ -59,8 +59,8 @@ export interface UpdateCardRenewalAddress {
    * Max Length: 90
    * Note: -
    * Based on the international standard that there can be
-   * •	Max Length 64 before the @ (the 'Local part’) =64(minimum of 1)
-   * •	Max Lenth after the (the domain) = 88 (Minimum of 2)
+   * •    Max Length 64 before the @ (the 'Local part’) =64(minimum of 1)
+   * •    Max Lenth after the (the domain) = 88 (Minimum of 2)
    */
   emailAddress?: string;
   /**

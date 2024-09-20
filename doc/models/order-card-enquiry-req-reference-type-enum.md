@@ -16,7 +16,7 @@ Allowed Values:<br />
 
 | Name |
 |  --- |
-| `enum1` |
-| `enum2` |
-| `enum3` |
+| `Enum1` |
+| `Enum2` |
+| `Enum3` |
 

@@ -55,9 +55,9 @@ export interface ReplaceCardSettings {
    * Card delivery type.<br />
    * Mandatory <br />
    * Allowed Value: <br />
-   * 1.	Customer Address(Default) <br />
-   * 2.	New Delivery Address <br />
-   * 3.	Old Card Address
+   * 1.    Customer Address(Default) <br />
+   * 2.    New Delivery Address <br />
+   * 3.    Old Card Address
    */
   cardDeliveryType: number | null;
   /**
@@ -142,19 +142,19 @@ export interface ReplaceCardSettings {
    * PIN delivery address type selection.<br />
    * Optional<br />
    * Allowed Values:<br />
-   * 1.	Customer Address(Default)<br />
-   * 2.	Card Address<br />
-   * 3.	New Delivery Address
+   * 1.    Customer Address(Default)<br />
+   * 2.    Card Address<br />
+   * 3.    New Delivery Address
    */
   pINDeliveryAddressType?: number | null;
   /**
    * PIN delivery method.<br />
    * Mandatory when OrderReplacement Is true.<br />
    * Allowed Values:<br />
-   * 1.	Paper<br />
-   * 2.	Email<br />
-   * 3.	SMS<br />
-   * 4.	None
+   * 1.    Paper<br />
+   * 2.    Email<br />
+   * 3.    SMS<br />
+   * 4.    None
    */
   pINAdviceType?: number | null;
   /**

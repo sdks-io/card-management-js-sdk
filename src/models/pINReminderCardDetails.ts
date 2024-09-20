@@ -42,19 +42,19 @@ export interface PINReminderCardDetails {
    * PIN delivery method.
    * Mandatory
    * Allowed Values:
-   *    1.	Paper
-   *    2.	Email
-   *    3.	SMS
+   *    1.    Paper
+   *    2.    Email
+   *    3.    SMS
    */
   pINAdviceType: number;
   /**
    * PIN Contact Type.
    * Mandatory
    * Allowed Values:
-   * 1.	Use PIN Delivery contact details stored previously for this card
-   * 2.	Use Card Delivery contact details stored previously for this card
-   * 3.	Use default PIN Delivery contact details stored for this customer
-   * 4.	Use new specific contact for PIN Reminder only
+   * 1.    Use PIN Delivery contact details stored previously for this card
+   * 2.    Use Card Delivery contact details stored previously for this card
+   * 3.    Use default PIN Delivery contact details stored for this customer
+   * 4.    Use new specific contact for PIN Reminder only
    * Note: - PINContactType “3” is only allowed for Paper delivery
    */
   pINContactType?: number;

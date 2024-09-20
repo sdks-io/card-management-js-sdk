@@ -123,6 +123,7 @@ const body: SearchCardRequest = {
       {
         cardId: 466907,
         pAN: '7077327290224795811',
+        pANID: 17350065,
       }
     ],
     excludeFraudCards: false,
@@ -133,6 +134,7 @@ const body: SearchCardRequest = {
       {
         cardId: 466906,
         pAN: '7077327290224795801',
+        pANID: 17350065,
       }
     ],
     includeIntermediateStatus: false,
@@ -221,6 +223,8 @@ try {
       "LocalCurrencySymbol": "Kč",
       "OdometerInput": true,
       "PAN": "7077327290223410782",
+      "MaskedPAN": "7077327******410782",
+      "PANID": 17350064,
       "PurchaseCategoryCode": "3",
       "PurchaseCategoryId": 103,
       "PurchaseCategoryName": "3 - No Restriction",
@@ -681,6 +685,8 @@ try {
       "CardGroupName": "null",
       "CardId": 41008,
       "CardPAN": "7077187910757000712",
+      "MaskedPAN": "707718******000712",
+      "PANID": 17285721,
       "CardTypeCode": "7077187",
       "CardTypeId": 704,
       "CardTypeName": "NL CRT Nat. Shell + partnernetwerk",
@@ -1019,6 +1025,7 @@ const body: CardManagementV1UpdatestatusRequest = {
       colCoCode: 32,
       colCoId: 32,
       pAN: '7077327290223410816',
+      pANID: 17350064,
       payerId: 1223,
       payerNumber: 'CZ00000928',
     }
@@ -1062,6 +1069,8 @@ try {
       "ColCoCode": 32,
       "ColCoId": 32,
       "PAN": "7077327290223421201",
+      "PANID": 17352931,
+      "MaskedPAN": "7077327******421201",
       "PayerId": 1227,
       "PayerNumber": "CZ00000927"
     }
@@ -1730,6 +1739,7 @@ const body: ScheduleCardBlockRequest = {
       payerNumber: 'CZ00000928',
       cardId: 234,
       pAN: '7077327290223418348',
+      pANID: '130128',
       cardExpiryDate: '20240731',
       fromDate: '20230701 14:30',
       toDate: '20230731 16:30',
@@ -1839,6 +1849,7 @@ const body: AutoRenewCardRequest = {
       accountNumber: 'CZ00000929',
       accountId: 1229,
       pAN: '7077327290223440243',
+      pANID: 17240826,
       cardId: 446472,
     }
   ],
@@ -1869,7 +1880,8 @@ try {
   "Data": [
     {
       "AutoRenewReferenceId": 226,
-      "CardIdAndPAN": "446472;7077327290223440243"
+      "CardIdAndPAN": "446472;7077327290223440243",
+      "PANID": 17240826
     }
   ]
 }

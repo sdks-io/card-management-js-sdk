@@ -1245,9 +1245,9 @@ export class CardController extends BaseController {
    *
    * If the approval status is:
    *
-   * *	“Approved” then the request status will be changed to Pending for processing.
+   * *    “Approved” then the request status will be changed to Pending for processing.
    *
-   * *	“Rejected” then status will be updated to “CI” (Failed) with appropriate error message.
+   * *    “Rejected” then status will be updated to “CI” (Failed) with appropriate error message.
    *
    *
    *

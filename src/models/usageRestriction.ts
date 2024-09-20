@@ -11,8 +11,8 @@ export interface UsageRestriction {
   /**
    * Usage limit is applied on the card from this level.
    * Valid values –
-   * •	Inherited
-   * •	Card
+   * •    Inherited
+   * •    Card
    * When Card level usage restrictions are not present, the API will return the inherited restrictions.
    * Note: -This field is deprecated. Instead, use ‘Override’.
    */

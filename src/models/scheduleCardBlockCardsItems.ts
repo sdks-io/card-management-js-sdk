@@ -63,6 +63,12 @@ export interface ScheduleCardBlockCardsItems {
    */
   pAN?: string;
   /**
+   * Card PAN ID.
+   * Optional if CardId is given, else mandatory.
+   * Note: PANID is ignored if CardId is given.
+   */
+  pANID?: string;
+  /**
    * Expiry date of the card.
    * Optional if CardId is passed, else Mandatory.
    * Format: yyyyMMdd
@@ -73,41 +79,41 @@ export interface ScheduleCardBlockCardsItems {
    * Action
    * Mandatory
    * Possible values are:
-   * •	AddOrUpdate – adds a new request or updates any existing requests, with overlapping dates, for the card
-   * •	AddAndOverwriteAll - all the existing requests of the given card will be removed and a new request with the specified FromDate and ToDate will be added.
-   * •	Delete – deletes any existing request with the same start date and end date for the card
-   * •	DeleteAll – deletes all saved future dated requests (all block and unblock requests) of the card.
+   * •    AddOrUpdate – adds a new request or updates any existing requests, with overlapping dates, for the card
+   * •    AddAndOverwriteAll - all the existing requests of the given card will be removed and a new request with the specified FromDate and ToDate will be added.
+   * •    Delete – deletes any existing request with the same start date and end date for the card
+   * •    DeleteAll – deletes all saved future dated requests (all block and unblock requests) of the card.
    */
   action: string;
   /**
    * Effective start date of Block / Unblock
    * Allowed Formats: –
-   * •	yyyyMMdd
-   * •	yyyyMMdd HH:mm
+   * •    yyyyMMdd
+   * •    yyyyMMdd HH:mm
    * Eg: 20230512 14:30, 20230512
    * Optional
    * Default value:
-   * •	 If the card status is “Active” then Current date & Time
-   * •	If the card status is “TemporaryBlock (Customer)” then null.
+   * •     If the card status is “Active” then Current date & Time
+   * •    If the card status is “TemporaryBlock (Customer)” then null.
    * Note:
-   * •	Time is considered only when “IsTimeSupported” is true else it will be treated as a date.
-   * •	Time will be passed in UTC time-zone.
-   * •	If the Card Status is “Temporary Block (Customer)” and FromDate is provided – The fromdate & time is considered as starting period of unblock request.
+   * •    Time is considered only when “IsTimeSupported” is true else it will be treated as a date.
+   * •    Time will be passed in UTC time-zone.
+   * •    If the Card Status is “Temporary Block (Customer)” and FromDate is provided – The fromdate & time is considered as starting period of unblock request.
    */
   fromDate?: string;
   /**
    * Effective end date of Block / Unblock
    * Allowed Formats: –
-   * •	yyyyMMdd
-   * •	yyyyMMdd HH:mm
+   * •    yyyyMMdd
+   * •    yyyyMMdd HH:mm
    * Eg: 20230512 14:30, 20230512
    * Optional – When the Card status is Active else mandatory.
    * When not provided, the card will remain blocked until manually unblocked.
    * Note:
-   * •	Time is considered only when the “IsTimeSupported” flag is set as true, else it will be considered as only date.
-   * •	Date & Time passed in the request will be considered in UTC time-zone.
-   * •	If the card is currently in ‘Temporary Block (Customer)’ status, then this date is treated as the unblock date and is mandatory.
-   * •	If the Card Status is “Temporary Block (Customer)” and FromDate & ToDate is provided - The request will be considered as a scheduled specific period unblock request.
+   * •    Time is considered only when the “IsTimeSupported” flag is set as true, else it will be considered as only date.
+   * •    Date & Time passed in the request will be considered in UTC time-zone.
+   * •    If the card is currently in ‘Temporary Block (Customer)’ status, then this date is treated as the unblock date and is mandatory.
+   * •    If the Card Status is “Temporary Block (Customer)” and FromDate & ToDate is provided - The request will be considered as a scheduled specific period unblock request.
    */
   toDate?: string;
   /**
@@ -135,6 +141,7 @@ export const scheduleCardBlockCardsItemsSchema: Schema<ScheduleCardBlockCardsIte
     payerNumber: ['PayerNumber', optional(string())],
     cardId: ['CardId', optional(number())],
     pAN: ['PAN', optional(string())],
+    pANID: ['PANID', optional(string())],
     cardExpiryDate: ['CardExpiryDate', optional(string())],
     action: ['Action', string()],
     fromDate: ['FromDate', optional(string())],

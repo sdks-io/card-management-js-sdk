@@ -14,6 +14,6 @@ Reissue setting of the card. If the card is superseded (i.e. a replacement/new c
 
 | Name |
 |  --- |
-| `true` |
-| `false` |
+| `True` |
+| `False` |
 

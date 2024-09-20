@@ -16,9 +16,9 @@
 | `accountId` | `number \| null \| undefined` | Optional | Account ID of the customer.<br>Either AccountId or AccountNumber or both must be passed.<br>Example: 123456 |
 | `accountNumber` | `string \| null \| undefined` | Optional | Account Number of the customer.<br>Either AccountId or AccountNumber or both must be passed.<br>Example: GB000000123 |
 | `bundleId` | `string \| null` | Required | Identifier of the bundle in Gateway.<br>Mandatory |
-| `requestAction` | `string \| null` | Required | The value indicates the action to be performed with the request.<br>Mandatory<br>Allowed values:<br>•	Add<br>•	Update<br>•	Remove |
+| `requestAction` | `string \| null` | Required | The value indicates the action to be performed with the request.<br>Mandatory<br>Allowed values:<br>•    Add<br>•    Update<br>•    Remove |
 | `cards` | `string[]` | Required | List of Card PANs to be added in the bundle.<br>Mandatory for Add / Remove request action. Ignored for Update action.<br>Example: 7002051006629890645<br>When PAN matches with multiple cards, the restriction will be applied on the latest issued card. |
-| `usageRestrictionAction` | `string \| null` | Required | The value indicates what actions to be performed with respect to usage restrictions on the list of cards being added or removed.<br>Mandatory for Add / Remove request action. Ignored for Update action.<br>Allowed values:<br>•	Update<br>•	None |
+| `usageRestrictionAction` | `string \| null` | Required | The value indicates what actions to be performed with respect to usage restrictions on the list of cards being added or removed.<br>Mandatory for Add / Remove request action. Ignored for Update action.<br>Allowed values:<br>•    Update<br>•    None |
 | `restrictions` | [`BundleRestrictionUpdate \| undefined`](../../doc/models/bundle-restriction-update.md) | Optional | - |
 
 ## Example (as JSON)

@@ -51,6 +51,10 @@ export interface SubmittedCard {
    * Optional if CardId is passed, else Mandatory.<br />
    */
   pAN?: string | null;
+  /** PANID of the card */
+  pANID?: number | null;
+  /** Card PAN */
+  maskedPAN?: string | null;
   /**
    * Payer id of the customer.<br />
    * Optional if PayerNumber is passed, else Mandatory.
@@ -76,6 +80,8 @@ export const submittedCardSchema: Schema<SubmittedCard> = object({
   colCoCode: ['ColCoCode', optional(nullable(number()))],
   colCoId: ['ColCoId', optional(nullable(number()))],
   pAN: ['PAN', optional(nullable(string()))],
+  pANID: ['PANID', optional(nullable(number()))],
+  maskedPAN: ['MaskedPAN', optional(nullable(string()))],
   payerId: ['PayerId', optional(nullable(number()))],
   payerNumber: ['PayerNumber', optional(nullable(string()))],
 });

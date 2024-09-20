@@ -23,6 +23,12 @@ export interface AutoRenewCardRequestAutoRenewCardsItems {
    */
   pAN?: string;
   /**
+   * Card PAN ID.
+   * Optional if CardId is given, else mandatory.
+   * Note: PANID is ignored if CardId is given.
+   */
+  pANID?: number;
+  /**
    * Card Id of the card.
    * Optional if PAN is passed, else Mandatory.
    */
@@ -42,6 +48,7 @@ export const autoRenewCardRequestAutoRenewCardsItemsSchema: Schema<AutoRenewCard
     accountNumber: ['AccountNumber', optional(string())],
     accountId: ['AccountId', optional(number())],
     pAN: ['PAN', optional(string())],
+    pANID: ['PANID', optional(number())],
     cardId: ['CardId', optional(number())],
     reissueSetting: ['ReissueSetting', boolean()],
   }

@@ -17,7 +17,7 @@ export interface UpdateMPayRegStatusRequestMPayRequestsItems {
    * Status of mobile payment registration request
    * Mandatory.
    * Allowed values –
-   * •	Approved
+   * •    Approved
    * •   Rejected
    */
   status?: string;

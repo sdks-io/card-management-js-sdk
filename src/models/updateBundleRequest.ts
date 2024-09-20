@@ -69,9 +69,9 @@ export interface UpdateBundleRequest {
    * The value indicates the action to be performed with the request.
    * Mandatory
    * Allowed values:
-   * •	Add
-   * •	Update
-   * •	Remove
+   * •    Add
+   * •    Update
+   * •    Remove
    */
   requestAction: string | null;
   /**
@@ -85,8 +85,8 @@ export interface UpdateBundleRequest {
    * The value indicates what actions to be performed with respect to usage restrictions on the list of cards being added or removed.
    * Mandatory for Add / Remove request action. Ignored for Update action.
    * Allowed values:
-   * •	Update
-   * •	None
+   * •    Update
+   * •    None
    */
   usageRestrictionAction: string | null;
   restrictions?: BundleRestrictionUpdate;

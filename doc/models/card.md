@@ -41,7 +41,9 @@
 | `localCurrencyCode` | `string \| null \| undefined` | Optional | ISO code of the local currency. <br /> |
 | `localCurrencySymbol` | `string \| null \| undefined` | Optional | Local currency symbol. <br /> |
 | `odometerInput` | `boolean \| undefined` | Optional | True/False True if odometer input is enabled on the card, else false |
-| `pAN` | `string \| null \| undefined` | Optional | Card PAN Mask PAN (Mask all digits except the Last 6 digits of the PAN) |
+| `pAN` | `string \| null \| undefined` | Optional | Card PAN |
+| `maskedPAN` | `string \| undefined` | Optional | Card PAN Mask PAN (Mask all digits except the Last 6 digits of the PAN) |
+| `pANID` | `number \| undefined` | Optional | Card PAN ID. |
 | `purchaseCategoryCode` | `string \| null \| undefined` | Optional | Purchase category code |
 | `purchaseCategoryId` | `number \| null \| undefined` | Optional | Purchase category Id <br /><br>Note: Not Purchase code. |
 | `purchaseCategoryName` | `string \| null \| undefined` | Optional | Purchase category name |

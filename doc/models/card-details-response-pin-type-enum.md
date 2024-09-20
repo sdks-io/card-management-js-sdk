@@ -14,8 +14,8 @@ PIN type:
 
 | Name |
 |  --- |
-| `card` |
-| `fleet` |
+| `Card` |
+| `Fleet` |
 
 ## Example
 

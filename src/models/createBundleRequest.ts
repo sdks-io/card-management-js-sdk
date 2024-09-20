@@ -6,18 +6,14 @@
 
 import {
   array,
-  lazy,
   nullable,
   number,
   object,
   optional,
   Schema,
   string,
+  unknown,
 } from '../schema';
-import {
-  BundleRestriction,
-  bundleRestrictionSchema,
-} from './bundleRestriction';
 
 export interface CreateBundleRequest {
   /**
@@ -77,7 +73,7 @@ export interface CreateBundleRequest {
    * When PAN matches with multiple cards, the restriction will be applied on the latest issued card.
    */
   cards?: string[];
-  restrictions?: BundleRestriction | null;
+  restrictions?: unknown;
 }
 
 export const createBundleRequestSchema: Schema<CreateBundleRequest> = object({
@@ -90,8 +86,5 @@ export const createBundleRequestSchema: Schema<CreateBundleRequest> = object({
   externalBundleId: ['ExternalBundleId', optional(nullable(string()))],
   description: ['Description', optional(string())],
   cards: ['Cards', optional(array(string()))],
-  restrictions: [
-    'Restrictions',
-    optional(nullable(lazy(() => bundleRestrictionSchema))),
-  ],
+  restrictions: ['Restrictions', optional(unknown())],
 });

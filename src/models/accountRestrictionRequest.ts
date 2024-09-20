@@ -6,18 +6,14 @@
 
 import {
   boolean,
-  lazy,
   nullable,
   number,
   object,
   optional,
   Schema,
   string,
+  unknown,
 } from '../schema';
-import {
-  UsageRestrictionsCard,
-  usageRestrictionsCardSchema,
-} from './usageRestrictionsCard';
 
 export interface AccountRestrictionRequest {
   /**
@@ -67,7 +63,7 @@ export interface AccountRestrictionRequest {
    * Default: False
    */
   resetUsageRestrictions?: boolean | null;
-  usageRestrictions?: UsageRestrictionsCard | null;
+  usageRestrictions?: unknown;
 }
 
 export const accountRestrictionRequestSchema: Schema<AccountRestrictionRequest> = object(
@@ -82,9 +78,6 @@ export const accountRestrictionRequestSchema: Schema<AccountRestrictionRequest> 
       'ResetUsageRestrictions',
       optional(nullable(boolean())),
     ],
-    usageRestrictions: [
-      'UsageRestrictions',
-      optional(nullable(lazy(() => usageRestrictionsCardSchema))),
-    ],
+    usageRestrictions: ['UsageRestrictions', optional(unknown())],
   }
 );

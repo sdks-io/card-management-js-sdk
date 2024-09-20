@@ -37,6 +37,10 @@ export interface OrderCardEnquiry {
    * The field will be null if the card order request is not successly processed.
    */
   cardPAN?: string | null;
+  /** Card PAN */
+  maskedPAN?: string | null;
+  /** Card PAN ID as a unique number for each PAN */
+  pANID?: number | null;
   /**
    * CardTypeCode<br />
    * ISO code of the card i.e. first 7 digits of the PAN
@@ -93,11 +97,11 @@ export interface OrderCardEnquiry {
    * Possible values:<br />
    * P   Pending<br />
    * I   Picked up for processing<br />
-   * PX	Failed at Queue but retry attempts pending<br />
-   * X	Failed  at Queue<br />
-   * R	Card is processed, awaiting for PAN update.<br />
-   * S	Processed<br />
-   * F	Failed
+   * PX    Failed at Queue but retry attempts pending<br />
+   * X    Failed  at Queue<br />
+   * R    Card is processed, awaiting for PAN update.<br />
+   * S    Processed<br />
+   * F    Failed
    */
   orderStatus?: string | null;
   /** Payer ID on the card request. */
@@ -178,6 +182,8 @@ export const orderCardEnquirySchema: Schema<OrderCardEnquiry> = object({
   cardGroupName: ['CardGroupName', optional(nullable(string()))],
   cardId: ['CardId', optional(nullable(number()))],
   cardPAN: ['CardPAN', optional(nullable(string()))],
+  maskedPAN: ['MaskedPAN', optional(nullable(string()))],
+  pANID: ['PANID', optional(nullable(number()))],
   cardTypeCode: ['CardTypeCode', optional(nullable(string()))],
   cardTypeId: ['CardTypeId', optional(nullable(number()))],
   cardTypeName: ['CardTypeName', optional(nullable(string()))],

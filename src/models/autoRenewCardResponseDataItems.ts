@@ -11,6 +11,8 @@ export interface AutoRenewCardResponseDataItems {
   autoRenewReferenceId?: number | null;
   /** Reference number for each individual auto renew card in the order. */
   cardIdAndPAN?: string | null;
+  /** PANID of the card */
+  pANID?: number | null;
 }
 
 export const autoRenewCardResponseDataItemsSchema: Schema<AutoRenewCardResponseDataItems> = object(
@@ -20,5 +22,6 @@ export const autoRenewCardResponseDataItemsSchema: Schema<AutoRenewCardResponseD
       optional(nullable(number())),
     ],
     cardIdAndPAN: ['CardIdAndPAN', optional(nullable(string()))],
+    pANID: ['PANID', optional(nullable(number()))],
   }
 );

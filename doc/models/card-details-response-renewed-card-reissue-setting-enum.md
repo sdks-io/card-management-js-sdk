@@ -14,6 +14,6 @@ Reissue setting of the renewed new card. Reissue Setting:
 
 | Name |
 |  --- |
-| `true` |
-| `false` |
+| `True` |
+| `False` |
 

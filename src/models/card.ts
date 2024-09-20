@@ -131,8 +131,12 @@ export interface Card {
   localCurrencySymbol?: string | null;
   /** True/False True if odometer input is enabled on the card, else false */
   odometerInput?: boolean;
-  /** Card PAN Mask PAN (Mask all digits except the Last 6 digits of the PAN) */
+  /** Card PAN */
   pAN?: string | null;
+  /** Card PAN Mask PAN (Mask all digits except the Last 6 digits of the PAN) */
+  maskedPAN?: string;
+  /** Card PAN ID. */
+  pANID?: number;
   /** Purchase category code */
   purchaseCategoryCode?: string | null;
   /**
@@ -243,6 +247,8 @@ export const cardSchema: Schema<Card> = object({
   localCurrencySymbol: ['LocalCurrencySymbol', optional(nullable(string()))],
   odometerInput: ['OdometerInput', optional(boolean())],
   pAN: ['PAN', optional(nullable(string()))],
+  maskedPAN: ['MaskedPAN', optional(string())],
+  pANID: ['PANID', optional(number())],
   purchaseCategoryCode: ['PurchaseCategoryCode', optional(nullable(string()))],
   purchaseCategoryId: ['PurchaseCategoryId', optional(nullable(number()))],
   purchaseCategoryName: ['PurchaseCategoryName', optional(nullable(string()))],

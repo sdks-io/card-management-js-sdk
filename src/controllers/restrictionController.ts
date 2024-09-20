@@ -179,31 +179,31 @@ export class RestrictionController extends BaseController {
    *
    * All restrictions of the cards are submitted and executed after successful below condition.
    *
-   * •	The card exists.
+   * •    The card exists.
    *
-   * •	Day time restriction cannot be set to restrict the use of a card on all days of the week i.e., the
-   * values for all the days in the restriction cannot be set to false.
+   * •    Day time restriction cannot be set to restrict the use of a card on all days of the week i.e.,
+   * the values for all the days in the restriction cannot be set to false.
    *
-   * •	Either of the usage, daytime, location or product restriction ‘Reset’ is set to ‘True’ or applied
-   * on the card.
+   * •    Either of the usage, daytime, location or product restriction ‘Reset’ is set to ‘True’ or
+   * applied on the card.
    *
-   * •	All the limits in the usage restriction profile for a card is not set to ‘0’/null.
+   * •    All the limits in the usage restriction profile for a card is not set to ‘0’/null.
    *
-   * •	If IsVelocityCeiling is ‘true’, API will validate below condition:
+   * •    If IsVelocityCeiling is ‘true’, API will validate below condition:
    *
    * Usage restrictions for a card are lower than Customer Card Type level limits, if there are no
    * customer level overrides available then lower than OU card type limits.
    *
-   * •	In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
+   * •    In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
    * should be less than or equal to Weekly, Weekly should be less than or equal to Monthly, Monthly
    * should be less than or equal to Yearly (Annually). Exception being null/blank will be skipped. i.e.,
    * Daily value should be less than equal to Monthly value if Weekly value is null/blank. Lifetime limit
    * is not considered for usage restrictions limits validation.
    *
-   * •	Apply the card type limit to Gateway when a value is NULL in the input. However, if the card type
-   * limit is NULL for the same field, then no limit will be applied in Gateway.
+   * •    Apply the card type limit to Gateway when a value is NULL in the input. However, if the card
+   * type limit is NULL for the same field, then no limit will be applied in Gateway.
    *
-   * •	If ‘SetDefaultOnVelocityUpdate’ is ‘true’ then the operation will apply customer cardtype or OU
+   * •    If ‘SetDefaultOnVelocityUpdate’ is ‘true’ then the operation will apply customer cardtype or OU
    * level velocity limits on existing cards when restrictions are modified without providing custom
    * values for all fields.
    *
@@ -542,11 +542,9 @@ export class RestrictionController extends BaseController {
    * criteria.
    *
    *
-   *
    * Note - to include count of cards of an account that are not associated with any bundles, in the
    * input parameter SearchCardBundles either pass all the bundles of the account in the list or pass
    * only account with bundle id left blank/null.
-   *
    *
    *
    * #### Supported operations
@@ -618,15 +616,15 @@ export class RestrictionController extends BaseController {
    *
    *
    *
-   * •	The account exists.
+   * •    The account exists.
    *
-   * •	Day time restriction cannot be set to restrict the use of a card, under the account, on all days
-   * of the week.
+   * •    Day time restriction cannot be set to restrict the use of a card, under the account, on all
+   * days of the week.
    *
-   * •	Either of the usage, daytime or location is either marked for reset or new restriction values
+   * •    Either of the usage, daytime or location is either marked for reset or new restriction values
    * provided for the account.
    *
-   * •	In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
+   * •    In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily
    * should be less than or equal to Weekly, Weekly should be less than or equal to Monthly. Exception
    * being 0/blank will be skipped, i.e., Daily value should be less than equal to Monthly value if
    * Weekly value is 0/blank.

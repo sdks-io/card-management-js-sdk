@@ -166,8 +166,8 @@ export interface CardDetail {
    * Card delivery type.<br />
    * Mandatory <br />
    * Allowed Value: <br />
-   * 1.	Customer Address(Default) <br />
-   * 2.	New Delivery Address
+   * 1.    Customer Address(Default) <br />
+   * 2.    New Delivery Address
    */
   cardDeliveryType: number | null;
   cardContact?: CardContact;
@@ -175,19 +175,19 @@ export interface CardDetail {
    * PIN delivery address type selection.<br />
    * Optional<br />
    * Allowed Values:<br />
-   * 1.	Customer Address(Default)<br />
-   * 2.	Card Address<br />
-   * 3.	New Delivery Address
+   * 1.    Customer Address(Default)<br />
+   * 2.    Card Address<br />
+   * 3.    New Delivery Address
    */
   pINDeliveryAddressType?: number | null;
   /**
    * PIN delivery method.<br />
    * Mandatory<br />
    * Allowed Values:<br />
-   * 1.	Paper<br />
-   * 2.	Email<br />
-   * 3.	SMS<br />
-   * 4.	None <br /> **Note:** Paper delivery not applicable for selfselctedPIN type
+   * 1.    Paper<br />
+   * 2.    Email<br />
+   * 3.    SMS<br />
+   * 4.    None <br /> **Note:** Paper delivery not applicable for selfselctedPIN type
    */
   pINAdviceType: number | null;
   pINContact?: PINContact;
@@ -204,8 +204,8 @@ export interface CardDetail {
    * Mandatory, if NotifyCaller is true.<br />
    * Maximum field length: 20<br />
    * Allowed values:<br />
-   * •	“NextGenUI”: This value to be used by next gen UI application.<br />
-   * •	“FleetHubUILifeTime”: This value to be used by Fleet Hub UI application for life time restriction cards.<br />
+   * •    “NextGenUI”: This value to be used by next gen UI application.<br />
+   * •    “FleetHubUILifeTime”: This value to be used by Fleet Hub UI application for life time restriction cards.<br />
    * Note: The values passed in this field are case insensitive
    */
   caller?: string | null;
@@ -229,10 +229,10 @@ export interface CardDetail {
    * Optional.<br />
    * Default: NO_VALIDATION<br />
    * Allowed values:<br />
-   * •	ALERT<br />
-   * •	DECLINE<br />
-   * •	DECLINE_ALERT<br />
-   * •	NO_VALIDATION<br />
+   * •    ALERT<br />
+   * •    DECLINE<br />
+   * •    DECLINE_ALERT<br />
+   * •    NO_VALIDATION<br />
    * Note: When FleetIdOption is not provided and validatefleetid is true then by default allowed value is NO_VALIDATION.
    */
   fleetOption?: string | null;
@@ -292,6 +292,13 @@ export interface CardDetail {
    * Optional
    */
   clientReferenceId?: string | null;
+  /**
+   * Whether to reissue card automatically when nearing the expiry.
+   * Allowed values: -
+   * 1.    As per card type setting (Default).
+   * 2.    Card will be Reissued when nearing its expiry date.
+   * 3.    Card will not be Reissued.
+   */
   autoRenew?: CardDetailAutoRenewEnum;
 }
 

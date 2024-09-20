@@ -59,8 +59,8 @@ export interface UpdateCardGroupRequest {
    * Populate this field if the value needs to be updated. Otherwise set to ‘null’.
    * Optional
    * Note:
-   * 1)	If a card type is passed, the cardgorup will allow cards with same card type to be moved in to the card group.
-   * 2)	Pass ‘-1’ to remove the card type from the card group.
+   * 1)    If a card type is passed, the cardgorup will allow cards with same card type to be moved in to the card group.
+   * 2)    Pass ‘-1’ to remove the card type from the card group.
    */
   cardTypeId?: number;
   /**

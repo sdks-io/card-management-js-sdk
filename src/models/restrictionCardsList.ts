@@ -13,23 +13,16 @@ import {
   optional,
   Schema,
   string,
+  unknown,
 } from '../schema';
 import {
-  DayTimeRestriction,
-  dayTimeRestrictionSchema,
-} from './dayTimeRestriction';
+  DayTimeRestrictions,
+  dayTimeRestrictionsSchema,
+} from './dayTimeRestrictions';
 import {
   LocationRestriction,
   locationRestrictionSchema,
 } from './locationRestriction';
-import {
-  ProductRestrictionCard,
-  productRestrictionCardSchema,
-} from './productRestrictionCard';
-import {
-  UsageRestrictionsCard,
-  usageRestrictionsCardSchema,
-} from './usageRestrictionsCard';
 
 export interface RestrictionCardsList {
   /**
@@ -46,7 +39,7 @@ export interface RestrictionCardsList {
    * Optional if CardId is given, else mandatory.
    * Example: 7002051006629890645
    * Note:
-   * •	PAN is ignored if CardId is given.
+   * •    PAN is ignored if CardId is given.
    * When PAN matches with multiple cards, the restriction will be applied on the latest issued card.
    */
   pAN?: string | null;
@@ -71,10 +64,9 @@ export interface RestrictionCardsList {
    * If true, the location restrictions applied on the card will be deleted. Else, the card restrictions will be updated with the location restrictions provided in the API.
    */
   resetLocationRestrictions?: boolean | null;
-  usageRestrictions?: UsageRestrictionsCard | null;
-  /** Details of the day/time restrictions such as weekdays and time range in which transactions should be allowed on the card. */
-  dayTimeRestrictions?: DayTimeRestriction;
-  productRestrictions?: ProductRestrictionCard | null;
+  usageRestrictions?: unknown;
+  dayTimeRestrictions?: DayTimeRestrictions;
+  productRestrictions?: unknown;
   locationRestrictions?: LocationRestriction;
 }
 
@@ -95,18 +87,12 @@ export const restrictionCardsListSchema: Schema<RestrictionCardsList> = object({
     'ResetLocationRestrictions',
     optional(nullable(boolean())),
   ],
-  usageRestrictions: [
-    'UsageRestrictions',
-    optional(nullable(lazy(() => usageRestrictionsCardSchema))),
-  ],
+  usageRestrictions: ['UsageRestrictions', optional(unknown())],
   dayTimeRestrictions: [
     'DayTimeRestrictions',
-    optional(lazy(() => dayTimeRestrictionSchema)),
+    optional(lazy(() => dayTimeRestrictionsSchema)),
   ],
-  productRestrictions: [
-    'ProductRestrictions',
-    optional(nullable(lazy(() => productRestrictionCardSchema))),
-  ],
+  productRestrictions: ['ProductRestrictions', optional(unknown())],
   locationRestrictions: [
     'LocationRestrictions',
     optional(lazy(() => locationRestrictionSchema)),

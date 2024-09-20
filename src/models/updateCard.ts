@@ -131,6 +131,8 @@ export interface UpdateCard {
    * Optional if CardId is passed, else Mandatory.<br />
    */
   pAN?: string | null;
+  /** PANID of the card */
+  pANID?: number | null;
   /**
    * Payer id of the customer.<br />
    * Optional if PayerNumber is passed, else Mandatory.
@@ -160,6 +162,7 @@ export const updateCardSchema: Schema<UpdateCard> = object({
   colCoCode: ['ColCoCode', optional(nullable(number()))],
   colCoId: ['ColCoId', optional(nullable(number()))],
   pAN: ['PAN', optional(nullable(string()))],
+  pANID: ['PANID', optional(nullable(number()))],
   payerId: ['PayerId', optional(nullable(number()))],
   payerNumber: ['PayerNumber', optional(nullable(string()))],
 });
