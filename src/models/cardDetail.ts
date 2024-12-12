@@ -292,13 +292,6 @@ export interface CardDetail {
    * Optional
    */
   clientReferenceId?: string | null;
-  /**
-   * Whether to reissue card automatically when nearing the expiry.
-   * Allowed values: -
-   * 1.    As per card type setting (Default).
-   * 2.    Card will be Reissued when nearing its expiry date.
-   * 3.    Card will not be Reissued.
-   */
   autoRenew?: CardDetailAutoRenewEnum;
 }
 

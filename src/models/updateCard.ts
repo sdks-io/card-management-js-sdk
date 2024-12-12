@@ -64,38 +64,6 @@ export interface UpdateCard {
   orderCardReplacement?: boolean;
   cardSettings?: CardSettings;
   /**
-   * Reason id for updating the card status.
-   * Either Reason ID or Text is madatory when TargetStatus is ‘Block’ or ‘Damaged’. Else ignored.
-   * Possible values:
-   * 1 (Lost)
-   * 2 (Stolen)
-   * 3 (Card no longer required)
-   *  <br>When passed, the reason Id will be mapped to allowed reason IDs configured for the card type of the card. If the given reason Id is not allowed for certain card types, then the request will be rejected as invalid ResonId
-   */
-  reasonId?: number;
-  /**
-   * Reason text for updating the card status.
-   * Possible Values:
-   * 1) Lost
-   * 2) Stolen
-   * 3) Card no longer required
-   * Optional – However, either Reason ID or Text is madatory when TargetStatus is ‘Block’ or ‘Damaged’. Else, Ignored.
-   * When Reason Text is passed and the Target Status is either Block or Damaged, the text will be validated with the allowed list of values configured for the card type of the card. If the text is not allowed, request will be rejected as invaid ResonText.
-   * Note:
-   * ‘Customer blocked’ will be used as the reason for ‘Temporary Block’.
-   */
-  reasonText?: string | null;
-  /**
-   * The list of cards passed in ‘Cards’ parameter will be updated to this status.<br />
-   * Mandatory.<br />
-   * Allowed values –<br />
-   * - TemporaryBlock<br />
-   * - Unblock<br />
-   * - Block<br />
-   * - Damaged<br />
-   */
-  targetStatus?: number | null;
-  /**
    * Account Id of the customer.<br />
    * Optional if AccountNumber is passed, else Mandatory.
    */
@@ -152,9 +120,6 @@ export const updateCardSchema: Schema<UpdateCard> = object({
   notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
   orderCardReplacement: ['OrderCardReplacement', optional(boolean())],
   cardSettings: ['CardSettings', optional(lazy(() => cardSettingsSchema))],
-  reasonId: ['ReasonId', optional(number())],
-  reasonText: ['ReasonText', optional(nullable(string()))],
-  targetStatus: ['TargetStatus', optional(nullable(number()))],
   accountId: ['AccountId', optional(nullable(number()))],
   accountNumber: ['AccountNumber', optional(nullable(string()))],
   cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],

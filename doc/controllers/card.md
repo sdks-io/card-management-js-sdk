@@ -72,9 +72,11 @@ This API allows to search for Shell Cards in the Shell Card Platform. It provide
 * Search cards by excluding card bundle Id
 
 ```ts
-async searchcard(  requestId: string,
+async searchcard(
+  requestId: string,
   body?: SearchCardRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardSearchResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardSearchResponse>>
 ```
 
 ## Parameters
@@ -283,9 +285,11 @@ This API allows to search for fuel cards in the Shell Card Platform and returns 
 * Search cards by included/excluded list of cards
 
 ```ts
-async cardsummary(  requestId: string,
+async cardsummary(
+  requestId: string,
   body?: CardSummaryRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardSummaryResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardSummaryResponse>>
 ```
 
 ## Parameters
@@ -451,9 +455,11 @@ This API allows ordering one or more fuel cards (up to 50). If the API call succ
 * Individual reference numbers (**OrderCardReference**) for each new card
 
 ```ts
-async cardordercard(  requestId: string,
+async cardordercard(
+  requestId: string,
   body?: CardManagementV1OrdercardRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<OrderCardResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<OrderCardResponse>>
 ```
 
 ## Parameters
@@ -615,9 +621,11 @@ This API retrieves the card order status from the Shell Card Platform based on t
     * Get order status by Card Reference (individual card reference belonging to an order reference)
 
 ```ts
-async cardordercardenquiry(  requestId: string,
+async cardordercardenquiry(
+  requestId: string,
   body?: OrderCardEnquiryRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<OrderCardEnquiryResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<OrderCardEnquiryResponse>>
 ```
 
 ## Parameters
@@ -765,9 +773,11 @@ A permanent block (cancelled) request for the card will be queued in Shell Card 
 When a card is requested to be Blocked permanently (cancelled) for which a request has already been submitted to report as Damaged and the damaged card active period is not yet completed, the damaged card request will be marked as superseded and the new Block (cancelled) request will be processed.
 
 ```ts
-async cardcancel(  requestId: string,
+async cardcancel(
+  requestId: string,
   body?: CardManagementV1CancelRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CancelCardResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CancelCardResponse>>
 ```
 
 ## Parameters
@@ -949,9 +959,11 @@ This API allows updating of the card status for one or more cards (up to 500) wi
   * If during the damage card active period another request is made to set the card to Temporarily Blocked or Blocked permanently (cancelled), then the damaged card request will be marked as superseded and the new Temporary Block or Block (cancelled) will be processed.
 
 ```ts
-async cardupdatestatus(  requestId: string,
+async cardupdatestatus(
+  requestId: string,
   body?: CardManagementV1UpdatestatusRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<UpdateCardStatusResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<UpdateCardStatusResponse>>
 ```
 
 ## Parameters
@@ -1099,10 +1111,12 @@ It will also include the below data associated with each of the purchase categor
 * List of products configured in each product set
 
 ```ts
-async purchaseCategory(  apikey: string,
+async purchaseCategory(
+  apikey: string,
   requestId: string,
   body?: PurchaseCategoryRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<PurchaseCategoryResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<PurchaseCategoryResponse>>
 ```
 
 ## Parameters
@@ -1211,10 +1225,12 @@ This API allows to fetch details of a single fuel card from the Shell Card Platf
 * Get card by card id or PAN
 
 ```ts
-async carddetails(  apikey: string,
+async carddetails(
+  apikey: string,
   requestId: string,
   body?: CardDetailsRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardDetailsResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardDetailsResponse>>
 ```
 
 ## Parameters
@@ -1443,10 +1459,12 @@ This API allows to move one or more fuel cards (up to 500) across card groups wi
 * Move card requests that have been submitted and processed will be reflected after midnight according to the customers local date
 
 ```ts
-async cardMove(  apikey: string,
+async cardMove(
+  apikey: string,
   requestId: string,
   body?: CardMoveRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardMoveResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardMoveResponse>>
 ```
 
 ## Parameters
@@ -1575,9 +1593,11 @@ This API allows requesting a PIN reminder for a fuel card. If the API call succe
 * A PIN reminder request has not been successfully processed in the last 48 hours for the card
 
 ```ts
-async cardpinreminder(  requestId: string,
+async cardpinreminder(
+  requestId: string,
   body?: CardManagementV1PinreminderRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<PINReminderResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<PINReminderResponse>>
 ```
 
 ## Parameters
@@ -1704,9 +1724,11 @@ This API allows scheduling Card Block / Unblock requests for one or multiple car
 * A list of submitted cards along with the individual reference numbers for each of the request.
 
 ```ts
-async scheduleCardBlock(  requestId: string,
+async scheduleCardBlock(
+  requestId: string,
   body?: ScheduleCardBlockRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<ScheduleCardBlockResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<ScheduleCardBlockResponse>>
 ```
 
 ## Parameters
@@ -1816,9 +1838,11 @@ This API allows to update the reissue indicator of a single card. If the API cal
 * Providing a **PAN** request paramter may result in multiple fuel cards being located in the Shell Card Platform. The card details of the most recently issued card will be considered.
 
 ```ts
-async autorenew(  requestId: string,
+async autorenew(
+  requestId: string,
   body?: AutoRenewCardRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AutoRenewCardResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<AutoRenewCardResponse>>
 ```
 
 ## Parameters
@@ -1907,9 +1931,11 @@ If the approval status is:
 * “Rejected” then status will be updated to “CI” (Failed) with appropriate error message.
 
 ```ts
-async updatemobilepaymentregistrationstatus(  requestId: string,
+async updatemobilepaymentregistrationstatus(
+  requestId: string,
   body?: UpdateMPayRegStatusRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<UpdateMPayRegStatusResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<UpdateMPayRegStatusResponse>>
 ```
 
 ## Parameters
@@ -1985,9 +2011,11 @@ try {
 Get a new public key that will be used to encrypt data for selected PIN process when ordering new Shell Card. This encrypted data is used for further processing.
 
 ```ts
-async getkey(  requestId: string,
+async getkey(
+  requestId: string,
   fleet?: boolean,
-requestOptions?: RequestOptions): Promise<ApiResponse<GeneratePINKeyResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<GeneratePINKeyResponse>>
 ```
 
 ## Parameters
@@ -2048,9 +2076,11 @@ This API allows users to update the card’s delivery addresses (card delivery a
 * card delivery address update
 
 ```ts
-async deliveryaddressupdate(  apikey: string,
+async deliveryaddressupdate(
+  apikey: string,
   body?: DeliveryAddressUpdateRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<DeliveryAddressUpdateResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<DeliveryAddressUpdateResponse>>
 ```
 
 ## Parameters

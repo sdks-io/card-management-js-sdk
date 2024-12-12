@@ -30,13 +30,16 @@ This API will allows querying card details including the day/time and product re
 #### Supported operations
 
 * Search by list of cards or bundle
+
 * Include card bundle details (optional)
 
 ```ts
-async searchCardRestriction(  apikey: string,
+async searchCardRestriction(
+  apikey: string,
   requestId: string,
   body?: SearchCardRestrictionReq,
-requestOptions?: RequestOptions): Promise<ApiResponse<SearchCardRestrictionRes>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<SearchCardRestrictionRes>>
 ```
 
 ## Parameters
@@ -496,10 +499,12 @@ Usage restrictions for a card are lower than Customer Card Type level limits, if
 •    If ‘SetDefaultOnVelocityUpdate’ is ‘true’ then the operation will apply customer cardtype or OU level velocity limits on existing cards when restrictions are modified without providing custom values for all fields.
 
 ```ts
-async applyRestriction(  apikey: string,
+async applyRestriction(
+  apikey: string,
   requestId: string,
   body?: CardRestrictionReq,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardRestrictionResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardRestrictionResponse>>
 ```
 
 ## Parameters
@@ -573,10 +578,12 @@ The following are the key validation rules with the associated error codes for f
 * `0007` - Error returned if request parameters fail validation e.g. mandatory check.
 
 ```ts
-async createBundle(  apikey: string,
+async createBundle(
+  apikey: string,
   requestId: string,
   body?: CreateBundleRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreateBundleResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CreateBundleResponse>>
 ```
 
 ## Parameters
@@ -652,10 +659,12 @@ The following are the key validation rules with the associated error codes for f
 * `0007` - Error returned if request parameters fail validation e.g. at least one card must be provided in the input.
 
 ```ts
-async updateBundle(  apikey: string,
+async updateBundle(
+  apikey: string,
   requestId: string,
   body?: UpdateBundleRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<UpdateBundleResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<UpdateBundleResponse>>
 ```
 
 ## Parameters
@@ -720,10 +729,12 @@ The following are the key validation rules with the associated error codes for f
 * `0007` - Error returned if request parameters fail validation e.g. mandatory check.
 
 ```ts
-async deleteBundle(  apikey: string,
+async deleteBundle(
+  apikey: string,
   requestId: string,
   body?: DeleteBundleRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<DeleteBundleResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<DeleteBundleResponse>>
 ```
 
 ## Parameters
@@ -806,10 +817,12 @@ Note - to include count of cards of an account that are not associated with any 
 * Get summary of bundles by list of bundle Ids
 
 ```ts
-async summaryofbundles(  apikey: string,
+async summaryofbundles(
+  apikey: string,
   requestId: string,
   body?: SummaryofbundlerRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<SummaryofbundleResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<SummaryofbundleResponse>>
 ```
 
 ## Parameters
@@ -832,7 +845,8 @@ const apikey = 'apikey6';
 
 const requestId = 'RequestId8';
 
-const body: SummaryofbundlerRequest = {};
+const body: SummaryofbundlerRequest = {
+};
 
 try {
   const { result, ...httpResponse } = await restrictionController.summaryofbundles(
@@ -873,10 +887,12 @@ Then validation rules applied for this API.
 •    In usage restrictions, the limits per transaction should be less than or equal to Daily, Daily should be less than or equal to Weekly, Weekly should be less than or equal to Monthly. Exception being 0/blank will be skipped, i.e., Daily value should be less than equal to Monthly value if Weekly value is 0/blank.
 
 ```ts
-async restrictionAccount(  apikey: string,
+async restrictionAccount(
+  apikey: string,
   requestId: string,
   body?: AccountRestrictionRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AccountRestrictionResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<AccountRestrictionResponse>>
 ```
 
 ## Parameters
@@ -930,10 +946,12 @@ try {
 This API will allow user to get account level limits for the given account. It returns the velocity limits if its overridden at the account else the values will be null/empty.
 
 ```ts
-async searchAccountLimit(  apikey: string,
+async searchAccountLimit(
+  apikey: string,
   requestId: string,
   body?: SearchAccountLimitRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<SearchAccountLimitResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<SearchAccountLimitResponse>>
 ```
 
 ## Parameters
@@ -1021,10 +1039,12 @@ try {
 This API allows to get the details of a specific card bundle. It returns the bundle basic details along with the cards in the bundle and restrictions applied on them.
 
 ```ts
-async bundledetails(  apikey: string,
+async bundledetails(
+  apikey: string,
   requestId: string,
   body?: BudleDetailsRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<BundleDetailsResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<BundleDetailsResponse>>
 ```
 
 ## Parameters

@@ -86,7 +86,6 @@ import { FleetmanagementV2RestrictionSearchcard500Error } from '../errors/fleetm
 export class RestrictionController extends BaseController {
   /**
    * This API will allows querying card details including the day/time and product restrictions.
-   *
    * #### Supported operations
    *
    * * Search by list of cards or bundle

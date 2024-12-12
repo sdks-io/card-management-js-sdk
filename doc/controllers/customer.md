@@ -30,10 +30,12 @@ This API will return the user access details such as payers and/or accounts. </b
 This API will also validate that logged in user has access to the requested API, on failure it will return HasAPIAccess flag as false in response.</br>
 
 ```ts
-async loggedinuser(  apikey: string,
+async loggedinuser(
+  apikey: string,
   requestId: string,
   body?: FleetmanagementV1UserLoggedinuserRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<LoggedInUserResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<LoggedInUserResponse>>
 ```
 
 ## Parameters
@@ -186,10 +188,12 @@ data queried from each ColCo when payers passed in the input are from
 multiple ColCos.
 
 ```ts
-async payers(  apikey: string,
+async payers(
+  apikey: string,
   requestId: string,
   body?: PayerRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<PayerResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<PayerResponse>>
 ```
 
 ## Parameters
@@ -459,10 +463,12 @@ This API allows querying the card delivery addresses of a given account from the
 Only active delivery addresses will be returned.
 
 ```ts
-async customer(  apikey: string,
+async customer(
+  apikey: string,
   requestId: string,
   body?: CustomerDetailRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CustomerDetailResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CustomerDetailResponse>>
 ```
 
 ## Parameters
@@ -620,10 +626,12 @@ This API allows querying the customer account details from the Shell Cards Platf
 It provides a flexible search criterion and supports paging".
 
 ```ts
-async accounts(  apikey: string,
+async accounts(
+  apikey: string,
   requestId: string,
   body?: AccountRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AccountResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<AccountResponse>>
 ```
 
 ## Parameters
@@ -788,10 +796,12 @@ try {
 This operation allows querying card types that are associated to the given account and are allowed to be shown to users.
 
 ```ts
-async cardType(  apikey: string,
+async cardType(
+  apikey: string,
   requestId: string,
   body?: CardTypeRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardTypeResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardTypeResponse>>
 ```
 
 ## Parameters
@@ -953,10 +963,12 @@ When the card group type is configured as ‘Horizontal’ in cards platform, th
 Accounts with cancelled status will not be considered for cardgroups search for the configured (E.g., SFH) set of client apps.
 
 ```ts
-async cardgroups(  apikey: string,
+async cardgroups(
+  apikey: string,
   requestId: string,
   body?: CardGroupRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CardGroupResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CardGroupResponse>>
 ```
 
 ## Parameters
@@ -1087,10 +1099,12 @@ The audit data includes details of below API operations
 * Delivery Address Update.
 
 ```ts
-async auditreport(  apikey: string,
+async auditreport(
+  apikey: string,
   requestId: string,
   body?: AuditRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuditResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<AuditResponse>>
 ```
 
 ## Parameters
@@ -1228,10 +1242,12 @@ card-group.
   successfully
 
 ```ts
-async createcardgroup(  apikey: string,
+async createcardgroup(
+  apikey: string,
   requestId: string,
   body?: CreateCardGroupRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreateCardGroupResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<CreateCardGroupResponse>>
 ```
 
 ## Parameters
@@ -1338,10 +1354,12 @@ The request for updating or removing of the card group, creationg of a new card 
 validations.
 
 ```ts
-async updatecardgroup(  apikey: string,
+async updatecardgroup(
+  apikey: string,
   requestId: string,
   body?: UpdateCardGroupRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<UpdateCardGroupResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<UpdateCardGroupResponse>>
 ```
 
 ## Parameters
