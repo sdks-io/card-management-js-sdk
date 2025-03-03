@@ -91,7 +91,7 @@ export class CustomerController extends BaseController {
    * @param body         Logged in user request body
    * @return Response from the API call
    */
-  async loggedinuser(
+  async loggedinUser(
     apikey: string,
     requestId: string,
     body?: FleetmanagementV1UserLoggedinuserRequest,
@@ -428,7 +428,7 @@ export class CustomerController extends BaseController {
    * @param body         Request Body
    * @return Response from the API call
    */
-  async cardgroups(
+  async cardGroups(
     apikey: string,
     requestId: string,
     body?: CardGroupRequest,
@@ -523,7 +523,7 @@ export class CustomerController extends BaseController {
    * @param body         request body
    * @return Response from the API call
    */
-  async auditreport(
+  async auditReport(
     apikey: string,
     requestId: string,
     body?: AuditRequest,
@@ -607,7 +607,7 @@ export class CustomerController extends BaseController {
    * @param body         CreateCardGroup request body
    * @return Response from the API call
    */
-  async createcardgroup(
+  async createCardGroup(
     apikey: string,
     requestId: string,
     body?: CreateCardGroupRequest,
@@ -681,7 +681,7 @@ export class CustomerController extends BaseController {
    * @param body         request body of customer card group
    * @return Response from the API call
    */
-  async updatecardgroup(
+  async updateCardGroup(
     apikey: string,
     requestId: string,
     body?: UpdateCardGroupRequest,

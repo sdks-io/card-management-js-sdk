@@ -12,24 +12,24 @@ const cardController = new CardController(client);
 
 ## Methods
 
-* [Searchcard](../../doc/controllers/card.md#searchcard)
-* [Cardsummary](../../doc/controllers/card.md#cardsummary)
-* [Cardordercard](../../doc/controllers/card.md#cardordercard)
-* [Cardordercardenquiry](../../doc/controllers/card.md#cardordercardenquiry)
-* [Cardcancel](../../doc/controllers/card.md#cardcancel)
-* [Cardupdatestatus](../../doc/controllers/card.md#cardupdatestatus)
+* [Search Card](../../doc/controllers/card.md#search-card)
+* [Card Summary](../../doc/controllers/card.md#card-summary)
+* [Order Card](../../doc/controllers/card.md#order-card)
+* [Order Card Enquiry](../../doc/controllers/card.md#order-card-enquiry)
+* [Card Cancel](../../doc/controllers/card.md#card-cancel)
+* [Card Update Status](../../doc/controllers/card.md#card-update-status)
 * [Purchase Category](../../doc/controllers/card.md#purchase-category)
-* [Carddetails](../../doc/controllers/card.md#carddetails)
+* [Card Details](../../doc/controllers/card.md#card-details)
 * [Card Move](../../doc/controllers/card.md#card-move)
-* [Cardpinreminder](../../doc/controllers/card.md#cardpinreminder)
+* [Card Pin Reminder](../../doc/controllers/card.md#card-pin-reminder)
 * [Schedule Card Block](../../doc/controllers/card.md#schedule-card-block)
-* [Autorenew](../../doc/controllers/card.md#autorenew)
-* [Updatemobilepaymentregistrationstatus](../../doc/controllers/card.md#updatemobilepaymentregistrationstatus)
-* [Getkey](../../doc/controllers/card.md#getkey)
-* [Deliveryaddressupdate](../../doc/controllers/card.md#deliveryaddressupdate)
+* [Auto Renew](../../doc/controllers/card.md#auto-renew)
+* [Update Mobile Payment Registration Status](../../doc/controllers/card.md#update-mobile-payment-registration-status)
+* [Get Key](../../doc/controllers/card.md#get-key)
+* [Delivery Address Update](../../doc/controllers/card.md#delivery-address-update)
 
 
-# Searchcard
+# Search Card
 
 This API allows to search for Shell Cards in the Shell Card Platform. It provides flexible search criteria and supports paging.
 
@@ -72,7 +72,7 @@ This API allows to search for Shell Cards in the Shell Card Platform. It provide
 * Search cards by excluding card bundle Id
 
 ```ts
-async searchcard(
+async searchCard(
   requestId: string,
   body?: SearchCardRequest,
   requestOptions?: RequestOptions
@@ -89,7 +89,7 @@ async searchcard(
 
 ## Response Type
 
-[`CardSearchResponse`](../../doc/models/card-search-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardSearchResponse](../../doc/models/card-search-response.md).
 
 ## Example Usage
 
@@ -164,7 +164,7 @@ const body: SearchCardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.searchcard(
+  const { result, ...httpResponse } = await cardController.searchCard(
   requestId,
   body
 );
@@ -265,7 +265,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Cardsummary
+# Card Summary
 
 This API allows to search for fuel cards in the Shell Card Platform and returns a high-level summary count. It provides flexible search criteria.
 
@@ -285,7 +285,7 @@ This API allows to search for fuel cards in the Shell Card Platform and returns 
 * Search cards by included/excluded list of cards
 
 ```ts
-async cardsummary(
+async cardSummary(
   requestId: string,
   body?: CardSummaryRequest,
   requestOptions?: RequestOptions
@@ -302,7 +302,7 @@ async cardsummary(
 
 ## Response Type
 
-[`CardSummaryResponse`](../../doc/models/card-summary-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardSummaryResponse](../../doc/models/card-summary-response.md).
 
 ## Example Usage
 
@@ -367,7 +367,7 @@ const body: CardSummaryRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardsummary(
+  const { result, ...httpResponse } = await cardController.cardSummary(
   requestId,
   body
 );
@@ -417,7 +417,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Cardordercard
+# Order Card
 
 This API allows ordering one or more fuel cards (up to 50). If the API call succeeds, the API will return a reference number and queue the request for asynchronous processing.
 
@@ -455,7 +455,7 @@ This API allows ordering one or more fuel cards (up to 50). If the API call succ
 * Individual reference numbers (**OrderCardReference**) for each new card
 
 ```ts
-async cardordercard(
+async orderCard(
   requestId: string,
   body?: CardManagementV1OrdercardRequest,
   requestOptions?: RequestOptions
@@ -472,7 +472,7 @@ async cardordercard(
 
 ## Response Type
 
-[`OrderCardResponse`](../../doc/models/order-card-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [OrderCardResponse](../../doc/models/order-card-response.md).
 
 ## Example Usage
 
@@ -561,7 +561,7 @@ const body: CardManagementV1OrdercardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardordercard(
+  const { result, ...httpResponse } = await cardController.orderCard(
   requestId,
   body
 );
@@ -602,7 +602,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Cardordercardenquiry
+# Order Card Enquiry
 
 This API retrieves the card order status from the Shell Card Platform based on the given reference numbers.
 
@@ -621,7 +621,7 @@ This API retrieves the card order status from the Shell Card Platform based on t
     * Get order status by Card Reference (individual card reference belonging to an order reference)
 
 ```ts
-async cardordercardenquiry(
+async orderCardEnquiry(
   requestId: string,
   body?: OrderCardEnquiryRequest,
   requestOptions?: RequestOptions
@@ -638,7 +638,7 @@ async cardordercardenquiry(
 
 ## Response Type
 
-[`OrderCardEnquiryResponse`](../../doc/models/order-card-enquiry-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [OrderCardEnquiryResponse](../../doc/models/order-card-enquiry-response.md).
 
 ## Example Usage
 
@@ -663,7 +663,7 @@ const body: OrderCardEnquiryRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardordercardenquiry(
+  const { result, ...httpResponse } = await cardController.orderCardEnquiry(
   requestId,
   body
 );
@@ -737,7 +737,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Cardcancel
+# Card Cancel
 
 This API allows cancelling one or multiple cards (up to 500) within a single API call. This API allows updating of
 the card to the following status-
@@ -773,7 +773,7 @@ A permanent block (cancelled) request for the card will be queued in Shell Card 
 When a card is requested to be Blocked permanently (cancelled) for which a request has already been submitted to report as Damaged and the damaged card active period is not yet completed, the damaged card request will be marked as superseded and the new Block (cancelled) request will be processed.
 
 ```ts
-async cardcancel(
+async cardCancel(
   requestId: string,
   body?: CardManagementV1CancelRequest,
   requestOptions?: RequestOptions
@@ -790,7 +790,7 @@ async cardcancel(
 
 ## Response Type
 
-[`CancelCardResponse`](../../doc/models/cancel-card-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CancelCardResponse](../../doc/models/cancel-card-response.md).
 
 ## Example Usage
 
@@ -859,7 +859,7 @@ const body: CardManagementV1CancelRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardcancel(
+  const { result, ...httpResponse } = await cardController.cardCancel(
   requestId,
   body
 );
@@ -910,7 +910,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Cardupdatestatus
+# Card Update Status
 
 This API allows updating of the card status for one or more cards (up to 500) within a single API call.  If the API call succeeds, the API will return a reference number and queue the request for asynchronous processing.
 
@@ -959,7 +959,7 @@ This API allows updating of the card status for one or more cards (up to 500) wi
   * If during the damage card active period another request is made to set the card to Temporarily Blocked or Blocked permanently (cancelled), then the damaged card request will be marked as superseded and the new Temporary Block or Block (cancelled) will be processed.
 
 ```ts
-async cardupdatestatus(
+async cardUpdateStatus(
   requestId: string,
   body?: CardManagementV1UpdatestatusRequest,
   requestOptions?: RequestOptions
@@ -976,7 +976,7 @@ async cardupdatestatus(
 
 ## Response Type
 
-[`UpdateCardStatusResponse`](../../doc/models/update-card-status-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateCardStatusResponse](../../doc/models/update-card-status-response.md).
 
 ## Example Usage
 
@@ -1048,7 +1048,7 @@ const body: CardManagementV1UpdatestatusRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardupdatestatus(
+  const { result, ...httpResponse } = await cardController.cardUpdateStatus(
   requestId,
   body
 );
@@ -1130,7 +1130,7 @@ async purchaseCategory(
 
 ## Response Type
 
-[`PurchaseCategoryResponse`](../../doc/models/purchase-category-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [PurchaseCategoryResponse](../../doc/models/purchase-category-response.md).
 
 ## Example Usage
 
@@ -1216,7 +1216,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Carddetails
+# Card Details
 
 This API allows to fetch details of a single fuel card from the Shell Card Platform. If a **CardId** request parameter is provided, this will return a single card.  If a **PAN** request parameter is provided, this may result in multiple fuel cards matching the search criteria. The card details of the most recently issued card will be returned.
 
@@ -1225,7 +1225,7 @@ This API allows to fetch details of a single fuel card from the Shell Card Platf
 * Get card by card id or PAN
 
 ```ts
-async carddetails(
+async cardDetails(
   apikey: string,
   requestId: string,
   body?: CardDetailsRequest,
@@ -1244,7 +1244,7 @@ async carddetails(
 
 ## Response Type
 
-[`CardDetailsResponse`](../../doc/models/card-details-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardDetailsResponse](../../doc/models/card-details-response.md).
 
 ## Example Usage
 
@@ -1274,7 +1274,7 @@ const body: CardDetailsRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.carddetails(
+  const { result, ...httpResponse } = await cardController.cardDetails(
   apikey,
   requestId,
   body
@@ -1478,7 +1478,7 @@ async cardMove(
 
 ## Response Type
 
-[`CardMoveResponse`](../../doc/models/card-move-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardMoveResponse](../../doc/models/card-move-response.md).
 
 ## Example Usage
 
@@ -1566,7 +1566,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Cardpinreminder
+# Card Pin Reminder
 
 This API allows requesting a PIN reminder for a fuel card. If the API call succeeds, the API will return a reference number and queue the request for asynchronous processing.
 
@@ -1593,7 +1593,7 @@ This API allows requesting a PIN reminder for a fuel card. If the API call succe
 * A PIN reminder request has not been successfully processed in the last 48 hours for the card
 
 ```ts
-async cardpinreminder(
+async cardPinReminder(
   requestId: string,
   body?: CardManagementV1PinreminderRequest,
   requestOptions?: RequestOptions
@@ -1610,7 +1610,7 @@ async cardpinreminder(
 
 ## Response Type
 
-[`PINReminderResponse`](../../doc/models/pin-reminder-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [PINReminderResponse](../../doc/models/pin-reminder-response.md).
 
 ## Example Usage
 
@@ -1646,7 +1646,7 @@ const body: CardManagementV1PinreminderRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardpinreminder(
+  const { result, ...httpResponse } = await cardController.cardPinReminder(
   requestId,
   body
 );
@@ -1741,7 +1741,7 @@ async scheduleCardBlock(
 
 ## Response Type
 
-[`ScheduleCardBlockResponse`](../../doc/models/schedule-card-block-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [ScheduleCardBlockResponse](../../doc/models/schedule-card-block-response.md).
 
 ## Example Usage
 
@@ -1815,7 +1815,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Autorenew
+# Auto Renew
 
 This API allows to update the reissue indicator of a single card. If the API call succeeds, the API will return a reference number for tracking purposes and queue the request for asynchronous processing.
 
@@ -1838,7 +1838,7 @@ This API allows to update the reissue indicator of a single card. If the API cal
 * Providing a **PAN** request paramter may result in multiple fuel cards being located in the Shell Card Platform. The card details of the most recently issued card will be considered.
 
 ```ts
-async autorenew(
+async autoRenew(
   requestId: string,
   body?: AutoRenewCardRequest,
   requestOptions?: RequestOptions
@@ -1855,7 +1855,7 @@ async autorenew(
 
 ## Response Type
 
-[`AutoRenewCardResponse`](../../doc/models/auto-renew-card-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [AutoRenewCardResponse](../../doc/models/auto-renew-card-response.md).
 
 ## Example Usage
 
@@ -1880,7 +1880,7 @@ const body: AutoRenewCardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.autorenew(
+  const { result, ...httpResponse } = await cardController.autoRenew(
   requestId,
   body
 );
@@ -1922,7 +1922,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Updatemobilepaymentregistrationstatus
+# Update Mobile Payment Registration Status
 
 This operation allows  update the approval status of Mobile Payment Registration requests requiring for Fleet Manager approval.
 If the approval status is:
@@ -1931,7 +1931,7 @@ If the approval status is:
 * “Rejected” then status will be updated to “CI” (Failed) with appropriate error message.
 
 ```ts
-async updatemobilepaymentregistrationstatus(
+async updateMobilePaymentRegistrationStatus(
   requestId: string,
   body?: UpdateMPayRegStatusRequest,
   requestOptions?: RequestOptions
@@ -1948,7 +1948,7 @@ async updatemobilepaymentregistrationstatus(
 
 ## Response Type
 
-[`UpdateMPayRegStatusResponse`](../../doc/models/update-m-pay-reg-status-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateMPayRegStatusResponse](../../doc/models/update-m-pay-reg-status-response.md).
 
 ## Example Usage
 
@@ -1972,7 +1972,7 @@ const body: UpdateMPayRegStatusRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.updatemobilepaymentregistrationstatus(
+  const { result, ...httpResponse } = await cardController.updateMobilePaymentRegistrationStatus(
   requestId,
   body
 );
@@ -2006,12 +2006,12 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | `ApiError` |
 
 
-# Getkey
+# Get Key
 
 Get a new public key that will be used to encrypt data for selected PIN process when ordering new Shell Card. This encrypted data is used for further processing.
 
 ```ts
-async getkey(
+async getKey(
   requestId: string,
   fleet?: boolean,
   requestOptions?: RequestOptions
@@ -2028,7 +2028,7 @@ async getkey(
 
 ## Response Type
 
-[`GeneratePINKeyResponse`](../../doc/models/generate-pin-key-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [GeneratePINKeyResponse](../../doc/models/generate-pin-key-response.md).
 
 ## Example Usage
 
@@ -2036,7 +2036,7 @@ async getkey(
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await cardController.getkey(requestId);
+  const { result, ...httpResponse } = await cardController.getKey(requestId);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -2067,7 +2067,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Deliveryaddressupdate
+# Delivery Address Update
 
 This API allows users to update the card’s delivery addresses (card delivery address used for card re-issue and PIN delivery address used when PIN reminder is requested)
 
@@ -2076,7 +2076,7 @@ This API allows users to update the card’s delivery addresses (card delivery a
 * card delivery address update
 
 ```ts
-async deliveryaddressupdate(
+async deliveryAddressUpdate(
   apikey: string,
   body?: DeliveryAddressUpdateRequest,
   requestOptions?: RequestOptions
@@ -2093,7 +2093,7 @@ async deliveryaddressupdate(
 
 ## Response Type
 
-[`DeliveryAddressUpdateResponse`](../../doc/models/delivery-address-update-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [DeliveryAddressUpdateResponse](../../doc/models/delivery-address-update-response.md).
 
 ## Example Usage
 
@@ -2130,7 +2130,7 @@ const body: DeliveryAddressUpdateRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.deliveryaddressupdate(
+  const { result, ...httpResponse } = await cardController.deliveryAddressUpdate(
   apikey,
   body
 );

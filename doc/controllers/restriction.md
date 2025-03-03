@@ -17,10 +17,10 @@ const restrictionController = new RestrictionController(client);
 * [Create Bundle](../../doc/controllers/restriction.md#create-bundle)
 * [Update Bundle](../../doc/controllers/restriction.md#update-bundle)
 * [Delete Bundle](../../doc/controllers/restriction.md#delete-bundle)
-* [Summaryofbundles](../../doc/controllers/restriction.md#summaryofbundles)
+* [Summary of Bundles](../../doc/controllers/restriction.md#summary-of-bundles)
 * [Restriction Account](../../doc/controllers/restriction.md#restriction-account)
 * [Search Account Limit](../../doc/controllers/restriction.md#search-account-limit)
-* [Bundledetails](../../doc/controllers/restriction.md#bundledetails)
+* [Bundle Details](../../doc/controllers/restriction.md#bundle-details)
 
 
 # Search Card Restriction
@@ -53,7 +53,7 @@ async searchCardRestriction(
 
 ## Response Type
 
-[`SearchCardRestrictionRes`](../../doc/models/search-card-restriction-res.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [SearchCardRestrictionRes](../../doc/models/search-card-restriction-res.md).
 
 ## Example Usage
 
@@ -518,7 +518,7 @@ async applyRestriction(
 
 ## Response Type
 
-[`CardRestrictionResponse`](../../doc/models/card-restriction-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardRestrictionResponse](../../doc/models/card-restriction-response.md).
 
 ## Example Usage
 
@@ -597,7 +597,7 @@ async createBundle(
 
 ## Response Type
 
-[`CreateBundleResponse`](../../doc/models/create-bundle-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CreateBundleResponse](../../doc/models/create-bundle-response.md).
 
 ## Example Usage
 
@@ -678,7 +678,7 @@ async updateBundle(
 
 ## Response Type
 
-[`UpdateBundleResponse`](../../doc/models/update-bundle-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateBundleResponse](../../doc/models/update-bundle-response.md).
 
 ## Example Usage
 
@@ -748,7 +748,7 @@ async deleteBundle(
 
 ## Response Type
 
-[`DeleteBundleResponse`](../../doc/models/delete-bundle-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [DeleteBundleResponse](../../doc/models/delete-bundle-response.md).
 
 ## Example Usage
 
@@ -806,7 +806,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Summaryofbundles
+# Summary of Bundles
 
 This API allows clients to get a summary of card bundles associated with Payer/Account. This API will return the basic bundle details including card and restriction details. Optionally the API will also include a count of cards that are not associated with the bundle but returned by the search criteria.
 
@@ -817,7 +817,7 @@ Note - to include count of cards of an account that are not associated with any 
 * Get summary of bundles by list of bundle Ids
 
 ```ts
-async summaryofbundles(
+async summaryOfBundles(
   apikey: string,
   requestId: string,
   body?: SummaryofbundlerRequest,
@@ -836,7 +836,7 @@ async summaryofbundles(
 
 ## Response Type
 
-[`SummaryofbundleResponse`](../../doc/models/summaryofbundle-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [SummaryofbundleResponse](../../doc/models/summaryofbundle-response.md).
 
 ## Example Usage
 
@@ -849,7 +849,7 @@ const body: SummaryofbundlerRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await restrictionController.summaryofbundles(
+  const { result, ...httpResponse } = await restrictionController.summaryOfBundles(
   apikey,
   requestId,
   body
@@ -906,7 +906,7 @@ async restrictionAccount(
 
 ## Response Type
 
-[`AccountRestrictionResponse`](../../doc/models/account-restriction-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [AccountRestrictionResponse](../../doc/models/account-restriction-response.md).
 
 ## Example Usage
 
@@ -965,7 +965,7 @@ async searchAccountLimit(
 
 ## Response Type
 
-[`SearchAccountLimitResponse`](../../doc/models/search-account-limit-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [SearchAccountLimitResponse](../../doc/models/search-account-limit-response.md).
 
 ## Example Usage
 
@@ -1034,12 +1034,12 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Bundledetails
+# Bundle Details
 
 This API allows to get the details of a specific card bundle. It returns the bundle basic details along with the cards in the bundle and restrictions applied on them.
 
 ```ts
-async bundledetails(
+async bundleDetails(
   apikey: string,
   requestId: string,
   body?: BudleDetailsRequest,
@@ -1058,7 +1058,7 @@ async bundledetails(
 
 ## Response Type
 
-[`BundleDetailsResponse`](../../doc/models/bundle-details-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [BundleDetailsResponse](../../doc/models/bundle-details-response.md).
 
 ## Example Usage
 
@@ -1075,7 +1075,7 @@ const body: BudleDetailsRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await restrictionController.bundledetails(
+  const { result, ...httpResponse } = await restrictionController.bundleDetails(
   apikey,
   requestId,
   body

@@ -12,25 +12,25 @@ const customerController = new CustomerController(client);
 
 ## Methods
 
-* [Loggedinuser](../../doc/controllers/customer.md#loggedinuser)
+* [Loggedin User](../../doc/controllers/customer.md#loggedin-user)
 * [Payers](../../doc/controllers/customer.md#payers)
 * [Customer](../../doc/controllers/customer.md#customer)
 * [Accounts](../../doc/controllers/customer.md#accounts)
 * [Card Type](../../doc/controllers/customer.md#card-type)
-* [Cardgroups](../../doc/controllers/customer.md#cardgroups)
-* [Auditreport](../../doc/controllers/customer.md#auditreport)
-* [Createcardgroup](../../doc/controllers/customer.md#createcardgroup)
-* [Updatecardgroup](../../doc/controllers/customer.md#updatecardgroup)
+* [Card Groups](../../doc/controllers/customer.md#card-groups)
+* [Audit Report](../../doc/controllers/customer.md#audit-report)
+* [Create Card Group](../../doc/controllers/customer.md#create-card-group)
+* [Update Card Group](../../doc/controllers/customer.md#update-card-group)
 
 
-# Loggedinuser
+# Loggedin User
 
 This API allows querying the user data of the logged in user.</br>
 This API will return the user access details such as payers and/or accounts. </br>
 This API will also validate that logged in user has access to the requested API, on failure it will return HasAPIAccess flag as false in response.</br>
 
 ```ts
-async loggedinuser(
+async loggedinUser(
   apikey: string,
   requestId: string,
   body?: FleetmanagementV1UserLoggedinuserRequest,
@@ -49,7 +49,7 @@ async loggedinuser(
 
 ## Response Type
 
-[`LoggedInUserResponse`](../../doc/models/logged-in-user-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [LoggedInUserResponse](../../doc/models/logged-in-user-response.md).
 
 ## Example Usage
 
@@ -67,7 +67,7 @@ const body: FleetmanagementV1UserLoggedinuserRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.loggedinuser(
+  const { result, ...httpResponse } = await customerController.loggedinUser(
   apikey,
   requestId,
   body
@@ -207,7 +207,7 @@ async payers(
 
 ## Response Type
 
-[`PayerResponse`](../../doc/models/payer-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [PayerResponse](../../doc/models/payer-response.md).
 
 ## Example Usage
 
@@ -482,7 +482,7 @@ async customer(
 
 ## Response Type
 
-[`CustomerDetailResponse`](../../doc/models/customer-detail-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CustomerDetailResponse](../../doc/models/customer-detail-response.md).
 
 ## Example Usage
 
@@ -645,7 +645,7 @@ async accounts(
 
 ## Response Type
 
-[`AccountResponse`](../../doc/models/account-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [AccountResponse](../../doc/models/account-response.md).
 
 ## Example Usage
 
@@ -815,7 +815,7 @@ async cardType(
 
 ## Response Type
 
-[`CardTypeResponse`](../../doc/models/card-type-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardTypeResponse](../../doc/models/card-type-response.md).
 
 ## Example Usage
 
@@ -952,7 +952,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Cardgroups
+# Card Groups
 
 This operation allows querying the card group details . It provides flexible search criteria and supports paging.\
 
@@ -963,7 +963,7 @@ When the card group type is configured as ‘Horizontal’ in cards platform, th
 Accounts with cancelled status will not be considered for cardgroups search for the configured (E.g., SFH) set of client apps.
 
 ```ts
-async cardgroups(
+async cardGroups(
   apikey: string,
   requestId: string,
   body?: CardGroupRequest,
@@ -982,7 +982,7 @@ async cardgroups(
 
 ## Response Type
 
-[`CardGroupResponse`](../../doc/models/card-group-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardGroupResponse](../../doc/models/card-group-response.md).
 
 ## Example Usage
 
@@ -1009,7 +1009,7 @@ const body: CardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.cardgroups(
+  const { result, ...httpResponse } = await customerController.cardGroups(
   apikey,
   requestId,
   body
@@ -1076,7 +1076,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Auditreport
+# Audit Report
 
 This operation allows users to fetch audit data of account or card operations performed by users of a given customer
 The audit data includes details of below API operations
@@ -1099,7 +1099,7 @@ The audit data includes details of below API operations
 * Delivery Address Update.
 
 ```ts
-async auditreport(
+async auditReport(
   apikey: string,
   requestId: string,
   body?: AuditRequest,
@@ -1118,7 +1118,7 @@ async auditreport(
 
 ## Response Type
 
-[`AuditResponse`](../../doc/models/audit-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [AuditResponse](../../doc/models/audit-response.md).
 
 ## Example Usage
 
@@ -1150,7 +1150,7 @@ const body: AuditRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.auditreport(
+  const { result, ...httpResponse } = await customerController.auditReport(
   apikey,
   requestId,
   body
@@ -1226,7 +1226,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Createcardgroup
+# Create Card Group
 
 This API allows creating a new Card Group in the Shell Cards Platform. It will
 also allow moving of cards (up to 500 cards) into the newly created
@@ -1242,7 +1242,7 @@ card-group.
   successfully
 
 ```ts
-async createcardgroup(
+async createCardGroup(
   apikey: string,
   requestId: string,
   body?: CreateCardGroupRequest,
@@ -1261,7 +1261,7 @@ async createcardgroup(
 
 ## Response Type
 
-[`CreateCardGroupResponse`](../../doc/models/create-card-group-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CreateCardGroupResponse](../../doc/models/create-card-group-response.md).
 
 ## Example Usage
 
@@ -1290,7 +1290,7 @@ const body: CreateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.createcardgroup(
+  const { result, ...httpResponse } = await customerController.createCardGroup(
   apikey,
   requestId,
   body
@@ -1344,7 +1344,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Updatecardgroup
+# Update Card Group
 
 This API allows updating or removing a Card Group in the Shell Cards Platform.
 
@@ -1354,7 +1354,7 @@ The request for updating or removing of the card group, creationg of a new card 
 validations.
 
 ```ts
-async updatecardgroup(
+async updateCardGroup(
   apikey: string,
   requestId: string,
   body?: UpdateCardGroupRequest,
@@ -1373,7 +1373,7 @@ async updatecardgroup(
 
 ## Response Type
 
-[`UpdateCardGroupResponse`](../../doc/models/update-card-group-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateCardGroupResponse](../../doc/models/update-card-group-response.md).
 
 ## Example Usage
 
@@ -1402,7 +1402,7 @@ const body: UpdateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.updatecardgroup(
+  const { result, ...httpResponse } = await customerController.updateCardGroup(
   apikey,
   requestId,
   body

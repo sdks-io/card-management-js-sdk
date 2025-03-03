@@ -558,7 +558,7 @@ export class RestrictionController extends BaseController {
    * @param body         Summary of Bundle request body
    * @return Response from the API call
    */
-  async summaryofbundles(
+  async summaryOfBundles(
     apikey: string,
     requestId: string,
     body?: SummaryofbundlerRequest,
@@ -758,7 +758,7 @@ export class RestrictionController extends BaseController {
    * @param body         Bundle Details Request body
    * @return Response from the API call
    */
-  async bundledetails(
+  async bundleDetails(
     apikey: string,
     requestId: string,
     body?: BudleDetailsRequest,

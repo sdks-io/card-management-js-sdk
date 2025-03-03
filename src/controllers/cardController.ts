@@ -174,7 +174,7 @@ export class CardController extends BaseController {
    * @param body         requestbody
    * @return Response from the API call
    */
-  async searchcard(
+  async searchCard(
     requestId: string,
     body?: SearchCardRequest,
     requestOptions?: RequestOptions
@@ -246,7 +246,7 @@ export class CardController extends BaseController {
    * @param body         summary request body
    * @return Response from the API call
    */
-  async cardsummary(
+  async cardSummary(
     requestId: string,
     body?: CardSummaryRequest,
     requestOptions?: RequestOptions
@@ -351,7 +351,7 @@ export class CardController extends BaseController {
    * @param body         Order card request body
    * @return Response from the API call
    */
-  async cardordercard(
+  async orderCard(
     requestId: string,
     body?: CardManagementV1OrdercardRequest,
     requestOptions?: RequestOptions
@@ -417,7 +417,7 @@ export class CardController extends BaseController {
    * @param body         Order Card Enquiry request body
    * @return Response from the API call
    */
-  async cardordercardenquiry(
+  async orderCardEnquiry(
     requestId: string,
     body?: OrderCardEnquiryRequest,
     requestOptions?: RequestOptions
@@ -537,7 +537,7 @@ export class CardController extends BaseController {
    * @param body         Update status request body
    * @return Response from the API call
    */
-  async cardcancel(
+  async cardCancel(
     requestId: string,
     body?: CardManagementV1CancelRequest,
     requestOptions?: RequestOptions
@@ -685,7 +685,7 @@ export class CardController extends BaseController {
    * @param body         Update status request body
    * @return Response from the API call
    */
-  async cardupdatestatus(
+  async cardUpdateStatus(
     requestId: string,
     body?: CardManagementV1UpdatestatusRequest,
     requestOptions?: RequestOptions
@@ -811,7 +811,7 @@ export class CardController extends BaseController {
    * @param body         Card details request body
    * @return Response from the API call
    */
-  async carddetails(
+  async cardDetails(
     apikey: string,
     requestId: string,
     body?: CardDetailsRequest,
@@ -1007,7 +1007,7 @@ export class CardController extends BaseController {
    * @param body         PIN reminder request body
    * @return Response from the API call
    */
-  async cardpinreminder(
+  async cardPinReminder(
     requestId: string,
     body?: CardManagementV1PinreminderRequest,
     requestOptions?: RequestOptions
@@ -1201,7 +1201,7 @@ export class CardController extends BaseController {
    * @param body         Auto renew request body
    * @return Response from the API call
    */
-  async autorenew(
+  async autoRenew(
     requestId: string,
     body?: AutoRenewCardRequest,
     requestOptions?: RequestOptions
@@ -1257,7 +1257,7 @@ export class CardController extends BaseController {
    * @param body         Request body
    * @return Response from the API call
    */
-  async updatemobilepaymentregistrationstatus(
+  async updateMobilePaymentRegistrationStatus(
     requestId: string,
     body?: UpdateMPayRegStatusRequest,
     requestOptions?: RequestOptions
@@ -1310,7 +1310,7 @@ export class CardController extends BaseController {
    *                             false.
    * @return Response from the API call
    */
-  async getkey(
+  async getKey(
     requestId: string,
     fleet?: boolean,
     requestOptions?: RequestOptions
@@ -1363,7 +1363,7 @@ export class CardController extends BaseController {
    * @param body         Delivery Address Update Request Body
    * @return Response from the API call
    */
-  async deliveryaddressupdate(
+  async deliveryAddressUpdate(
     apikey: string,
     body?: DeliveryAddressUpdateRequest,
     requestOptions?: RequestOptions
