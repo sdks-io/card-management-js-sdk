@@ -12,8 +12,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { PINDeliverTo, pINDeliverToSchema } from './pINDeliverTo';
+} from '../schema.js';
+import { PINDeliverTo, pINDeliverToSchema } from './pINDeliverTo.js';
 
 /** Request entity object for PINReminderCardDetails */
 export interface PINReminderCardDetails {
@@ -45,6 +45,8 @@ export interface PINReminderCardDetails {
    *    1.    Paper
    *    2.    Email
    *    3.    SMS
+   *    4.    None
+   *    Note: - Paper delivery not applicable for selfselctedPIN type and FleetPIN enabled Accounts
    */
   pINAdviceType: number;
   /**
@@ -55,7 +57,7 @@ export interface PINReminderCardDetails {
    * 2.    Use Card Delivery contact details stored previously for this card
    * 3.    Use default PIN Delivery contact details stored for this customer
    * 4.    Use new specific contact for PIN Reminder only
-   * Note: - PINContactType “3” is only allowed for Paper delivery
+   * Note: - PINContactType “1,2,3” is only allowed for Paper delivery
    */
   pINContactType?: number;
   pINDeliverTo?: PINDeliverTo;

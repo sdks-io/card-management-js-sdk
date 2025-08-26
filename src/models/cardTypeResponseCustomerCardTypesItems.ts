@@ -14,19 +14,19 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   CardDayTimeRestrictions,
   cardDayTimeRestrictionsSchema,
-} from './cardDayTimeRestrictions';
+} from './cardDayTimeRestrictions.js';
 import {
   CardUsageRestrictions,
   cardUsageRestrictionsSchema,
-} from './cardUsageRestrictions';
+} from './cardUsageRestrictions.js';
 import {
   PurchaseCategories,
   purchaseCategoriesSchema,
-} from './purchaseCategories';
+} from './purchaseCategories.js';
 
 export interface CardTypeResponseCustomerCardTypesItems {
   /** True/False – Whether the cards of this card type can have PIN. */

@@ -13,12 +13,12 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { Accounts, accountsSchema } from './accounts';
+} from '../schema.js';
+import { Accounts, accountsSchema } from './accounts.js';
 import {
   SearchCardRestriction,
   searchCardRestrictionSchema,
-} from './searchCardRestriction';
+} from './searchCardRestriction.js';
 
 export interface SearchCardRestrictionReq {
   /**

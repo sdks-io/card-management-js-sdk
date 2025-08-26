@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   ScheduleCardBlockResponseDataItems,
   scheduleCardBlockResponseDataItemsSchema,
-} from './scheduleCardBlockResponseDataItems';
+} from './scheduleCardBlockResponseDataItems.js';
 
 export interface ScheduleCardBlockResponse {
   /**

@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { UpdateCard, updateCardSchema } from './updateCard';
+} from '../schema.js';
+import { UpdateCard, updateCardSchema } from './updateCard.js';
 
 export interface CardManagementV1UpdatestatusRequest {
   /** List of UpdateCardRequest entity. Each card in the list will be updated to the given target status. The details of the entity are given below. */

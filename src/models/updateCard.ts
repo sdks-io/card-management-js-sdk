@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { CardSettings, cardSettingsSchema } from './cardSettings';
+} from '../schema.js';
+import { CardSettings, cardSettingsSchema } from './cardSettings.js';
 
 /** Request entity object for UpdateCardRequest  list */
 export interface UpdateCard {

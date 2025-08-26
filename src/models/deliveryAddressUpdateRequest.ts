@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   DeliveryAddressUpdate,
   deliveryAddressUpdateSchema,
-} from './deliveryAddressUpdate';
+} from './deliveryAddressUpdate.js';
 
 export interface DeliveryAddressUpdateRequest {
   /**

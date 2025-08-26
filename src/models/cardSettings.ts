@@ -12,7 +12,7 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 
 export interface CardSettings {
   /**
@@ -154,6 +154,7 @@ export interface CardSettings {
    * 2.    Email<br />
    * 3.    SMS<br />
    * 4.    None
+   * Note: Paper delivery not applicable for selfselctedPIN type and FleetPIN enabled Accounts
    */
   pINAdviceType?: number | null;
   /**

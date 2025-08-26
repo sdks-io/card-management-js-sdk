@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   PINReminderCardDetails,
   pINReminderCardDetailsSchema,
-} from './pINReminderCardDetails';
+} from './pINReminderCardDetails.js';
 
 export interface CardManagementV1PinreminderRequest {
   /**

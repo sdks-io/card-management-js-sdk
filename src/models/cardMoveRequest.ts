@@ -13,11 +13,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   CardMoveRequestCardsItems,
   cardMoveRequestCardsItemsSchema,
-} from './cardMoveRequestCardsItems';
+} from './cardMoveRequestCardsItems.js';
 
 export interface CardMoveRequest {
   colCoCode?: number | null;

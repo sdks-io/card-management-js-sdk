@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   PINReminderReference,
   pINReminderReferenceSchema,
-} from './pINReminderReference';
+} from './pINReminderReference.js';
 
 export interface PINReminderResponse {
   /** Unique request identifier passed from end user. This identifier helps in tracing a transaction */

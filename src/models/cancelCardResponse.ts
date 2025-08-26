@@ -12,9 +12,9 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { ErrorDetails, errorDetailsSchema } from './errorDetails';
-import { SubmittedCard, submittedCardSchema } from './submittedCard';
+} from '../schema.js';
+import { ErrorDetails, errorDetailsSchema } from './errorDetails.js';
+import { SubmittedCard, submittedCardSchema } from './submittedCard.js';
 
 export interface CancelCardResponse {
   /** Unique request identifier passed from end user. This identifier helps in tracing a transaction */

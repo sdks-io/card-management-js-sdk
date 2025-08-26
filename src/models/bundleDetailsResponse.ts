@@ -12,12 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   BundledRestrictionsList,
   bundledRestrictionsListSchema,
-} from './bundledRestrictionsList';
-import { ErrorStatus, errorStatusSchema } from './errorStatus';
+} from './bundledRestrictionsList.js';
 
 export interface BundleDetailsResponse {
   /**
@@ -59,9 +58,6 @@ export interface BundleDetailsResponse {
    */
   restrictionCurrencySymbol?: string;
   restrictions?: BundledRestrictionsList;
-  error?: ErrorStatus;
-  /** API Request Id */
-  requestId?: string;
 }
 
 export const bundleDetailsResponseSchema: Schema<BundleDetailsResponse> = object(
@@ -83,7 +79,5 @@ export const bundleDetailsResponseSchema: Schema<BundleDetailsResponse> = object
       'Restrictions',
       optional(lazy(() => bundledRestrictionsListSchema)),
     ],
-    error: ['Error', optional(lazy(() => errorStatusSchema))],
-    requestId: ['RequestId', optional(string())],
   }
 );

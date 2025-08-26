@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { UpdateCard, updateCardSchema } from './updateCard';
+} from '../schema.js';
+import { UpdateCard, updateCardSchema } from './updateCard.js';
 
 export interface CardManagementV1CancelRequest {
   /**

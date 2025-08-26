@@ -13,12 +13,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   AccountVelocityLimit,
   accountVelocityLimitSchema,
-} from './accountVelocityLimit';
-import { ErrorStatus, errorStatusSchema } from './errorStatus';
+} from './accountVelocityLimit.js';
 
 export interface SearchAccountLimitResponse {
   /** Request Id of the API call */
@@ -41,7 +40,6 @@ export interface SearchAccountLimitResponse {
    */
   restrictionCondition?: string;
   velocityLimits?: AccountVelocityLimit[];
-  error?: ErrorStatus;
 }
 
 export const searchAccountLimitResponseSchema: Schema<SearchAccountLimitResponse> = object(
@@ -55,6 +53,5 @@ export const searchAccountLimitResponseSchema: Schema<SearchAccountLimitResponse
       'VelocityLimits',
       optional(array(lazy(() => accountVelocityLimitSchema))),
     ],
-    error: ['Error', optional(lazy(() => errorStatusSchema))],
   }
 );

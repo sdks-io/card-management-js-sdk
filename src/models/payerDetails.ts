@@ -14,15 +14,21 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { Address, addressSchema } from './address';
-import { BankAccount, bankAccountSchema } from './bankAccount';
-import { CustomerContract, customerContractSchema } from './customerContract';
-import { FinanceCurrency2, financeCurrency2Schema } from './financeCurrency2';
+} from '../schema.js';
+import { Address, addressSchema } from './address.js';
+import { BankAccount, bankAccountSchema } from './bankAccount.js';
+import {
+  CustomerContract,
+  customerContractSchema,
+} from './customerContract.js';
+import {
+  FinanceCurrency2,
+  financeCurrency2Schema,
+} from './financeCurrency2.js';
 import {
   InvoiceDistributionMethod,
   invoiceDistributionMethodSchema,
-} from './invoiceDistributionMethod';
+} from './invoiceDistributionMethod.js';
 
 export interface PayerDetails {
   /** Collecting company id of the customer. */

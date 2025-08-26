@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   CreateCardResponse,
   createCardResponseSchema,
-} from './createCardResponse';
+} from './createCardResponse.js';
 
 export interface OrderCardResponse {
   /** Unique request identifier passed from end user. This identifier helps in tracing a transaction */

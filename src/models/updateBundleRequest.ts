@@ -13,11 +13,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   BundleRestrictionUpdate,
   bundleRestrictionUpdateSchema,
-} from './bundleRestrictionUpdate';
+} from './bundleRestrictionUpdate.js';
 
 export interface UpdateBundleRequest {
   /**
@@ -41,7 +41,7 @@ export interface UpdateBundleRequest {
    * Either PayerId or PayerNumber or both must be passed.
    * Example: 123456
    */
-  payerId?: string | null;
+  payerId?: number | null;
   /**
    * Payer Number of the selected payer.
    * Either PayerId or PayerNumber or both must be passed.
@@ -95,7 +95,7 @@ export interface UpdateBundleRequest {
 export const updateBundleRequestSchema: Schema<UpdateBundleRequest> = object({
   colCoId: ['ColCoId', optional(nullable(number()))],
   colCoCode: ['ColCoCode', optional(nullable(number()))],
-  payerId: ['PayerId', optional(nullable(string()))],
+  payerId: ['PayerId', optional(nullable(number()))],
   payerNumber: ['PayerNumber', optional(nullable(string()))],
   accountId: ['AccountId', optional(nullable(number()))],
   accountNumber: ['AccountNumber', optional(nullable(string()))],

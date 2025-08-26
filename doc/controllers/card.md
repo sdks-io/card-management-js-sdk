@@ -26,7 +26,7 @@ const cardController = new CardController(client);
 * [Auto Renew](../../doc/controllers/card.md#auto-renew)
 * [Update Mobile Payment Registration Status](../../doc/controllers/card.md#update-mobile-payment-registration-status)
 * [Get Key](../../doc/controllers/card.md#get-key)
-* [Delivery Address Update](../../doc/controllers/card.md#delivery-address-update)
+* [Deliveryaddressupdate V2](../../doc/controllers/card.md#deliveryaddressupdate-v2)
 
 
 # Search Card
@@ -89,7 +89,7 @@ async searchCard(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardSearchResponse](../../doc/models/card-search-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`CardSearchResponse`](../../doc/models/card-search-response.md).
 
 ## Example Usage
 
@@ -165,9 +165,9 @@ const body: SearchCardRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.searchCard(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -302,7 +302,7 @@ async cardSummary(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardSummaryResponse](../../doc/models/card-summary-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`CardSummaryResponse`](../../doc/models/card-summary-response.md).
 
 ## Example Usage
 
@@ -368,9 +368,9 @@ const body: CardSummaryRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.cardSummary(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -472,7 +472,7 @@ async orderCard(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [OrderCardResponse](../../doc/models/order-card-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`OrderCardResponse`](../../doc/models/order-card-response.md).
 
 ## Example Usage
 
@@ -562,9 +562,9 @@ const body: CardManagementV1OrdercardRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.orderCard(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -638,7 +638,7 @@ async orderCardEnquiry(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [OrderCardEnquiryResponse](../../doc/models/order-card-enquiry-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`OrderCardEnquiryResponse`](../../doc/models/order-card-enquiry-response.md).
 
 ## Example Usage
 
@@ -664,9 +664,9 @@ const body: OrderCardEnquiryRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.orderCardEnquiry(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -790,7 +790,7 @@ async cardCancel(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CancelCardResponse](../../doc/models/cancel-card-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`CancelCardResponse`](../../doc/models/cancel-card-response.md).
 
 ## Example Usage
 
@@ -860,9 +860,9 @@ const body: CardManagementV1CancelRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.cardCancel(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -976,7 +976,7 @@ async cardUpdateStatus(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateCardStatusResponse](../../doc/models/update-card-status-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`UpdateCardStatusResponse`](../../doc/models/update-card-status-response.md).
 
 ## Example Usage
 
@@ -1049,9 +1049,9 @@ const body: CardManagementV1UpdatestatusRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.cardUpdateStatus(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1112,44 +1112,31 @@ It will also include the below data associated with each of the purchase categor
 
 ```ts
 async purchaseCategory(
-  apikey: string,
   requestId: string,
-  body?: PurchaseCategoryRequest,
+  body?: PurchaseCategoryReq,
   requestOptions?: RequestOptions
-): Promise<ApiResponse<PurchaseCategoryResponse>>
+): Promise<ApiResponse<PurchaseCategoryRes>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `apikey` | `string` | Header, Required | This is the API key of the specific environment which needs to be passed by the client. |
 | `requestId` | `string` | Header, Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `body` | [`PurchaseCategoryRequest \| undefined`](../../doc/models/purchase-category-request.md) | Body, Optional | PurchaseCategory request body |
+| `body` | [`PurchaseCategoryReq \| undefined`](../../doc/models/purchase-category-req.md) | Body, Optional | PurchaseCategory request body |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [PurchaseCategoryResponse](../../doc/models/purchase-category-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`PurchaseCategoryRes`](../../doc/models/purchase-category-res.md).
 
 ## Example Usage
 
 ```ts
-const apikey = 'apikey6';
-
 const requestId = 'RequestId8';
 
-const body: PurchaseCategoryRequest = {
-  colCoId: 32,
-  languageCode: 'EN-GB',
-};
-
 try {
-  const { result, ...httpResponse } = await cardController.purchaseCategory(
-  apikey,
-  requestId,
-  body
-);
+  const { result, ...httpResponse } = await cardController.purchaseCategory(requestId);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1160,60 +1147,15 @@ try {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "PurchaseCategories": [
-    {
-      "Code": "0",
-      "Id": 100,
-      "IsVisible": false,
-      "Name": "0 - Diesel Products and TMF",
-      "Title": "0 - Diesel Products and TMF",
-      "Description": "0 - Diesel Products and TMF",
-      "ProductGroups": [
-        {
-          "IsDefault": false,
-          "IsFuelType": true,
-          "Name": "Other Fuels",
-          "ProductGroupId": "P102",
-          "Products": [
-            {
-              "Description": "Hydrogen",
-              "GlobalProductCode": "019"
-            },
-            {
-              "Description": "CNG",
-              "GlobalProductCode": "029"
-            },
-            {
-              "Description": "LPG",
-              "GlobalProductCode": "034"
-            }
-          ],
-          "ReferenceId": 100
-        }
-      ]
-    }
-  ],
-  "Error": {
-    "Code": "0000",
-    "Description": "Success"
-  },
-  "RequestId": "47aca5b8-8186-49e5-b8d0-30f73fffd0f1"
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
-| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
+| 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 403 | Forbidden | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
 # Card Details
@@ -1222,13 +1164,12 @@ This API allows to fetch details of a single fuel card from the Shell Card Platf
 
 #### Supported operations
 
-* Get card by card id or PAN
+* Get card by card id or PAN or PANID
 
 ```ts
 async cardDetails(
-  apikey: string,
   requestId: string,
-  body?: CardDetailsRequest,
+  body: CardDetailsReq,
   requestOptions?: RequestOptions
 ): Promise<ApiResponse<CardDetailsResponse>>
 ```
@@ -1237,48 +1178,33 @@ async cardDetails(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `apikey` | `string` | Header, Required | This is the API key of the specific environment which needs to be passed by the client. |
-| `requestId` | `string` | Header, Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `body` | [`CardDetailsRequest \| undefined`](../../doc/models/card-details-request.md) | Body, Optional | Card details request body |
+| `requestId` | `string` | Header, Required | UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
+| `body` | [`CardDetailsReq`](../../doc/models/card-details-req.md) | Body, Required | Card Details request body |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardDetailsResponse](../../doc/models/card-details-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`CardDetailsResponse`](../../doc/models/card-details-response.md).
 
 ## Example Usage
 
 ```ts
-const apikey = 'apikey6';
+const requestId = '233e4567-e89b-12d3-a456-426614174000';
 
-const requestId = 'RequestId8';
-
-const body: CardDetailsRequest = {
-  colCoCode: 86,
-  colCoId: 1,
-  colCoCountryCode: 'PH',
-  clientReferenceId: 'adc-1671-ftwiQweh-67UJs',
-  payerNumber: 'PH50000843',
-  payerId: 853,
-  accountNumber: 'PH50000844',
-  accountId: 854,
-  pAN: '7002861007636000020',
-  cardId: 125,
-  tokenTypeID: 107,
-  tokenTypeName: 'PH FLE NAT SIN R1',
-  creationDate: '20181001',
-  effectiveDate: '20181001',
-  includeBundleDetails: false,
-  includeIntermediateStatus: false,
-  includeScheduledCardBlocks: false,
+const body: CardDetailsReq = {
+  filters: {
+    colCoCode: 32,
+    payerNumber: 'CZ00000927',
+    accountNumber: 'CZ00000927',
+    pAN: '7002327340223080230',
+  },
 };
 
 try {
   const { result, ...httpResponse } = await cardController.cardDetails(
-  apikey,
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1293,129 +1219,135 @@ try {
 
 ```json
 {
-  "PayerId": 853,
-  "PayerNumber": "PH50000843",
-  "AccountId": 854,
-  "AccountNumber": "PH50000844",
-  "AccountShortName": "PARKLEY",
-  "ColCoCountryCode": "PH",
-  "LocalCurrencyCode": "EUR",
-  "LocalCurrencySymbol": "€",
-  "CardId": 125,
-  "PAN": "7002861007636000020",
-  "StatusId": 1,
-  "Status": "string",
-  "OdometerPrompt": true,
-  "FleetIdPrompt": true,
-  "PINType": "Card",
-  "HasPIN": true,
-  "IsSelfSelectedPIN": true,
-  "TemporaryBlockAllowed": true,
-  "UnblockAllowed": true,
-  "PermanentBlockAllowed": true,
-  "IssueNumber": 1,
-  "ReissueSetting": "True",
-  "InternationalPOSLanguageID": 8,
-  "InternationalPOSLanguageCode": "eng",
-  "LocalPOSLanguageID": 8,
-  "LocalPOSLanguageCode": "eng",
-  "CardTypeCode": "7077861",
-  "CardTypeId": 1,
-  "CardTypeName": "Philippines CRT 7077861",
-  "TokenTypeId": 107,
-  "TokenTypeName": "PH FLE NAT SIN R1",
-  "IsChipCard": false,
-  "IsMagStripCard": true,
-  "IsVirtualCard": true,
-  "PurchaseCategoryCode": "6",
-  "PurchaseCategoryId": 54,
-  "PurchaseCategoryName": "2 - FuelSave and Lubricants",
-  "IsCRT": true,
-  "IsFleet": true,
-  "IsInternational": true,
-  "IsNational": true,
-  "IsPartnerSitesIncluded": true,
-  "IsShellSitesOnly": true,
-  "FuelSets": [
+  "Data": [
     {
-      "ProductRestrictionId": 120,
-      "Description": "FS02: Diesel"
+      "AccountId": 1227,
+      "AccountNumber": "CZ00000927",
+      "AccountShortName": "Dominica1_1",
+      "BundleId": null,
+      "CardBlockSchedules": null,
+      "CardDeliveryAddress": {
+        "AddressId": 297845,
+        "AddressLine1": "1 Elgin Street",
+        "AddressLine2": "Acropolis",
+        "AddressLine3": "",
+        "City": "Athens Αθήνα",
+        "CompanyName": "Dominica1_C",
+        "ContactForeName": "",
+        "ContactLastName": "",
+        "ContactMiddleName": "",
+        "ContactTitle": "",
+        "Country": "Czech Republic",
+        "CountryId": 5,
+        "CountryISOCode": "CZ",
+        "Region": "",
+        "RegionId": null,
+        "ZipCode": "123 45"
+      },
+      "CardGroupId": null,
+      "CardGroupName": null,
+      "CardId": 463497,
+      "CardTypeCode": "7002327",
+      "CardTypeId": 106,
+      "CardTypeName": "CZ FLT INT MUL LEA R7",
+      "ColCoCountryCode": "CZ",
+      "DriverName": "SHELL CARD1",
+      "EmbossText": "DOMINICA1",
+      "ExpiryDate": "20241031",
+      "FleetIdPrompt": false,
+      "FuelSets": [
+        {
+          "Description": "Restrictions no longer supported here",
+          "ProductRestrictionId": 510
+        }
+      ],
+      "HasPIN": true,
+      "InternationalPOSLanguageCode": "eng",
+      "InternationalPOSLanguageID": 8,
+      "IsChipCard": true,
+      "IsCRT": false,
+      "IsFleet": true,
+      "IsInternational": true,
+      "IsMagStripCard": true,
+      "IsNational": false,
+      "IsPartnerSitesIncluded": true,
+      "IsSelfSelectedPIN": false,
+      "IsShellSitesOnly": false,
+      "IssuedDate": "20201023",
+      "IssueNumber": 1,
+      "IsVirtualCard": false,
+      "LastModifiedDate": "20230620 13:30:30",
+      "LastUsedDate": null,
+      "LocalCurrencyCode": "CZK",
+      "LocalCurrencySymbol": "Kč",
+      "LocalPOSLanguageCode": "ces",
+      "LocalPOSLanguageID": 5,
+      "MisuseDate": null,
+      "NonFuelSets": null,
+      "OdometerPrompt": false,
+      "PAN": "7002327340223080230",
+      "PayerId": 1227,
+      "PayerNumber": "CZ00000927",
+      "PermanentBlockAllowed": false,
+      "PINDeliveryAddress": {
+        "AddressId": 269053,
+        "AddressLine1": "1 Elgin Street",
+        "AddressLine2": "Acropolis",
+        "AddressLine3": "",
+        "City": "Athens Αθήνα",
+        "CompanyName": "Dominica1_C",
+        "ContactForeName": "",
+        "ContactLastName": "",
+        "ContactMiddleName": "",
+        "ContactTitle": "",
+        "Country": "Czech Republic",
+        "CountryId": 5,
+        "CountryISOCode": "CZ",
+        "Region": "",
+        "RegionId": 0,
+        "ZipCode": "123 45"
+      },
+      "PINType": "Card",
+      "PurchaseCategoryCode": "0",
+      "PurchaseCategoryId": 100,
+      "PurchaseCategoryName": "0 - Diesel Products and TMF",
+      "ReissueSetting": "True",
+      "RenewalDate": "20240703",
+      "RenewedCardExpiryDate": null,
+      "RenewedCardId": null,
+      "RenewedCardIssueNumber": null,
+      "RenewedCardReissueSetting": "",
+      "RenewedCardStatus": "",
+      "RenewedCardStatusId": null,
+      "Status": "Blocked Card",
+      "StatusId": 7,
+      "Temperature": "10-Warm",
+      "TemporaryBlockAllowed": false,
+      "TokenTypeId": 108,
+      "UnblockAllowed": false,
+      "VRN": "SH123456",
+      "TokenTypeName": "CZ FLT Int Lease Plan Multi - CHIP",
+      "CreationDate": "20201022 14:55:06",
+      "EffectiveDate": "20201022",
+      "IsPartnerCard": false,
+      "ClientReferenceId": "",
+      "CardPANID": 17240713,
+      "IsEMVContact": false,
+      "IsEMVContactless": false,
+      "IsRFID": false,
+      "RequirePIN": true,
+      "OfflinePIN": false,
+      "PINChangeSupported": true,
+      "PINAdviceTypeID": 1,
+      "CardMediaCode": "100999",
+      "MediumTypeID": 1,
+      "MediumType": "Fuel Card",
+      "PANID": 17240713,
+      "MaskedPAN": "7002327******080230"
     }
   ],
-  "NonFuelSets": [
-    {
-      "ProductRestrictionId": 120,
-      "Description": "FS02: Diesel"
-    }
-  ],
-  "IssuedDate": "20181001",
-  "ExpiryDate": "20181031",
-  "LastUsedDate": "20181001 13:23:55",
-  "MisuseDate": "20181001 13:23:55",
-  "Temperature": "10-Warm",
-  "DriverName": "ROBERT",
-  "VRN": "MV65YLH",
-  "EmbossText": "PARKLEY",
-  "CardGroupId": 5,
-  "CardGroupName": "GROUP1",
-  "RenewalDate": "20181001",
-  "RenewedCardId": 1325,
-  "RenewedCardStatusId": 10,
-  "RenewedCardStatus": "New",
-  "RenewedCardExpiryDate": "20181031",
-  "RenewedCardIssueNumber": 2,
-  "RenewedCardReissueSetting": "True",
-  "CreationDate": "20181001",
-  "EffectiveDate": "20181001",
-  "LastModifiedDate": "20181001 13:23:55",
-  "BundleId": null,
-  "CardDeliveryAddress": {
-    "ContactForeName": "ROBERT",
-    "ContactMiddleName": "M",
-    "ContactLastName": "Langdon",
-    "ContactTitle": "Mr.",
-    "CompanyName": "PARKLEY Philippines",
-    "AddressId": 1768,
-    "AddressLine1": "No 345, 1st cross,",
-    "AddressLine2": "10th avenue",
-    "AddressLine3": "makati city",
-    "ZipCode": "1630",
-    "City": "manila",
-    "RegionId": null,
-    "Region": "EU",
-    "CountryId": 1,
-    "CountryISOCode": "PH",
-    "Country": "Philippines"
-  },
-  "PINDeliveryAddress": {
-    "ContactForeName": "ROBERT",
-    "ContactMiddleName": "M",
-    "ContactLastName": "Langdon",
-    "ContactTitle": "Mr.",
-    "CompanyName": "PARKLEY Philippines",
-    "AddressId": 1768,
-    "AddressLine1": "No 345, 1st cross,",
-    "AddressLine2": "10th avenue",
-    "AddressLine3": "makati city",
-    "ZipCode": "1630",
-    "City": "manila",
-    "RegionId": null,
-    "Region": "EU",
-    "CountryId": 1,
-    "CountryISOCode": "PH",
-    "Country": "Philippines"
-  },
-  "CardBlockSchedules": [
-    {
-      "FromDate": "20210212",
-      "ToDate": "20210212"
-    }
-  ],
-  "Error": {
-    "Code": "0000",
-    "Description": "Success"
-  },
-  "RequestId": "ed557f02-c7d7-4c01-b3e5-11bf3239c8ed"
+  "RequestId": "233e4567-e89b-12d3-a456-426614174000",
+  "Status": "SUCCESS"
 }
 ```
 
@@ -1423,11 +1355,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
-| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
+| 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 403 | Forbidden | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
 # Card Move
@@ -1443,7 +1375,7 @@ This API allows to move one or more fuel cards (up to 500) across card groups wi
 #### Validation rules
 
 * Number of cards per request does not exceed 500
-* Given **PAN** for a card matches with only one card
+* Given **PANID** or **PAN** for a card matches with only one card
 * A card is allowed to be moved to the **TargetCardGroupId** or **TargetAccountNumber**
 * A pending move request does not exist in the queue for a card submitted on the same date (customers local)
 * A card has not been moved as part of a previous request on the same date (customers local)
@@ -1460,59 +1392,48 @@ This API allows to move one or more fuel cards (up to 500) across card groups wi
 
 ```ts
 async cardMove(
-  apikey: string,
   requestId: string,
-  body?: CardMoveRequest,
+  body: CardMoveRequest,
   requestOptions?: RequestOptions
-): Promise<ApiResponse<CardMoveResponse>>
+): Promise<ApiResponse<CardMoveRes>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `apikey` | `string` | Header, Required | This is the API key of the specific environment which needs to be passed by the client. |
-| `requestId` | `string` | Header, Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `body` | [`CardMoveRequest \| undefined`](../../doc/models/card-move-request.md) | Body, Optional | Move cards request body. |
+| `requestId` | `string` | Header, Required | UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
+| `body` | [`CardMoveRequest`](../../doc/models/card-move-request.md) | Body, Required | schedulecardblock request body |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [CardMoveResponse](../../doc/models/card-move-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`CardMoveRes`](../../doc/models/card-move-res.md).
 
 ## Example Usage
 
 ```ts
-const apikey = 'apikey6';
-
-const requestId = 'RequestId8';
+const requestId = '233e4567-e89b-12d3-a456-426614174000';
 
 const body: CardMoveRequest = {
-  colCoCode: 86,
-  colCoId: 1,
-  colCoCountryCode: 'PH',
-  payerNumber: 'PH50000843',
-  payerId: 853,
+  colCoCode: 32,
+  payerNumber: 'CZ00000927',
   cards: [
     {
-      accountNumber: 'PH50000844',
-      accountId: 854,
-      pAN: '7002861007636000020',
-      cardId: 125,
+      accountNumber: 'CZ00000927',
+      cardId: 466251,
     }
   ],
-  targetAccountId: 855,
-  targetAccountNumber: 'GB000000123',
-  targetCardGroupId: 93,
-  targetNewCardGroupName: 'GROUP1',
+  targetAccountNumber: 'CZ00000927',
+  targetCardGroupId: 3228,
+  targetNewCardGroupName: 'DEMORE1',
 };
 
 try {
   const { result, ...httpResponse } = await cardController.cardMove(
-  apikey,
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1527,31 +1448,18 @@ try {
 
 ```json
 {
-  "MoveCardRequestReference": 0,
-  "SuccessfulRequests": [
+  "RequestId": "233e4567-e89b-12d3-a456-426614174000",
+  "MainReference": 559063,
+  "Status": "SUCCESS",
+  "Data": [
     {
-      "AccountNumber": "PH50000844",
-      "AccountId": 854,
-      "PAN": "7002861007636000020",
-      "CardId": 125,
-      "MoveCardReference": 9074
+      "MoveCardReference": "11793",
+      "AccountId": "1227",
+      "AccountNumber": "CZ00000927",
+      "CardId": "466251",
+      "PAN": "7002329040232160159"
     }
-  ],
-  "ErrorCards": [
-    {
-      "AccountNumber": "PH50000844",
-      "AccountId": 854,
-      "PAN": "7002861007636000020",
-      "CardId": 125,
-      "ValidationErrorCode": "0000",
-      "ValidationErrorDescription": "Invalid parameter value – [ParameterName]"
-    }
-  ],
-  "RequestId": "ed557f02-c7d7-4c01-b3e5-11bf3239c8ed",
-  "Error": {
-    "Description": "Success",
-    "Code": "0000"
-  }
+  ]
 }
 ```
 
@@ -1559,11 +1467,11 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
-| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
+| 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 403 | Forbidden | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
 # Card Pin Reminder
@@ -1610,7 +1518,7 @@ async cardPinReminder(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [PINReminderResponse](../../doc/models/pin-reminder-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`PINReminderResponse`](../../doc/models/pin-reminder-response.md).
 
 ## Example Usage
 
@@ -1647,9 +1555,9 @@ const body: CardManagementV1PinreminderRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.cardPinReminder(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1741,7 +1649,7 @@ async scheduleCardBlock(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [ScheduleCardBlockResponse](../../doc/models/schedule-card-block-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ScheduleCardBlockResponse`](../../doc/models/schedule-card-block-response.md).
 
 ## Example Usage
 
@@ -1773,9 +1681,9 @@ const body: ScheduleCardBlockRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.scheduleCardBlock(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1855,7 +1763,7 @@ async autoRenew(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [AutoRenewCardResponse](../../doc/models/auto-renew-card-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`AutoRenewCardResponse`](../../doc/models/auto-renew-card-response.md).
 
 ## Example Usage
 
@@ -1881,9 +1789,9 @@ const body: AutoRenewCardRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.autoRenew(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -1948,7 +1856,7 @@ async updateMobilePaymentRegistrationStatus(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [UpdateMPayRegStatusResponse](../../doc/models/update-m-pay-reg-status-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`UpdateMPayRegStatusResponse`](../../doc/models/update-m-pay-reg-status-response.md).
 
 ## Example Usage
 
@@ -1973,9 +1881,9 @@ const body: UpdateMPayRegStatusRequest = {
 
 try {
   const { result, ...httpResponse } = await cardController.updateMobilePaymentRegistrationStatus(
-  requestId,
-  body
-);
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -2028,7 +1936,7 @@ async getKey(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [GeneratePINKeyResponse](../../doc/models/generate-pin-key-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`GeneratePINKeyResponse`](../../doc/models/generate-pin-key-response.md).
 
 ## Example Usage
 
@@ -2067,7 +1975,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Delivery Address Update
+# Deliveryaddressupdate V2
 
 This API allows users to update the card’s delivery addresses (card delivery address used for card re-issue and PIN delivery address used when PIN reminder is requested)
 
@@ -2076,29 +1984,29 @@ This API allows users to update the card’s delivery addresses (card delivery a
 * card delivery address update
 
 ```ts
-async deliveryAddressUpdate(
-  apikey: string,
-  body?: DeliveryAddressUpdateRequest,
+async deliveryaddressupdateV2(
+  requestId: string,
+  body: DeliveryAddressUpdateRequest,
   requestOptions?: RequestOptions
-): Promise<ApiResponse<DeliveryAddressUpdateResponse>>
+): Promise<ApiResponse<ResponseDeliveryAddressUpdate>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `apikey` | `string` | Header, Required | This is the API key of the specific environment which needs to be passed by the client. |
-| `body` | [`DeliveryAddressUpdateRequest \| undefined`](../../doc/models/delivery-address-update-request.md) | Body, Optional | Delivery Address Update Request Body |
+| `requestId` | `string` | Header, Required | UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
+| `body` | [`DeliveryAddressUpdateRequest`](../../doc/models/delivery-address-update-request.md) | Body, Required | Delivery Address update request body |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [DeliveryAddressUpdateResponse](../../doc/models/delivery-address-update-response.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ResponseDeliveryAddressUpdate`](../../doc/models/response-delivery-address-update.md).
 
 ## Example Usage
 
 ```ts
-const apikey = 'apikey6';
+const requestId = '233e4567-e89b-12d3-a456-426614174000';
 
 const body: DeliveryAddressUpdateRequest = {
   colCoId: 5,
@@ -2107,33 +2015,13 @@ const body: DeliveryAddressUpdateRequest = {
   payerNumber: 'GB000000123',
   accountId: 12356,
   accountNumber: 'GB000000124',
-  deliveryAddressUpdates: [
-    {
-      useCustomerDefaultAddress: true,
-      cardId: 123,
-      pAN: '7002051006629889654',
-      cardExpiryDate: '20170930',
-      updateCardRenewalAddress: {
-        contactName: 'Jack',
-        companyName: 'Travel Transport',
-        addressLine: 'Elm Street 11',
-        zipCode: '1023EA',
-        countryID: 8,
-        contactTitle: 'Mr',
-        city: 'London',
-        regionID: 2,
-        emailAddress: 'testmail@gmail.com',
-        phoneNumber: '+99999999999',
-      },
-    }
-  ],
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.deliveryAddressUpdate(
-  apikey,
-  body
-);
+  const { result, ...httpResponse } = await cardController.deliveryaddressupdateV2(
+    requestId,
+    body
+  );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -2144,34 +2032,13 @@ try {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "RequestId": "eb621f45-a543-4d9a-a934-2f223b263c42",
-  "ServiceReference": 123456,
-  "DeliveryAddressUpdateReferences": {
-    "CardId": 12345,
-    "CardPAN": "7002051006629889654",
-    "AccountId": 12356,
-    "AccountNumber": "GB000000124",
-    "ReferenceId": 573567,
-    "ErrorInfo": "null"
-  },
-  "Error": {
-    "Code": "0000",
-    "Description": "Success"
-  }
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | The server cannot or will not process the request  due to something that is perceived to be a client<br>error (e.g., malformed request syntax, invalid<br>request message framing, or deceptive request routing). | `ApiError` |
-| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | `ApiError` |
-| 403 | The server understood the request but refuses to authorize it. | `ApiError` |
-| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | `ApiError` |
-| 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
+| 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 401 | The request has not been applied because it lacks valid  authentication credentials for the target resource. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 403 | Forbidden | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 404 | The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
+| 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 

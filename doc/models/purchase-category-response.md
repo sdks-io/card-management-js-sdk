@@ -10,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `purchaseCategories` | [`PurchaseCategory1AllOf0[] \| undefined`](../../doc/models/purchase-category-1-all-of-0.md) | Optional | - |
-| `error` | [`ErrorStatus \| undefined`](../../doc/models/error-status.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -68,11 +67,7 @@
       "Title": "Title4",
       "Description": "Description0"
     }
-  ],
-  "Error": {
-    "Code": "Code4",
-    "Description": "Description2"
-  }
+  ]
 }
 ```
 

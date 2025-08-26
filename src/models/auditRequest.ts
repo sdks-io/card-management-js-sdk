@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { Accounts, accountsSchema } from './accounts';
+} from '../schema.js';
+import { Accounts, accountsSchema } from './accounts.js';
 
 export interface AuditRequest {
   /**
@@ -61,12 +61,6 @@ export interface AuditRequest {
   colCoId?: number | null;
   accounts?: Accounts;
   /**
-   * Page Size – Number of records to show on a page
-   * Optional
-   * Default value 50
-   */
-  pageSize?: number;
-  /**
    * Type of requests to be fetched.
    * Optional
    * Allowed values:
@@ -106,12 +100,6 @@ export interface AuditRequest {
    */
   searchText?: string | null;
   /**
-   * Page Number (as shown to the users)
-   * Optional
-   * Default value 1
-   */
-  currentPage?: number | null;
-  /**
    * To search for requests submitted from this date.
    * Optional
    * Maximum of X days duration allowed per search. The X value is configurable and initially set to 180 days.
@@ -138,11 +126,9 @@ export const auditRequestSchema: Schema<AuditRequest> = object({
   colCoCode: ['ColCoCode', optional(nullable(number()))],
   colCoId: ['ColCoId', optional(nullable(number()))],
   accounts: ['Accounts', optional(lazy(() => accountsSchema))],
-  pageSize: ['PageSize', optional(number())],
   requestedOperation: ['RequestedOperation', optional(array(string()))],
   sortOrder: ['SortOrder', optional(nullable(string()))],
   searchText: ['SearchText', optional(nullable(string()))],
-  currentPage: ['CurrentPage', optional(nullable(number()))],
   fromDate: ['FromDate', optional(nullable(string()))],
   toDate: ['ToDate', optional(nullable(string()))],
 });

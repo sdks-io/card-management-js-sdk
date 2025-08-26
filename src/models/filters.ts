@@ -14,8 +14,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { SearchCard, searchCardSchema } from './searchCard';
+} from '../schema.js';
+import { SearchCard, searchCardSchema } from './searchCard.js';
 
 export interface Filters {
   /** Account ID of the customer.<br/> Optional.<br/> This input is a search criterion, if given. */

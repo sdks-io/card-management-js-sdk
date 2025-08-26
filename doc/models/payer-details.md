@@ -53,8 +53,8 @@
 | `invoiceAccountID` | `number \| null \| undefined` | Optional | The Account ID of the account on which the invoice is generated. |
 | `invoiceAccountNumber` | `string \| null \| undefined` | Optional | The Account Number of the account on which the invoice is generated. |
 | `invoiceAccountShortName` | `string \| null \| undefined` | Optional | The Account Short Name of the account on which the invoice is generated. |
-| `bestOfIndicator` | `boolean \| undefined` | Optional | Best of Indicator of the Pricing customer/account configured.<br>**Default**: `false` |
-| `isInternational` | `boolean \| undefined` | Optional | Whether the account is international.<br>**Default**: `false` |
+| `bestOfIndicator` | `boolean \| undefined` | Optional | Best of Indicator of the Pricing customer/account configured.<br><br>**Default**: `false` |
+| `isInternational` | `boolean \| undefined` | Optional | Whether the account is international.<br><br>**Default**: `false` |
 | `totalAccounts` | `number \| null \| undefined` | Optional | Total number of accounts under the payer. |
 | `totalActiveAccounts` | `number \| null \| undefined` | Optional | Total number of active accounts under the payer. |
 | `totalCards` | `number \| null \| undefined` | Optional | Total number of cards under the payer. |
@@ -79,10 +79,10 @@
 | `industryClass` | `string \| null \| undefined` | Optional | Payer/Company Industry class id and description |
 | `marketingSegmentation` | `string \| null \| undefined` | Optional | Marketing Segmentation id and description |
 | `lineOfBusiness` | `string \| null \| undefined` | Optional | Payer/Company Line of Business Id and Description |
-| `printCreditLimit` | `boolean \| undefined` | Optional | Is Credit Limit printed on the statement of account: True/False<br>If True Credit Limit is printed on invoice/SOA<br>**Default**: `false` |
+| `printCreditLimit` | `boolean \| undefined` | Optional | Is Credit Limit printed on the statement of account: True/False<br>If True Credit Limit is printed on invoice/SOA<br><br>**Default**: `false` |
 | `cardGroupType` | `string \| null \| undefined` | Optional | Card Group Type configured for Payer<br>e.g. (Id – Description):<br>1-Horizontal only<br>2-Vertical only<br>3-Both |
-| `renewCards` | `boolean \| undefined` | Optional | If set to True cards will be automatically renewed on expiry<br>**Default**: `false` |
-| `allowSelectPIN` | `boolean \| undefined` | Optional | If set to True then Self Select PIN is allowed for Payer<br>**Default**: `false` |
+| `renewCards` | `boolean \| undefined` | Optional | If set to True cards will be automatically renewed on expiry<br><br>**Default**: `false` |
+| `allowSelectPIN` | `boolean \| undefined` | Optional | If set to True then Self Select PIN is allowed for Payer<br><br>**Default**: `false` |
 | `useFleetPIN` | `boolean \| undefined` | Optional | If set to True then Fleet PIN is applied for the cards directly under payer |
 | `vATRegNumber` | `string \| null \| undefined` | Optional | Payer/Company VAT registration number. |
 | `vATRegNumber2` | `string \| undefined` | Optional | Payer/Company VAT registration number 2. |

@@ -28,7 +28,7 @@
 | `errorCode` | `string \| undefined` | Optional | Error code of the request |
 | `errorString` | `string \| null \| undefined` | Optional | Error description of the request |
 | `globalRequestID` | `string \| null \| undefined` | Optional | Global unique request reference provided by client application. |
-| `pAN` | `string \| null \| undefined` | Optional | PAN in the request.<br>If Mask PAN is enabled at Microservices configuration then all digits of the PAN, except the last 6 digits, will be masked. |
+| `pAN` | `string \| null \| undefined` | Optional | PAN in the request.<br>If Mask PAN is enabled then all digits of the PAN, except the last 6 digits, will be masked. |
 | `payerId` | `number \| null \| undefined` | Optional | Payer id of the customer. |
 | `payerNumber` | `string \| null \| undefined` | Optional | Payer number of the customer. |
 | `processedOn` | `string \| null \| undefined` | Optional | Request processed date.<br>Format: yyyyMMdd HH:mm: ss |
@@ -40,6 +40,8 @@
 | `submittedOn` | `string \| null \| undefined` | Optional | Request submitted date.<br>Format: yyyyMMdd HH:mm: ss |
 | `subRequestReference` | `number \| null \| undefined` | Optional | Reference number for the individual request type. |
 | `userDisplayName` | `string \| null \| undefined` | Optional | Display name of the user who submitted this request.<br>It will be the Display Name of the Driver in the case of “MobilePaymentRegistration” in the below format: |
+| `pANID` | `string \| null \| undefined` | Optional | PAN ID of the card.<br>This will be null when the PAN is not available in the request. |
+| `maskedPAN` | `string \| null \| undefined` | Optional | Masked PAN of the card.<br>This will be null when the Masked PAN is not available in the request. |
 
 ## Example (as JSON)
 
@@ -75,7 +77,9 @@
   "Status": "Success",
   "SubmittedOn": "20240201 14:29:16",
   "SubRequestReference": 720061,
-  "UserDisplayName": "Supriya-ThridPartyAgent"
+  "UserDisplayName": "Supriya-ThridPartyAgent",
+  "PANID": "70020975",
+  "MaskedPAN": "70020975******0717"
 }
 ```
 

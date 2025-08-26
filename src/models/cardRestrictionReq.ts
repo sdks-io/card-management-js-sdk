@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   RestrictionCardsList,
   restrictionCardsListSchema,
-} from './restrictionCardsList';
+} from './restrictionCardsList.js';
 
 export interface CardRestrictionReq {
   /**

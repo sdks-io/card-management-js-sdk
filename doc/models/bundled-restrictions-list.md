@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `usageRestrictions` | `unknown \| undefined` | Optional | - |
+| `usageRestrictions` | [`UsageRestrictionsCard \| undefined`](../../doc/models/usage-restrictions-card.md) | Optional | - |
 | `dayTimeRestrictions` | [`DayTimeRestrictions \| undefined`](../../doc/models/day-time-restrictions.md) | Optional | - |
 | `productRestrictions` | [`BundledDetailsProductList \| undefined`](../../doc/models/bundled-details-product-list.md) | Optional | - |
 | `locationRestrictions` | [`LocationRestriction \| undefined`](../../doc/models/location-restriction.md) | Optional | - |
@@ -19,8 +19,11 @@
 ```json
 {
   "UsageRestrictions": {
-    "key1": "val1",
-    "key2": "val2"
+    "DailySpend": 7.72,
+    "WeeklySpend": 10.22,
+    "MonthlySpend": 48.66,
+    "PerTransactionSpend": 17.28,
+    "AnnualSpend": 223.08
   },
   "DayTimeRestrictions": {
     "Monday": false,

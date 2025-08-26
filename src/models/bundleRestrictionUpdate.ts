@@ -12,16 +12,23 @@ import {
   optional,
   Schema,
   string,
-  unknown,
-} from '../schema';
+} from '../schema.js';
 import {
   CardDayTimeRestrictions,
   cardDayTimeRestrictionsSchema,
-} from './cardDayTimeRestrictions';
+} from './cardDayTimeRestrictions.js';
 import {
   LocationRestriction,
   locationRestrictionSchema,
-} from './locationRestriction';
+} from './locationRestriction.js';
+import {
+  ProductRestrictionCard,
+  productRestrictionCardSchema,
+} from './productRestrictionCard.js';
+import {
+  UsageRestrictionsCard,
+  usageRestrictionsCardSchema,
+} from './usageRestrictionsCard.js';
 
 export interface BundleRestrictionUpdate {
   /**
@@ -45,14 +52,14 @@ export interface BundleRestrictionUpdate {
    * Default value is False.
    */
   resetProductRestriction?: boolean | null;
-  usageRestrictions?: unknown;
+  usageRestrictions?: UsageRestrictionsCard;
   /**
    * Identifier of the day/time restriction profile to be updated for the bundle in Gateway.
    * Optional
    */
   dayTimeRestrictionProfileId?: string | null;
   dayTimeRestrictions?: CardDayTimeRestrictions;
-  productRestrictions?: unknown;
+  productRestrictions?: ProductRestrictionCard;
   /**
    * Identifier of the location restriction profile to be updated for the bundle in Gateway.
    * Optional
@@ -75,7 +82,10 @@ export const bundleRestrictionUpdateSchema: Schema<BundleRestrictionUpdate> = ob
       'ResetProductRestriction',
       optional(nullable(boolean())),
     ],
-    usageRestrictions: ['UsageRestrictions', optional(unknown())],
+    usageRestrictions: [
+      'UsageRestrictions',
+      optional(lazy(() => usageRestrictionsCardSchema)),
+    ],
     dayTimeRestrictionProfileId: [
       'DayTimeRestrictionProfileId',
       optional(nullable(string())),
@@ -84,7 +94,10 @@ export const bundleRestrictionUpdateSchema: Schema<BundleRestrictionUpdate> = ob
       'DayTimeRestrictions',
       optional(lazy(() => cardDayTimeRestrictionsSchema)),
     ],
-    productRestrictions: ['ProductRestrictions', optional(unknown())],
+    productRestrictions: [
+      'ProductRestrictions',
+      optional(lazy(() => productRestrictionCardSchema)),
+    ],
     locationRestrictionProfileId: [
       'LocationRestrictionProfileId',
       optional(string()),

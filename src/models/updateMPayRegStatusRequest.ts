@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   UpdateMPayRegStatusRequestMPayRequestsItems,
   updateMPayRegStatusRequestMPayRequestsItemsSchema,
-} from './updateMPayRegStatusRequestMPayRequestsItems';
+} from './updateMPayRegStatusRequestMPayRequestsItems.js';
 
 export interface UpdateMPayRegStatusRequest {
   /**

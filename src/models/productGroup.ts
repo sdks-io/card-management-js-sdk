@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { ProductAllOf0, productAllOf0Schema } from './productAllOf0';
+} from '../schema.js';
+import { ProductAllOf0, productAllOf0Schema } from './productAllOf0.js';
 
 export interface ProductGroup {
   /**

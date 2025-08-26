@@ -12,10 +12,10 @@
 | `resetDayTimeRestriction` | `boolean \| null \| undefined` | Optional | True/False<br>A value indicates if the day/time restriction is to be reset for card bundle.<br>Optional<br>Default value is False. |
 | `resetLocationRestriction` | `boolean \| null \| undefined` | Optional | True/False<br>A value indicates if the location restriction is to be reset for card bundle.<br>Optional<br>Default value is False. |
 | `resetProductRestriction` | `boolean \| null \| undefined` | Optional | True/False<br>A value indicates if the product restriction is to be reset for card bundle.<br>Optional<br>Default value is False. |
-| `usageRestrictions` | `unknown \| undefined` | Optional | - |
+| `usageRestrictions` | [`UsageRestrictionsCard \| undefined`](../../doc/models/usage-restrictions-card.md) | Optional | - |
 | `dayTimeRestrictionProfileId` | `string \| null \| undefined` | Optional | Identifier of the day/time restriction profile to be updated for the bundle in Gateway.<br>Optional |
 | `dayTimeRestrictions` | [`CardDayTimeRestrictions \| undefined`](../../doc/models/card-day-time-restrictions.md) | Optional | - |
-| `productRestrictions` | `unknown \| undefined` | Optional | - |
+| `productRestrictions` | [`ProductRestrictionCard \| undefined`](../../doc/models/product-restriction-card.md) | Optional | - |
 | `locationRestrictionProfileId` | `string \| undefined` | Optional | Identifier of the location restriction profile to be updated for the bundle in Gateway.<br>Optional |
 | `locationRestrictions` | [`LocationRestriction \| undefined`](../../doc/models/location-restriction.md) | Optional | - |
 
@@ -27,8 +27,11 @@
   "ResetLocationRestriction": false,
   "ResetProductRestriction": false,
   "UsageRestrictions": {
-    "key1": "val1",
-    "key2": "val2"
+    "DailySpend": 7.72,
+    "WeeklySpend": 10.22,
+    "MonthlySpend": 48.66,
+    "PerTransactionSpend": 17.28,
+    "AnnualSpend": 223.08
   },
   "DayTimeRestrictionProfileId": "DayTimeRestrictionProfileId2"
 }

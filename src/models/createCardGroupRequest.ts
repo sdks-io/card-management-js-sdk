@@ -14,11 +14,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   CreateCardGroupRequestCardsItems,
   createCardGroupRequestCardsItemsSchema,
-} from './createCardGroupRequestCardsItems';
+} from './createCardGroupRequestCardsItems.js';
 
 export interface CreateCardGroupRequest {
   /**

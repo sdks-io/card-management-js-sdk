@@ -13,8 +13,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { Card, cardSchema } from './card';
+} from '../schema.js';
+import { Card, cardSchema } from './card.js';
 
 export interface CardSearchResponse {
   /** Unique request identifier passed from end user. This identifier helps in tracing a transaction */

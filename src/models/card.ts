@@ -14,11 +14,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   CardBlockSchedule,
   cardBlockScheduleSchema,
-} from './cardBlockSchedule';
+} from './cardBlockSchedule.js';
 
 export interface Card {
   /** Account ID */

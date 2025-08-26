@@ -13,16 +13,23 @@ import {
   optional,
   Schema,
   string,
-  unknown,
-} from '../schema';
+} from '../schema.js';
 import {
   DayTimeRestrictions,
   dayTimeRestrictionsSchema,
-} from './dayTimeRestrictions';
+} from './dayTimeRestrictions.js';
 import {
   LocationRestriction,
   locationRestrictionSchema,
-} from './locationRestriction';
+} from './locationRestriction.js';
+import {
+  ProductRestrictionCard,
+  productRestrictionCardSchema,
+} from './productRestrictionCard.js';
+import {
+  UsageRestrictionsCard,
+  usageRestrictionsCardSchema,
+} from './usageRestrictionsCard.js';
 
 export interface RestrictionCardsList {
   /**
@@ -64,9 +71,9 @@ export interface RestrictionCardsList {
    * If true, the location restrictions applied on the card will be deleted. Else, the card restrictions will be updated with the location restrictions provided in the API.
    */
   resetLocationRestrictions?: boolean | null;
-  usageRestrictions?: unknown;
+  usageRestrictions?: UsageRestrictionsCard;
   dayTimeRestrictions?: DayTimeRestrictions;
-  productRestrictions?: unknown;
+  productRestrictions?: ProductRestrictionCard;
   locationRestrictions?: LocationRestriction;
 }
 
@@ -87,12 +94,18 @@ export const restrictionCardsListSchema: Schema<RestrictionCardsList> = object({
     'ResetLocationRestrictions',
     optional(nullable(boolean())),
   ],
-  usageRestrictions: ['UsageRestrictions', optional(unknown())],
+  usageRestrictions: [
+    'UsageRestrictions',
+    optional(lazy(() => usageRestrictionsCardSchema)),
+  ],
   dayTimeRestrictions: [
     'DayTimeRestrictions',
     optional(lazy(() => dayTimeRestrictionsSchema)),
   ],
-  productRestrictions: ['ProductRestrictions', optional(unknown())],
+  productRestrictions: [
+    'ProductRestrictions',
+    optional(lazy(() => productRestrictionCardSchema)),
+  ],
   locationRestrictions: [
     'LocationRestrictions',
     optional(lazy(() => locationRestrictionSchema)),

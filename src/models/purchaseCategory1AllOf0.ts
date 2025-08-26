@@ -14,8 +14,8 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { ProductGroup, productGroupSchema } from './productGroup';
+} from '../schema.js';
+import { ProductGroup, productGroupSchema } from './productGroup.js';
 
 export interface PurchaseCategory1AllOf0 {
   /** Purchase category ID */
@@ -38,7 +38,7 @@ export interface PurchaseCategory1AllOf0 {
    * 6.    Essentials and LNG
    * 7.    Extra and LNG
    * 8.    Premium and LNG
-   * Note: Purchase Category name (GFN) is returned when Title does not exist for the given language Code and default language code (en-GB).
+   * Note: Purchase Category name is returned when Title does not exist for the given language Code and default language code (en-GB).
    */
   title?: string;
   /**
@@ -52,7 +52,7 @@ export interface PurchaseCategory1AllOf0 {
    * 1 - All Fuel Products + LNG and TMF
    * 2 - All Fuels Products + LNG, Car related items and TMF
    * 3 - No Restriction + LNG
-   * Note: Purchase Category name (GFN) is returned when Title does not exist for the given language Code and default language code (en-GB).
+   * Note: Purchase Category name is returned when Title does not exist for the given language Code and default language code (en-GB).
    */
   description?: string;
 }

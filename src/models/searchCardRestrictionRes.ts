@@ -12,13 +12,13 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { ErrorStatus, errorStatusSchema } from './errorStatus';
-import { Restriction, restrictionSchema } from './restriction';
+} from '../schema.js';
+import { ErrorStatus, errorStatusSchema } from './errorStatus.js';
+import { Restriction, restrictionSchema } from './restriction.js';
 import {
   RestrictionCardList,
   restrictionCardListSchema,
-} from './restrictionCardList';
+} from './restrictionCardList.js';
 
 export interface SearchCardRestrictionRes {
   /** Request Id of the API call */

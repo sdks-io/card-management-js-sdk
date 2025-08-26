@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   AutoRenewCardRequestAutoRenewCardsItems,
   autoRenewCardRequestAutoRenewCardsItemsSchema,
-} from './autoRenewCardRequestAutoRenewCardsItems';
+} from './autoRenewCardRequestAutoRenewCardsItems.js';
 
 export interface AutoRenewCardRequest {
   /**

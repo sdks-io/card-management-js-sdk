@@ -12,11 +12,11 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
+} from '../schema.js';
 import {
   UpdateCardRenewalAddress2,
   updateCardRenewalAddress2Schema,
-} from './updateCardRenewalAddress2';
+} from './updateCardRenewalAddress2.js';
 
 /** List of cards for delivery address update. Maximum number of cards that can be provided in the list is 50 */
 export interface DeliveryAddressUpdate {

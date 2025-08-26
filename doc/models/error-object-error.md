@@ -25,26 +25,9 @@
       "Title": "Title6",
       "Detail": "Detail6",
       "AdditionalInfo": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "Code": "Code4",
-      "Title": "Title6",
-      "Detail": "Detail6",
-      "AdditionalInfo": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "Code": "Code4",
-      "Title": "Title6",
-      "Detail": "Detail6",
-      "AdditionalInfo": {
-        "key1": "val1",
-        "key2": "val2"
+        "key0": "AdditionalInfo0",
+        "key1": "AdditionalInfo1",
+        "key2": "AdditionalInfo2"
       }
     }
   ]
