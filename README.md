@@ -18,10 +18,10 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 Run the following command from your project directory to install the package from npm:
 
 ```bash
-npm install card-management-sdk@3.0.0
+npm install card-management-sdk@3.0.1
 ```
 
-For additional package details, see the [Npm page for the card-management-sdk@3.0.0 npm](https://www.npmjs.com/package/card-management-sdk/v/3.0.0).
+For additional package details, see the [Npm page for the card-management-sdk@3.0.1 npm](https://www.npmjs.com/package/card-management-sdk/v/3.0.1).
 
 ## Test the SDK
 
@@ -41,17 +41,17 @@ npm run test:coverage
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| environment | [`Environment`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/README.md#environments) | The API environment. <br> **Default: `Environment.SIT`** |
+| environment | [`Environment`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/README.md#environments) | The API environment. <br> **Default: `Environment.SIT`** |
 | timeout | `number` | Timeout for API calls.<br>*Default*: `0` |
-| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/http-client-options.md) | Stable configurable http client options. |
+| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/http-client-options.md) | Stable configurable http client options. |
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
-| clientCredentialsAuthCredentials | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/auth/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
+| clientCredentialsAuthCredentials | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/auth/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
 
 The API client can be initialized as follows:
 
@@ -87,7 +87,7 @@ const fileContent = fs.readFileSync(absolutePath, 'utf-8');
 const client = Client.fromJsonConfig(fileContent);
 ```
 
-See the [Configuration-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/configuration-based-client-initialization.md) section for details.
+See the [Configuration-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/configuration-based-client-initialization.md) section for details.
 
 ### Environment-Based Client Initialization
 
@@ -109,7 +109,7 @@ if (fs.existsSync(absolutePath)) {
 const client = Client.fromEnvironment(process.env);
 ```
 
-See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/environment-based-client-initialization.md) section for details.
+See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/environment-based-client-initialization.md) section for details.
 
 ## Environments
 
@@ -126,30 +126,30 @@ The SDK can be configured to use a different environment for making API calls. A
 
 This API uses the following authentication schemes.
 
-* [`BearerToken (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/auth/oauth-2-client-credentials-grant.md)
+* [`BearerToken (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/auth/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [Customer](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/controllers/customer.md)
-* [Restriction](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/controllers/restriction.md)
-* [Card](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/controllers/card.md)
+* [Customer](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/controllers/customer.md)
+* [Restriction](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/controllers/restriction.md)
+* [Card](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/controllers/card.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [HttpClientOptions](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/http-client-options.md)
-* [RetryConfiguration](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/retry-configuration.md)
-* [ProxySettings](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/proxy-settings.md)
-* [Configuration-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/configuration-based-client-initialization.md)
-* [Environment-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/environment-based-client-initialization.md)
+* [HttpClientOptions](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/http-client-options.md)
+* [RetryConfiguration](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/retry-configuration.md)
+* [ProxySettings](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/proxy-settings.md)
+* [Configuration-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/configuration-based-client-initialization.md)
+* [Environment-Based Client Initialization](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/environment-based-client-initialization.md)
 
 ### HTTP
 
-* [HttpRequest](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/http-request.md)
+* [HttpRequest](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/api-response.md)
-* [ApiError](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.0/doc/api-error.md)
+* [ApiResponse](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/api-response.md)
+* [ApiError](https://www.github.com/sdks-io/card-management-js-sdk/tree/3.0.1/doc/api-error.md)
 
