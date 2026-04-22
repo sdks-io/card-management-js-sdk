@@ -60,24 +60,22 @@ export interface BundleDetailsResponse {
   restrictions?: BundledRestrictionsList;
 }
 
-export const bundleDetailsResponseSchema: Schema<BundleDetailsResponse> = object(
-  {
-    payerId: ['PayerId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    bundleId: ['BundleId', optional(string())],
-    externalBundleId: ['ExternalBundleId', optional(string())],
-    description: ['Description', optional(string())],
-    pans: ['Pans', optional(array(string()))],
-    restrictionCurrencyCode: ['RestrictionCurrencyCode', optional(string())],
-    restrictionCurrencySymbol: [
-      'RestrictionCurrencySymbol',
-      optional(string()),
-    ],
-    restrictions: [
-      'Restrictions',
-      optional(lazy(() => bundledRestrictionsListSchema)),
-    ],
-  }
+export const bundleDetailsResponseSchema: Schema<BundleDetailsResponse> = lazy(
+  () =>
+    object({
+      payerId: ['PayerId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      bundleId: ['BundleId', optional(string())],
+      externalBundleId: ['ExternalBundleId', optional(string())],
+      description: ['Description', optional(string())],
+      pans: ['Pans', optional(array(string()))],
+      restrictionCurrencyCode: ['RestrictionCurrencyCode', optional(string())],
+      restrictionCurrencySymbol: [
+        'RestrictionCurrencySymbol',
+        optional(string()),
+      ],
+      restrictions: ['Restrictions', optional(bundledRestrictionsListSchema)],
+    })
 );

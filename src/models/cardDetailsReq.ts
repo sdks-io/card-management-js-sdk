@@ -14,6 +14,6 @@ export interface CardDetailsReq {
   filters?: CardDetailsRequest;
 }
 
-export const cardDetailsReqSchema: Schema<CardDetailsReq> = object({
-  filters: ['Filters', optional(lazy(() => cardDetailsRequestSchema))],
-});
+export const cardDetailsReqSchema: Schema<CardDetailsReq> = lazy(() =>
+  object({ filters: ['Filters', optional(cardDetailsRequestSchema)] })
+);

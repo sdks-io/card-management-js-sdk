@@ -68,19 +68,17 @@ export interface CreateCardGroupRequest {
   cards?: CreateCardGroupRequestCardsItems[];
 }
 
-export const createCardGroupRequestSchema: Schema<CreateCardGroupRequest> = object(
-  {
-    colCoCode: ['ColCoCode', optional(number())],
-    colCoId: ['ColCoId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    payerId: ['PayerId', optional(number())],
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    printOnCard: ['PrintOnCard', optional(boolean())],
-    cardGroupName: ['CardGroupName', optional(nullable(string()))],
-    cards: [
-      'Cards',
-      optional(array(lazy(() => createCardGroupRequestCardsItemsSchema))),
-    ],
-  }
+export const createCardGroupRequestSchema: Schema<CreateCardGroupRequest> = lazy(
+  () =>
+    object({
+      colCoCode: ['ColCoCode', optional(number())],
+      colCoId: ['ColCoId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      payerId: ['PayerId', optional(number())],
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      printOnCard: ['PrintOnCard', optional(boolean())],
+      cardGroupName: ['CardGroupName', optional(nullable(string()))],
+      cards: ['Cards', optional(array(createCardGroupRequestCardsItemsSchema))],
+    })
 );

@@ -14,6 +14,6 @@ export interface PurchaseCategoryReq {
   filters?: PurchaseCategoryRequest;
 }
 
-export const purchaseCategoryReqSchema: Schema<PurchaseCategoryReq> = object({
-  filters: ['Filters', optional(lazy(() => purchaseCategoryRequestSchema))],
-});
+export const purchaseCategoryReqSchema: Schema<PurchaseCategoryReq> = lazy(() =>
+  object({ filters: ['Filters', optional(purchaseCategoryRequestSchema)] })
+);

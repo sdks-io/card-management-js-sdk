@@ -28,9 +28,11 @@ export interface PINReminderResponse {
   data?: PINReminderReference[];
 }
 
-export const pINReminderResponseSchema: Schema<PINReminderResponse> = object({
-  requestId: ['RequestId', optional(string())],
-  mainReference: ['MainReference', optional(number())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => pINReminderReferenceSchema)))],
-});
+export const pINReminderResponseSchema: Schema<PINReminderResponse> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    mainReference: ['MainReference', optional(number())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(pINReminderReferenceSchema))],
+  })
+);

@@ -70,21 +70,22 @@ export interface AccountRestrictionRequest {
   usageRestrictions?: UsageRestrictionsCard;
 }
 
-export const accountRestrictionRequestSchema: Schema<AccountRestrictionRequest> = object(
-  {
-    colCoId: ['ColCoId', optional(nullable(number()))],
-    colCoCode: ['ColCoCode', optional(nullable(number()))],
-    payerId: ['PayerId', optional(nullable(number()))],
-    payerNumber: ['PayerNumber', optional(nullable(string()))],
-    accountId: ['AccountId', optional(nullable(number()))],
-    accountNumber: ['AccountNumber', optional(nullable(string()))],
-    resetUsageRestrictions: [
-      'ResetUsageRestrictions',
-      optional(nullable(boolean())),
-    ],
-    usageRestrictions: [
-      'UsageRestrictions',
-      optional(lazy(() => usageRestrictionsCardSchema)),
-    ],
-  }
+export const accountRestrictionRequestSchema: Schema<AccountRestrictionRequest> = lazy(
+  () =>
+    object({
+      colCoId: ['ColCoId', optional(nullable(number()))],
+      colCoCode: ['ColCoCode', optional(nullable(number()))],
+      payerId: ['PayerId', optional(nullable(number()))],
+      payerNumber: ['PayerNumber', optional(nullable(string()))],
+      accountId: ['AccountId', optional(nullable(number()))],
+      accountNumber: ['AccountNumber', optional(nullable(string()))],
+      resetUsageRestrictions: [
+        'ResetUsageRestrictions',
+        optional(nullable(boolean())),
+      ],
+      usageRestrictions: [
+        'UsageRestrictions',
+        optional(usageRestrictionsCardSchema),
+      ],
+    })
 );

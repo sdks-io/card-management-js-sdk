@@ -15,8 +15,10 @@ export interface CardSummaryResponse {
   data?: SummaryResponse[];
 }
 
-export const cardSummaryResponseSchema: Schema<CardSummaryResponse> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => summaryResponseSchema)))],
-});
+export const cardSummaryResponseSchema: Schema<CardSummaryResponse> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(summaryResponseSchema))],
+  })
+);

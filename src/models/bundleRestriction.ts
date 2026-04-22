@@ -53,33 +53,35 @@ export interface BundleRestriction {
   usageRestrictions?: UsageRestrictionsCard;
 }
 
-export const bundleRestrictionSchema: Schema<BundleRestriction> = object({
-  dayTimeRestrictionAction: [
-    'DayTimeRestrictionAction',
-    optional(nullable(string())),
-  ],
-  locationRestrictionAction: [
-    'LocationRestrictionAction',
-    optional(nullable(string())),
-  ],
-  productRestrictionAction: [
-    'ProductRestrictionAction',
-    optional(nullable(string())),
-  ],
-  dayTimeRestrictions: [
-    'DayTimeRestrictions',
-    optional(lazy(() => dayTimeRestrictionsSchema)),
-  ],
-  productRestrictions: [
-    'ProductRestrictions',
-    optional(lazy(() => productRestrictionCardSchema)),
-  ],
-  locationRestrictions: [
-    'LocationRestrictions',
-    optional(lazy(() => locationRestrictionSchema)),
-  ],
-  usageRestrictions: [
-    'UsageRestrictions',
-    optional(lazy(() => usageRestrictionsCardSchema)),
-  ],
-});
+export const bundleRestrictionSchema: Schema<BundleRestriction> = lazy(() =>
+  object({
+    dayTimeRestrictionAction: [
+      'DayTimeRestrictionAction',
+      optional(nullable(string())),
+    ],
+    locationRestrictionAction: [
+      'LocationRestrictionAction',
+      optional(nullable(string())),
+    ],
+    productRestrictionAction: [
+      'ProductRestrictionAction',
+      optional(nullable(string())),
+    ],
+    dayTimeRestrictions: [
+      'DayTimeRestrictions',
+      optional(dayTimeRestrictionsSchema),
+    ],
+    productRestrictions: [
+      'ProductRestrictions',
+      optional(productRestrictionCardSchema),
+    ],
+    locationRestrictions: [
+      'LocationRestrictions',
+      optional(locationRestrictionSchema),
+    ],
+    usageRestrictions: [
+      'UsageRestrictions',
+      optional(usageRestrictionsCardSchema),
+    ],
+  })
+);

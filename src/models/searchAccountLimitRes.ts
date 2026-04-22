@@ -18,13 +18,11 @@ export interface SearchAccountLimitRes {
   data?: SearchAccountLimitResponse[];
 }
 
-export const searchAccountLimitResSchema: Schema<SearchAccountLimitRes> = object(
-  {
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: [
-      'Data',
-      optional(array(lazy(() => searchAccountLimitResponseSchema))),
-    ],
-  }
+export const searchAccountLimitResSchema: Schema<SearchAccountLimitRes> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(searchAccountLimitResponseSchema))],
+    })
 );

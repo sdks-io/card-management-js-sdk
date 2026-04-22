@@ -77,37 +77,40 @@ export interface RestrictionCardsList {
   locationRestrictions?: LocationRestriction;
 }
 
-export const restrictionCardsListSchema: Schema<RestrictionCardsList> = object({
-  accountId: ['AccountId', optional(nullable(number()))],
-  cardId: ['CardId', optional(nullable(number()))],
-  pAN: ['PAN', optional(nullable(string()))],
-  resetUsageRestrictions: ['ResetUsageRestrictions', optional(boolean())],
-  resetDayTimeRestrictions: [
-    'ResetDayTimeRestrictions',
-    optional(nullable(boolean())),
-  ],
-  resetProductRestrictions: [
-    'ResetProductRestrictions',
-    optional(nullable(boolean())),
-  ],
-  resetLocationRestrictions: [
-    'ResetLocationRestrictions',
-    optional(nullable(boolean())),
-  ],
-  usageRestrictions: [
-    'UsageRestrictions',
-    optional(lazy(() => usageRestrictionsCardSchema)),
-  ],
-  dayTimeRestrictions: [
-    'DayTimeRestrictions',
-    optional(lazy(() => dayTimeRestrictionsSchema)),
-  ],
-  productRestrictions: [
-    'ProductRestrictions',
-    optional(lazy(() => productRestrictionCardSchema)),
-  ],
-  locationRestrictions: [
-    'LocationRestrictions',
-    optional(lazy(() => locationRestrictionSchema)),
-  ],
-});
+export const restrictionCardsListSchema: Schema<RestrictionCardsList> = lazy(
+  () =>
+    object({
+      accountId: ['AccountId', optional(nullable(number()))],
+      cardId: ['CardId', optional(nullable(number()))],
+      pAN: ['PAN', optional(nullable(string()))],
+      resetUsageRestrictions: ['ResetUsageRestrictions', optional(boolean())],
+      resetDayTimeRestrictions: [
+        'ResetDayTimeRestrictions',
+        optional(nullable(boolean())),
+      ],
+      resetProductRestrictions: [
+        'ResetProductRestrictions',
+        optional(nullable(boolean())),
+      ],
+      resetLocationRestrictions: [
+        'ResetLocationRestrictions',
+        optional(nullable(boolean())),
+      ],
+      usageRestrictions: [
+        'UsageRestrictions',
+        optional(usageRestrictionsCardSchema),
+      ],
+      dayTimeRestrictions: [
+        'DayTimeRestrictions',
+        optional(dayTimeRestrictionsSchema),
+      ],
+      productRestrictions: [
+        'ProductRestrictions',
+        optional(productRestrictionCardSchema),
+      ],
+      locationRestrictions: [
+        'LocationRestrictions',
+        optional(locationRestrictionSchema),
+      ],
+    })
+);

@@ -97,6 +97,7 @@ export type { CardTypeRequest } from './models/cardTypeRequest.js';
 export type { CardTypeRes } from './models/cardTypeRes.js';
 export type { CardTypeResponseCustomerCardTypesItems } from './models/cardTypeResponseCustomerCardTypesItems.js';
 export type { CardUsageRestrictions } from './models/cardUsageRestrictions.js';
+export type { CartTypeAccount } from './models/cartTypeAccount.js';
 export type { ColCoAccess } from './models/colCoAccess.js';
 export type { CountryRestriction } from './models/countryRestriction.js';
 export type { CreateBundleRequest } from './models/createBundleRequest.js';

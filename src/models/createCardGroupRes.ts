@@ -18,8 +18,10 @@ export interface CreateCardGroupRes {
   data?: CreateCardGroupResponse[];
 }
 
-export const createCardGroupResSchema: Schema<CreateCardGroupRes> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => createCardGroupResponseSchema)))],
-});
+export const createCardGroupResSchema: Schema<CreateCardGroupRes> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(createCardGroupResponseSchema))],
+  })
+);

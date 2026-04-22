@@ -80,15 +80,17 @@ export interface CreateBundleRequest {
   restrictions?: BundleRestriction;
 }
 
-export const createBundleRequestSchema: Schema<CreateBundleRequest> = object({
-  colCoId: ['ColCoId', optional(nullable(number()))],
-  colCoCode: ['ColCoCode', optional(nullable(number()))],
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(string())],
-  accountId: ['AccountId', optional(nullable(number()))],
-  accountNumber: ['AccountNumber', optional(nullable(string()))],
-  externalBundleId: ['ExternalBundleId', optional(nullable(string()))],
-  description: ['Description', optional(string())],
-  cards: ['Cards', optional(array(string()))],
-  restrictions: ['Restrictions', optional(lazy(() => bundleRestrictionSchema))],
-});
+export const createBundleRequestSchema: Schema<CreateBundleRequest> = lazy(() =>
+  object({
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(string())],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    externalBundleId: ['ExternalBundleId', optional(nullable(string()))],
+    description: ['Description', optional(string())],
+    cards: ['Cards', optional(array(string()))],
+    restrictions: ['Restrictions', optional(bundleRestrictionSchema)],
+  })
+);

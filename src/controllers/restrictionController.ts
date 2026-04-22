@@ -111,23 +111,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(searchCardRestrictionRes1Schema, requestOptions);
@@ -213,23 +213,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(cardRestrictionResSchema, requestOptions);
@@ -299,23 +299,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(createBundleResSchema, requestOptions);
@@ -392,23 +392,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(updateBundleResSchema, requestOptions);
@@ -456,23 +456,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(deleteBundleResponseSchema, requestOptions);
@@ -519,23 +519,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(summaryofbundleResSchema, requestOptions);
@@ -587,23 +587,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(accountRestrictionResSchema, requestOptions);
@@ -638,23 +638,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(searchAccountLimitResSchema, requestOptions);
@@ -688,23 +688,23 @@ export class RestrictionController extends BaseController {
     req.throwOn(
       400,
       ErrorObjectError,
-      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n'
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
     );
     req.throwOn(
       401,
       ErrorObjectError,
-      'The request has not been applied because it lacks valid  authentication credentials for the target resource.\n'
+      'The request has not been applied because it lacks valid  authentication credentials for the target resource.'
     );
     req.throwOn(403, ErrorObjectError, 'Forbidden');
     req.throwOn(
       404,
       ErrorObjectError,
-      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.\n'
+      'The origin server did not find a current representation  for the target resource or is not willing to disclose  that one exists.'
     );
     req.throwOn(
       500,
       ErrorObjectError,
-      'The server encountered an unexpected condition that  prevented it from fulfilling the request.\n'
+      'The server encountered an unexpected condition that  prevented it from fulfilling the request.'
     );
     req.authenticate([{ bearerToken: true }]);
     return req.callAsJson(bundleDetailsSchema, requestOptions);

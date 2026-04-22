@@ -11,6 +11,6 @@ export interface CardSummaryRequest {
   filters?: Filters1;
 }
 
-export const cardSummaryRequestSchema: Schema<CardSummaryRequest> = object({
-  filters: ['Filters', optional(lazy(() => filters1Schema))],
-});
+export const cardSummaryRequestSchema: Schema<CardSummaryRequest> = lazy(() =>
+  object({ filters: ['Filters', optional(filters1Schema)] })
+);

@@ -16,10 +16,11 @@ export interface OrderCardEnquiryResponse {
   data?: OrderCardEnquiry[];
 }
 
-export const orderCardEnquiryResponseSchema: Schema<OrderCardEnquiryResponse> = object(
-  {
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: ['Data', optional(array(lazy(() => orderCardEnquirySchema)))],
-  }
+export const orderCardEnquiryResponseSchema: Schema<OrderCardEnquiryResponse> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(orderCardEnquirySchema))],
+    })
 );

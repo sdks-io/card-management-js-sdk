@@ -35,19 +35,18 @@ export interface CreateCardGroupResponse {
   errorCards?: CreateCardGroupResponseErrorCardsItems[];
 }
 
-export const createCardGroupResponseSchema: Schema<CreateCardGroupResponse> = object(
-  {
-    mainReference: ['MainReference', optional(number())],
-    newCardGroupReference: ['NewCardGroupReference', optional(number())],
-    successfulRequests: [
-      'SuccessfulRequests',
-      optional(
-        array(lazy(() => createCardGroupResponseSuccessfulRequestsItemsSchema))
-      ),
-    ],
-    errorCards: [
-      'ErrorCards',
-      optional(array(lazy(() => createCardGroupResponseErrorCardsItemsSchema))),
-    ],
-  }
+export const createCardGroupResponseSchema: Schema<CreateCardGroupResponse> = lazy(
+  () =>
+    object({
+      mainReference: ['MainReference', optional(number())],
+      newCardGroupReference: ['NewCardGroupReference', optional(number())],
+      successfulRequests: [
+        'SuccessfulRequests',
+        optional(array(createCardGroupResponseSuccessfulRequestsItemsSchema)),
+      ],
+      errorCards: [
+        'ErrorCards',
+        optional(array(createCardGroupResponseErrorCardsItemsSchema)),
+      ],
+    })
 );

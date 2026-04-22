@@ -15,25 +15,25 @@ export interface UpdateBundleResponse {
   usageRestrictionStatus?: ErrorStatus;
 }
 
-export const updateBundleResponseSchema: Schema<UpdateBundleResponse> = object({
-  requestActionStatus: [
-    'RequestActionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  dayTimeRestrictionStatus: [
-    'DayTimeRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  locationRestrictionStatus: [
-    'LocationRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  productRestrictionStatus: [
-    'ProductRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  usageRestrictionStatus: [
-    'UsageRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-});
+export const updateBundleResponseSchema: Schema<UpdateBundleResponse> = lazy(
+  () =>
+    object({
+      requestActionStatus: ['RequestActionStatus', optional(errorStatusSchema)],
+      dayTimeRestrictionStatus: [
+        'DayTimeRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      locationRestrictionStatus: [
+        'LocationRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      productRestrictionStatus: [
+        'ProductRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      usageRestrictionStatus: [
+        'UsageRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+    })
+);

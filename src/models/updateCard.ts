@@ -113,21 +113,23 @@ export interface UpdateCard {
   payerNumber?: string | null;
 }
 
-export const updateCardSchema: Schema<UpdateCard> = object({
-  caller: ['Caller', optional(nullable(string()))],
-  isReplacementChargeable: ['IsReplacementChargeable', optional(boolean())],
-  notifyCaller: ['NotifyCaller', optional(boolean())],
-  notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
-  orderCardReplacement: ['OrderCardReplacement', optional(boolean())],
-  cardSettings: ['CardSettings', optional(lazy(() => cardSettingsSchema))],
-  accountId: ['AccountId', optional(nullable(number()))],
-  accountNumber: ['AccountNumber', optional(nullable(string()))],
-  cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],
-  cardId: ['CardId', optional(nullable(number()))],
-  colCoCode: ['ColCoCode', optional(nullable(number()))],
-  colCoId: ['ColCoId', optional(nullable(number()))],
-  pAN: ['PAN', optional(nullable(string()))],
-  pANID: ['PANID', optional(nullable(number()))],
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(nullable(string()))],
-});
+export const updateCardSchema: Schema<UpdateCard> = lazy(() =>
+  object({
+    caller: ['Caller', optional(nullable(string()))],
+    isReplacementChargeable: ['IsReplacementChargeable', optional(boolean())],
+    notifyCaller: ['NotifyCaller', optional(boolean())],
+    notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
+    orderCardReplacement: ['OrderCardReplacement', optional(boolean())],
+    cardSettings: ['CardSettings', optional(cardSettingsSchema)],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],
+    cardId: ['CardId', optional(nullable(number()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    pAN: ['PAN', optional(nullable(string()))],
+    pANID: ['PANID', optional(nullable(number()))],
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+  })
+);

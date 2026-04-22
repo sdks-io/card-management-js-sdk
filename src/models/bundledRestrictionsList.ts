@@ -29,23 +29,24 @@ export interface BundledRestrictionsList {
   locationRestrictions?: LocationRestriction;
 }
 
-export const bundledRestrictionsListSchema: Schema<BundledRestrictionsList> = object(
-  {
-    usageRestrictions: [
-      'UsageRestrictions',
-      optional(lazy(() => usageRestrictionsCardSchema)),
-    ],
-    dayTimeRestrictions: [
-      'DayTimeRestrictions',
-      optional(lazy(() => dayTimeRestrictionsSchema)),
-    ],
-    productRestrictions: [
-      'ProductRestrictions',
-      optional(lazy(() => bundledDetailsProductListSchema)),
-    ],
-    locationRestrictions: [
-      'LocationRestrictions',
-      optional(lazy(() => locationRestrictionSchema)),
-    ],
-  }
+export const bundledRestrictionsListSchema: Schema<BundledRestrictionsList> = lazy(
+  () =>
+    object({
+      usageRestrictions: [
+        'UsageRestrictions',
+        optional(usageRestrictionsCardSchema),
+      ],
+      dayTimeRestrictions: [
+        'DayTimeRestrictions',
+        optional(dayTimeRestrictionsSchema),
+      ],
+      productRestrictions: [
+        'ProductRestrictions',
+        optional(bundledDetailsProductListSchema),
+      ],
+      locationRestrictions: [
+        'LocationRestrictions',
+        optional(locationRestrictionSchema),
+      ],
+    })
 );

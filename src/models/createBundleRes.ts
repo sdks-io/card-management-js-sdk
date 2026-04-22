@@ -18,8 +18,10 @@ export interface CreateBundleRes {
   data?: CreateBundleResponse[];
 }
 
-export const createBundleResSchema: Schema<CreateBundleRes> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => createBundleResponseSchema)))],
-});
+export const createBundleResSchema: Schema<CreateBundleRes> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(createBundleResponseSchema))],
+  })
+);

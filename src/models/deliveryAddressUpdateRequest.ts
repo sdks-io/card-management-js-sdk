@@ -53,17 +53,18 @@ export interface DeliveryAddressUpdateRequest {
   deliveryAddressUpdates?: DeliveryAddressUpdate[];
 }
 
-export const deliveryAddressUpdateRequestSchema: Schema<DeliveryAddressUpdateRequest> = object(
-  {
-    colCoId: ['ColCoId', optional(number())],
-    colCoCode: ['ColCoCode', optional(number())],
-    payerId: ['PayerId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    deliveryAddressUpdates: [
-      'DeliveryAddressUpdates',
-      optional(array(lazy(() => deliveryAddressUpdateSchema))),
-    ],
-  }
+export const deliveryAddressUpdateRequestSchema: Schema<DeliveryAddressUpdateRequest> = lazy(
+  () =>
+    object({
+      colCoId: ['ColCoId', optional(number())],
+      colCoCode: ['ColCoCode', optional(number())],
+      payerId: ['PayerId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      deliveryAddressUpdates: [
+        'DeliveryAddressUpdates',
+        optional(array(deliveryAddressUpdateSchema)),
+      ],
+    })
 );

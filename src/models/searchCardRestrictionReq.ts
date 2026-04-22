@@ -5,6 +5,7 @@
  */
 
 import {
+  array,
   boolean,
   lazy,
   nullable,
@@ -56,7 +57,7 @@ export interface SearchCardRestrictionReq {
    * This input is a search criterion, if given.
    */
   bundleId?: string | null;
-  cards?: SearchCardRestriction;
+  cards?: SearchCardRestriction[];
   /**
    * True/False
    * Whether to include location restriction of the cards in the response.
@@ -77,26 +78,27 @@ export interface SearchCardRestrictionReq {
   includeInheritedLimits?: boolean | null;
 }
 
-export const searchCardRestrictionReqSchema: Schema<SearchCardRestrictionReq> = object(
-  {
-    colCoId: ['ColCoId', optional(nullable(number()))],
-    colCoCode: ['ColCoCode', optional(nullable(number()))],
-    payerId: ['PayerId', optional(nullable(number()))],
-    payerNumber: ['PayerNumber', optional(string())],
-    accounts: ['Accounts', optional(lazy(() => accountsSchema))],
-    bundleId: ['BundleId', optional(nullable(string()))],
-    cards: ['Cards', optional(lazy(() => searchCardRestrictionSchema))],
-    includeLocationRestrictions: [
-      'IncludeLocationRestrictions',
-      optional(nullable(boolean())),
-    ],
-    includeBundleDetails: [
-      'IncludeBundleDetails',
-      optional(nullable(boolean())),
-    ],
-    includeInheritedLimits: [
-      'IncludeInheritedLimits',
-      optional(nullable(boolean())),
-    ],
-  }
+export const searchCardRestrictionReqSchema: Schema<SearchCardRestrictionReq> = lazy(
+  () =>
+    object({
+      colCoId: ['ColCoId', optional(nullable(number()))],
+      colCoCode: ['ColCoCode', optional(nullable(number()))],
+      payerId: ['PayerId', optional(nullable(number()))],
+      payerNumber: ['PayerNumber', optional(string())],
+      accounts: ['Accounts', optional(accountsSchema)],
+      bundleId: ['BundleId', optional(nullable(string()))],
+      cards: ['Cards', optional(array(searchCardRestrictionSchema))],
+      includeLocationRestrictions: [
+        'IncludeLocationRestrictions',
+        optional(nullable(boolean())),
+      ],
+      includeBundleDetails: [
+        'IncludeBundleDetails',
+        optional(nullable(boolean())),
+      ],
+      includeInheritedLimits: [
+        'IncludeInheritedLimits',
+        optional(nullable(boolean())),
+      ],
+    })
 );

@@ -59,13 +59,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.searchCardRestriction(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.searchCardRestriction(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -128,13 +143,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.applyRestriction(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.applyRestriction(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -225,13 +255,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.createBundle(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.createBundle(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -299,13 +344,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.updateBundle(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.updateBundle(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -372,16 +432,31 @@ const body: DeleteBundleRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await restrictionController.deleteBundle(
+  const response = await restrictionController.deleteBundle(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -436,16 +511,31 @@ const body: SummaryofbundlerRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await restrictionController.summaryOfBundles(
+  const response = await restrictionController.summaryOfBundles(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -522,13 +612,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.restrictionAccount(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.restrictionAccount(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -597,16 +702,31 @@ const body: SearchAccountLimitRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await restrictionController.searchAccountLimit(
+  const response = await restrictionController.searchAccountLimit(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -695,13 +815,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await restrictionController.bundleDetails(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await restrictionController.bundleDetails(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```

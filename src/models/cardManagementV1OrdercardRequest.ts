@@ -12,8 +12,7 @@ export interface CardManagementV1OrdercardRequest {
   cardDetails?: CardDetail[];
 }
 
-export const cardManagementV1OrdercardRequestSchema: Schema<CardManagementV1OrdercardRequest> = object(
-  {
-    cardDetails: ['CardDetails', optional(array(lazy(() => cardDetailSchema)))],
-  }
+export const cardManagementV1OrdercardRequestSchema: Schema<CardManagementV1OrdercardRequest> = lazy(
+  () =>
+    object({ cardDetails: ['CardDetails', optional(array(cardDetailSchema))] })
 );

@@ -82,6 +82,30 @@ export interface CardDetailsResponse {
    * **PAN attribute will be deprecated so use PANID instead**
    */
   pAN?: string | null;
+  /**
+   * Possible Id’s and description:
+   * * 1  Active
+   * * 7  Blocked Card
+   * * 8  Expired
+   * * 9  Cancelled
+   * * 10  New
+   * * 23  Pending Renewal
+   * * 31  Replaced
+   * * 41  Temporary Block (Customer)
+   * * 42  Temporary Block (Shell)
+   * * 43  Fraud
+   * * 101 Active (Block in progress) *
+   * * 102 Blocked Card (Unblock in progress) *
+   * * 103 Active (Cancel in progress) *
+   * * 104 Active (Marked as damaged) *
+   * * 105 New (Cancel as damaged) *
+   * * 106 Active(Scheduled for block) ”#
+   * * 107 Blocked Card(Scheduled for unblock)*#
+   * * 108 Blocked Card (Cancel in progress) *
+   * > Note:
+   * •  Items marked with * are intermediate statuses  to indicate that there are pending requests in progress. , The response can contain these intermediate statuses only if the IncludeIntermediateStatus flag is true.
+   * •  The placeholder “<Shell Card Platform Status>” in the items marked with # will be replaced with the Shell Card Platform status description. E.g., “Active (Scheduled for block)”
+   */
   statusId?: CardDetailsResponseStatusIdEnum;
   /**
    * Possible Id’s and description:
@@ -112,6 +136,11 @@ export interface CardDetailsResponse {
   odometerPrompt?: boolean;
   /** True if fleet id input is enabled, else false */
   fleetIdPrompt?: boolean;
+  /**
+   * PIN type:
+   *   * `Card` - Card PIN
+   *   * `Fleet` - Fleet PIN
+   */
   pINType?: CardDetailsResponsePINTypeEnum;
   /** True if card has PIN, else false */
   hasPIN?: boolean;
@@ -126,9 +155,145 @@ export interface CardDetailsResponse {
   /** Issue number of the card */
   issueNumber?: number;
   reissueSetting?: unknown;
+  /**
+   * POS language identifier. Language Id:
+   *   * `1` - German
+   *   * `2` - French
+   *   * `3` - Bulgarian
+   *   * `4` - Croatian
+   *   * `5` - Czech
+   *   * `6` - Danish
+   *   * `7` - Finnish
+   *   * `8` - English
+   *   * `9` - Greek
+   *   * `10` - Chinese
+   *   * `11` - Hungarian
+   *   * `12` - Italian
+   *   * `13` - Luxembourgish
+   *   * `14` - Malay
+   *   * `15` - Dutch
+   *   * `16` - Norwegian, Bokmal
+   *   * `17` - Urdu
+   *   * `18` - Polish
+   *   * `19` - Portuguese
+   *   * `20` - Romanian
+   *   * `21` - Russian
+   *   * `22` - Slovak
+   *   * `23` - Slovenian
+   *   * `24` - Spanish
+   *   * `25` - Swedish
+   *   * `26` - Turkish
+   *   * `27` - Thai
+   *   * `28` - Filipino
+   *   * `29` - Estonian
+   *   * `30` - Latvian
+   *   * `31` - Lithuanian
+   */
   internationalPOSLanguageID?: CardDetailsResponseInternationalPOSLanguageIDEnum;
+  /**
+   * POS language code. Language code:
+   *   * `deu` - German
+   *   * `fra` - French
+   *   * `bul` - Bulgarian
+   *   * `hrv` - Croatian
+   *   * `ces` - Czech
+   *   * `dan` - Danish
+   *   * `fin` - Finnish
+   *   * `eng` - English
+   *   * `ell` - Greek
+   *   * `zho` - Chinese
+   *   * `hun` - Hungarian
+   *   * `ita` - Italian
+   *   * `ltz` - Luxembourgish
+   *   * `msa` - Malay
+   *   * `nld` - Dutch
+   *   * `nob` - Norwegian, Bokmal
+   *   * `urd` - Urdu
+   *   * `pol` - Polish
+   *   * `por` - Portuguese
+   *   * `ron` - Romanian
+   *   * `rus` - Russian
+   *   * `slk` - Slovak
+   *   * `slv` - Slovenian
+   *   * `spa` - Spanish
+   *   * `swe` - Swedish
+   *   * `tur` - Turkish
+   *   * `tha` - Thai
+   *   * `fil` - Filipino
+   *   * `est` - Estonian
+   *   * `lav` - Latvian
+   *   * `lit` - Lithuanian
+   */
   internationalPOSLanguageCode?: CardDetailsResponseInternationalPOSLanguageCodeEnum;
+  /**
+   * POS language identifier. Language Id:
+   *   * `1` - German
+   *   * `2` - French
+   *   * `3` - Bulgarian
+   *   * `4` - Croatian
+   *   * `5` - Czech
+   *   * `6` - Danish
+   *   * `7` - Finnish
+   *   * `8` - English
+   *   * `9` - Greek
+   *   * `10` - Chinese
+   *   * `11` - Hungarian
+   *   * `12` - Italian
+   *   * `13` - Luxembourgish
+   *   * `14` - Malay
+   *   * `15` - Dutch
+   *   * `16` - Norwegian, Bokmal
+   *   * `17` - Urdu
+   *   * `18` - Polish
+   *   * `19` - Portuguese
+   *   * `20` - Romanian
+   *   * `21` - Russian
+   *   * `22` - Slovak
+   *   * `23` - Slovenian
+   *   * `24` - Spanish
+   *   * `25` - Swedish
+   *   * `26` - Turkish
+   *   * `27` - Thai
+   *   * `28` - Filipino
+   *   * `29` - Estonian
+   *   * `30` - Latvian
+   *   * `31` - Lithuanian
+   */
   localPOSLanguageID?: CardDetailsResponseInternationalPOSLanguageIDEnum;
+  /**
+   * POS language code. Language code:
+   *   * `deu` - German
+   *   * `fra` - French
+   *   * `bul` - Bulgarian
+   *   * `hrv` - Croatian
+   *   * `ces` - Czech
+   *   * `dan` - Danish
+   *   * `fin` - Finnish
+   *   * `eng` - English
+   *   * `ell` - Greek
+   *   * `zho` - Chinese
+   *   * `hun` - Hungarian
+   *   * `ita` - Italian
+   *   * `ltz` - Luxembourgish
+   *   * `msa` - Malay
+   *   * `nld` - Dutch
+   *   * `nob` - Norwegian, Bokmal
+   *   * `urd` - Urdu
+   *   * `pol` - Polish
+   *   * `por` - Portuguese
+   *   * `ron` - Romanian
+   *   * `rus` - Russian
+   *   * `slk` - Slovak
+   *   * `slv` - Slovenian
+   *   * `spa` - Spanish
+   *   * `swe` - Swedish
+   *   * `tur` - Turkish
+   *   * `tha` - Thai
+   *   * `fil` - Filipino
+   *   * `est` - Estonian
+   *   * `lav` - Latvian
+   *   * `lit` - Lithuanian
+   */
   localPOSLanguageCode?: CardDetailsResponseInternationalPOSLanguageCodeEnum;
   /** ISO code of the card i.e. first 7 digits of the PAN. */
   cardTypeCode?: string | null;
@@ -206,6 +371,11 @@ export interface CardDetailsResponse {
   renewedCardExpiryDate?: string;
   /** Renewed card issue number. */
   renewedCardIssueNumber?: number | null;
+  /**
+   * Reissue setting of the renewed new card. Reissue Setting:
+   *   * `True` - Card will be sent to production
+   *   * `False` - Parent Card is Dormant or the Card is not to be produced
+   */
   renewedCardReissueSetting?: CardDetailsResponseRenewedCardReissueSettingEnum;
   /** Card Creation Date time */
   creationDate?: string | null;
@@ -225,115 +395,119 @@ export interface CardDetailsResponse {
   requestId?: string;
 }
 
-export const cardDetailsResponseSchema: Schema<CardDetailsResponse> = object({
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(nullable(string()))],
-  accountId: ['AccountId', optional(nullable(number()))],
-  accountNumber: ['AccountNumber', optional(nullable(string()))],
-  accountShortName: ['AccountShortName', optional(nullable(string()))],
-  colCoCountryCode: ['ColCoCountryCode', optional(nullable(string()))],
-  localCurrencyCode: ['LocalCurrencyCode', optional(nullable(string()))],
-  localCurrencySymbol: ['LocalCurrencySymbol', optional(nullable(string()))],
-  cardId: ['CardId', optional(number())],
-  pAN: ['PAN', optional(nullable(string()))],
-  statusId: ['StatusId', optional(cardDetailsResponseStatusIdEnumSchema)],
-  status: ['Status', optional(string())],
-  odometerPrompt: ['OdometerPrompt', optional(boolean())],
-  fleetIdPrompt: ['FleetIdPrompt', optional(boolean())],
-  pINType: ['PINType', optional(cardDetailsResponsePINTypeEnumSchema)],
-  hasPIN: ['HasPIN', optional(boolean())],
-  isSelfSelectedPIN: ['IsSelfSelectedPIN', optional(boolean())],
-  temporaryBlockAllowed: ['TemporaryBlockAllowed', optional(boolean())],
-  unblockAllowed: ['UnblockAllowed', optional(boolean())],
-  permanentBlockAllowed: ['PermanentBlockAllowed', optional(boolean())],
-  issueNumber: ['IssueNumber', optional(number())],
-  reissueSetting: ['ReissueSetting', optional(unknown())],
-  internationalPOSLanguageID: [
-    'InternationalPOSLanguageID',
-    optional(cardDetailsResponseInternationalPOSLanguageIDEnumSchema),
-  ],
-  internationalPOSLanguageCode: [
-    'InternationalPOSLanguageCode',
-    optional(cardDetailsResponseInternationalPOSLanguageCodeEnumSchema),
-  ],
-  localPOSLanguageID: [
-    'LocalPOSLanguageID',
-    optional(cardDetailsResponseInternationalPOSLanguageIDEnumSchema),
-  ],
-  localPOSLanguageCode: [
-    'LocalPOSLanguageCode',
-    optional(cardDetailsResponseInternationalPOSLanguageCodeEnumSchema),
-  ],
-  cardTypeCode: ['CardTypeCode', optional(nullable(string()))],
-  cardTypeId: ['CardTypeId', optional(nullable(number()))],
-  cardTypeName: ['CardTypeName', optional(nullable(string()))],
-  tokenTypeId: ['TokenTypeId', optional(nullable(number()))],
-  tokenTypeName: ['TokenTypeName', optional(nullable(string()))],
-  isChipCard: ['IsChipCard', optional(boolean())],
-  isMagStripCard: ['IsMagStripCard', optional(boolean())],
-  isVirtualCard: ['IsVirtualCard', optional(boolean())],
-  purchaseCategoryCode: ['PurchaseCategoryCode', optional(nullable(string()))],
-  purchaseCategoryId: ['PurchaseCategoryId', optional(number())],
-  purchaseCategoryName: ['PurchaseCategoryName', optional(nullable(string()))],
-  isCRT: ['IsCRT', optional(boolean())],
-  isFleet: ['IsFleet', optional(boolean())],
-  isInternational: ['IsInternational', optional(boolean())],
-  isNational: ['IsNational', optional(boolean())],
-  isPartnerSitesIncluded: ['IsPartnerSitesIncluded', optional(boolean())],
-  isShellSitesOnly: ['IsShellSitesOnly', optional(boolean())],
-  fuelSets: [
-    'FuelSets',
-    optional(array(lazy(() => cardDetailsResponseFuelSetsItemsSchema))),
-  ],
-  nonFuelSets: [
-    'NonFuelSets',
-    optional(array(lazy(() => cardDetailsResponseNonFuelSetsItemsSchema))),
-  ],
-  issuedDate: ['IssuedDate', optional(nullable(string()))],
-  expiryDate: ['ExpiryDate', optional(string())],
-  lastUsedDate: ['LastUsedDate', optional(nullable(string()))],
-  misuseDate: ['MisuseDate', optional(nullable(string()))],
-  temperature: ['Temperature', optional(nullable(string()))],
-  driverName: ['DriverName', optional(string())],
-  vRN: ['VRN', optional(string())],
-  embossText: ['EmbossText', optional(string())],
-  cardGroupId: ['CardGroupId', optional(nullable(number()))],
-  cardGroupName: ['CardGroupName', optional(nullable(string()))],
-  renewalDate: ['RenewalDate', optional(nullable(string()))],
-  renewedCardId: ['RenewedCardId', optional(nullable(number()))],
-  renewedCardStatusId: ['RenewedCardStatusId', optional(nullable(number()))],
-  renewedCardStatus: ['RenewedCardStatus', optional(string())],
-  renewedCardExpiryDate: ['RenewedCardExpiryDate', optional(string())],
-  renewedCardIssueNumber: [
-    'RenewedCardIssueNumber',
-    optional(nullable(number())),
-  ],
-  renewedCardReissueSetting: [
-    'RenewedCardReissueSetting',
-    optional(cardDetailsResponseRenewedCardReissueSettingEnumSchema),
-  ],
-  creationDate: ['CreationDate', optional(nullable(string()))],
-  effectiveDate: ['EffectiveDate', optional(nullable(string()))],
-  lastModifiedDate: ['LastModifiedDate', optional(nullable(string()))],
-  bundleId: ['BundleId', optional(nullable(string()))],
-  cardDeliveryAddress: [
-    'CardDeliveryAddress',
-    optional(lazy(() => cardDeliveryAddressSchema)),
-  ],
-  pINDeliveryAddress: [
-    'PINDeliveryAddress',
-    optional(lazy(() => pINDeliveryAddressSchema)),
-  ],
-  cardBlockSchedules: [
-    'CardBlockSchedules',
-    optional(
-      nullable(
-        array(
-          lazy(() => cardDetailsResponseCardBlockSchedulesItemsAllOf0Schema)
-        )
-      )
-    ),
-  ],
-  error: ['Error', optional(lazy(() => errorStatusSchema))],
-  requestId: ['RequestId', optional(string())],
-});
+export const cardDetailsResponseSchema: Schema<CardDetailsResponse> = lazy(() =>
+  object({
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    accountShortName: ['AccountShortName', optional(nullable(string()))],
+    colCoCountryCode: ['ColCoCountryCode', optional(nullable(string()))],
+    localCurrencyCode: ['LocalCurrencyCode', optional(nullable(string()))],
+    localCurrencySymbol: ['LocalCurrencySymbol', optional(nullable(string()))],
+    cardId: ['CardId', optional(number())],
+    pAN: ['PAN', optional(nullable(string()))],
+    statusId: ['StatusId', optional(cardDetailsResponseStatusIdEnumSchema)],
+    status: ['Status', optional(string())],
+    odometerPrompt: ['OdometerPrompt', optional(boolean())],
+    fleetIdPrompt: ['FleetIdPrompt', optional(boolean())],
+    pINType: ['PINType', optional(cardDetailsResponsePINTypeEnumSchema)],
+    hasPIN: ['HasPIN', optional(boolean())],
+    isSelfSelectedPIN: ['IsSelfSelectedPIN', optional(boolean())],
+    temporaryBlockAllowed: ['TemporaryBlockAllowed', optional(boolean())],
+    unblockAllowed: ['UnblockAllowed', optional(boolean())],
+    permanentBlockAllowed: ['PermanentBlockAllowed', optional(boolean())],
+    issueNumber: ['IssueNumber', optional(number())],
+    reissueSetting: ['ReissueSetting', optional(unknown())],
+    internationalPOSLanguageID: [
+      'InternationalPOSLanguageID',
+      optional(cardDetailsResponseInternationalPOSLanguageIDEnumSchema),
+    ],
+    internationalPOSLanguageCode: [
+      'InternationalPOSLanguageCode',
+      optional(cardDetailsResponseInternationalPOSLanguageCodeEnumSchema),
+    ],
+    localPOSLanguageID: [
+      'LocalPOSLanguageID',
+      optional(cardDetailsResponseInternationalPOSLanguageIDEnumSchema),
+    ],
+    localPOSLanguageCode: [
+      'LocalPOSLanguageCode',
+      optional(cardDetailsResponseInternationalPOSLanguageCodeEnumSchema),
+    ],
+    cardTypeCode: ['CardTypeCode', optional(nullable(string()))],
+    cardTypeId: ['CardTypeId', optional(nullable(number()))],
+    cardTypeName: ['CardTypeName', optional(nullable(string()))],
+    tokenTypeId: ['TokenTypeId', optional(nullable(number()))],
+    tokenTypeName: ['TokenTypeName', optional(nullable(string()))],
+    isChipCard: ['IsChipCard', optional(boolean())],
+    isMagStripCard: ['IsMagStripCard', optional(boolean())],
+    isVirtualCard: ['IsVirtualCard', optional(boolean())],
+    purchaseCategoryCode: [
+      'PurchaseCategoryCode',
+      optional(nullable(string())),
+    ],
+    purchaseCategoryId: ['PurchaseCategoryId', optional(number())],
+    purchaseCategoryName: [
+      'PurchaseCategoryName',
+      optional(nullable(string())),
+    ],
+    isCRT: ['IsCRT', optional(boolean())],
+    isFleet: ['IsFleet', optional(boolean())],
+    isInternational: ['IsInternational', optional(boolean())],
+    isNational: ['IsNational', optional(boolean())],
+    isPartnerSitesIncluded: ['IsPartnerSitesIncluded', optional(boolean())],
+    isShellSitesOnly: ['IsShellSitesOnly', optional(boolean())],
+    fuelSets: [
+      'FuelSets',
+      optional(array(cardDetailsResponseFuelSetsItemsSchema)),
+    ],
+    nonFuelSets: [
+      'NonFuelSets',
+      optional(array(cardDetailsResponseNonFuelSetsItemsSchema)),
+    ],
+    issuedDate: ['IssuedDate', optional(nullable(string()))],
+    expiryDate: ['ExpiryDate', optional(string())],
+    lastUsedDate: ['LastUsedDate', optional(nullable(string()))],
+    misuseDate: ['MisuseDate', optional(nullable(string()))],
+    temperature: ['Temperature', optional(nullable(string()))],
+    driverName: ['DriverName', optional(string())],
+    vRN: ['VRN', optional(string())],
+    embossText: ['EmbossText', optional(string())],
+    cardGroupId: ['CardGroupId', optional(nullable(number()))],
+    cardGroupName: ['CardGroupName', optional(nullable(string()))],
+    renewalDate: ['RenewalDate', optional(nullable(string()))],
+    renewedCardId: ['RenewedCardId', optional(nullable(number()))],
+    renewedCardStatusId: ['RenewedCardStatusId', optional(nullable(number()))],
+    renewedCardStatus: ['RenewedCardStatus', optional(string())],
+    renewedCardExpiryDate: ['RenewedCardExpiryDate', optional(string())],
+    renewedCardIssueNumber: [
+      'RenewedCardIssueNumber',
+      optional(nullable(number())),
+    ],
+    renewedCardReissueSetting: [
+      'RenewedCardReissueSetting',
+      optional(cardDetailsResponseRenewedCardReissueSettingEnumSchema),
+    ],
+    creationDate: ['CreationDate', optional(nullable(string()))],
+    effectiveDate: ['EffectiveDate', optional(nullable(string()))],
+    lastModifiedDate: ['LastModifiedDate', optional(nullable(string()))],
+    bundleId: ['BundleId', optional(nullable(string()))],
+    cardDeliveryAddress: [
+      'CardDeliveryAddress',
+      optional(cardDeliveryAddressSchema),
+    ],
+    pINDeliveryAddress: [
+      'PINDeliveryAddress',
+      optional(pINDeliveryAddressSchema),
+    ],
+    cardBlockSchedules: [
+      'CardBlockSchedules',
+      optional(
+        nullable(array(cardDetailsResponseCardBlockSchedulesItemsAllOf0Schema))
+      ),
+    ],
+    error: ['Error', optional(errorStatusSchema)],
+    requestId: ['RequestId', optional(string())],
+  })
+);

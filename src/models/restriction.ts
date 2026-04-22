@@ -29,21 +29,23 @@ export interface Restriction {
   locationRestrictions?: LocationRestriction;
 }
 
-export const restrictionSchema: Schema<Restriction> = object({
-  usageRestrictions: [
-    'UsageRestrictions',
-    optional(lazy(() => usageRestrictionsCardSchema)),
-  ],
-  dayTimeRestrictions: [
-    'DayTimeRestrictions',
-    optional(lazy(() => dayTimeRestrictionsSchema)),
-  ],
-  productRestrictions: [
-    'ProductRestrictions',
-    optional(lazy(() => searchProductRestrictionSchema)),
-  ],
-  locationRestrictions: [
-    'LocationRestrictions',
-    optional(lazy(() => locationRestrictionSchema)),
-  ],
-});
+export const restrictionSchema: Schema<Restriction> = lazy(() =>
+  object({
+    usageRestrictions: [
+      'UsageRestrictions',
+      optional(usageRestrictionsCardSchema),
+    ],
+    dayTimeRestrictions: [
+      'DayTimeRestrictions',
+      optional(dayTimeRestrictionsSchema),
+    ],
+    productRestrictions: [
+      'ProductRestrictions',
+      optional(searchProductRestrictionSchema),
+    ],
+    locationRestrictions: [
+      'LocationRestrictions',
+      optional(locationRestrictionSchema),
+    ],
+  })
+);

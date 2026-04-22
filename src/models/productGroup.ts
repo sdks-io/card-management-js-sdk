@@ -40,11 +40,13 @@ export interface ProductGroup {
   products?: ProductAllOf0[];
 }
 
-export const productGroupSchema: Schema<ProductGroup> = object({
-  referenceId: ['ReferenceId', optional(number())],
-  productGroupId: ['ProductGroupId', optional(string())],
-  name: ['Name', optional(string())],
-  isDefault: ['IsDefault', optional(boolean())],
-  isFuelType: ['IsFuelType', optional(boolean())],
-  products: ['Products', optional(array(lazy(() => productAllOf0Schema)))],
-});
+export const productGroupSchema: Schema<ProductGroup> = lazy(() =>
+  object({
+    referenceId: ['ReferenceId', optional(number())],
+    productGroupId: ['ProductGroupId', optional(string())],
+    name: ['Name', optional(string())],
+    isDefault: ['IsDefault', optional(boolean())],
+    isFuelType: ['IsFuelType', optional(boolean())],
+    products: ['Products', optional(array(productAllOf0Schema))],
+  })
+);

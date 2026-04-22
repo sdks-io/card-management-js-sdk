@@ -16,15 +16,10 @@ export interface SearchProductRestriction {
   productGroups?: ProductGroup[];
 }
 
-export const searchProductRestrictionSchema: Schema<SearchProductRestriction> = object(
-  {
-    products: [
-      'Products',
-      optional(array(lazy(() => restrictionProductSchema))),
-    ],
-    productGroups: [
-      'ProductGroups',
-      optional(array(lazy(() => productGroupSchema))),
-    ],
-  }
+export const searchProductRestrictionSchema: Schema<SearchProductRestriction> = lazy(
+  () =>
+    object({
+      products: ['Products', optional(array(restrictionProductSchema))],
+      productGroups: ['ProductGroups', optional(array(productGroupSchema))],
+    })
 );

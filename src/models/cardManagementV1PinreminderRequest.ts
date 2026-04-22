@@ -56,17 +56,18 @@ export interface CardManagementV1PinreminderRequest {
   pINReminderCardDetails?: PINReminderCardDetails[];
 }
 
-export const cardManagementV1PinreminderRequestSchema: Schema<CardManagementV1PinreminderRequest> = object(
-  {
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    colCoCode: ['ColCoCode', optional(number())],
-    colCoId: ['ColCoId', optional(number())],
-    payerId: ['PayerId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    pINReminderCardDetails: [
-      'PINReminderCardDetails',
-      optional(array(lazy(() => pINReminderCardDetailsSchema))),
-    ],
-  }
+export const cardManagementV1PinreminderRequestSchema: Schema<CardManagementV1PinreminderRequest> = lazy(
+  () =>
+    object({
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      colCoCode: ['ColCoCode', optional(number())],
+      colCoId: ['ColCoId', optional(number())],
+      payerId: ['PayerId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      pINReminderCardDetails: [
+        'PINReminderCardDetails',
+        optional(array(pINReminderCardDetailsSchema)),
+      ],
+    })
 );

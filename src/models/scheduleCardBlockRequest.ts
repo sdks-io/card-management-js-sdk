@@ -21,12 +21,13 @@ export interface ScheduleCardBlockRequest {
   scheduleCardBlockCards?: ScheduleCardBlockCardsItems[];
 }
 
-export const scheduleCardBlockRequestSchema: Schema<ScheduleCardBlockRequest> = object(
-  {
-    isTimeSupported: ['IsTimeSupported', optional(boolean())],
-    scheduleCardBlockCards: [
-      'ScheduleCardBlockCards',
-      optional(array(lazy(() => scheduleCardBlockCardsItemsSchema))),
-    ],
-  }
+export const scheduleCardBlockRequestSchema: Schema<ScheduleCardBlockRequest> = lazy(
+  () =>
+    object({
+      isTimeSupported: ['IsTimeSupported', optional(boolean())],
+      scheduleCardBlockCards: [
+        'ScheduleCardBlockCards',
+        optional(array(scheduleCardBlockCardsItemsSchema)),
+      ],
+    })
 );

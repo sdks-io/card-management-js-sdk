@@ -57,11 +57,12 @@ export interface CardManagementV1UpdatestatusRequest {
   targetStatus: string;
 }
 
-export const cardManagementV1UpdatestatusRequestSchema: Schema<CardManagementV1UpdatestatusRequest> = object(
-  {
-    cards: ['Cards', array(lazy(() => updateCardSchema))],
-    reasonId: ['ReasonId', optional(nullable(number()))],
-    reasonText: ['ReasonText', optional(nullable(string()))],
-    targetStatus: ['TargetStatus', string()],
-  }
+export const cardManagementV1UpdatestatusRequestSchema: Schema<CardManagementV1UpdatestatusRequest> = lazy(
+  () =>
+    object({
+      cards: ['Cards', array(updateCardSchema)],
+      reasonId: ['ReasonId', optional(nullable(number()))],
+      reasonText: ['ReasonText', optional(nullable(string()))],
+      targetStatus: ['TargetStatus', string()],
+    })
 );

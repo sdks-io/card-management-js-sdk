@@ -18,8 +18,10 @@ export interface PurchaseCategoryRes {
   data?: PurchaseCategoryResponse[];
 }
 
-export const purchaseCategoryResSchema: Schema<PurchaseCategoryRes> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => purchaseCategoryResponseSchema)))],
-});
+export const purchaseCategoryResSchema: Schema<PurchaseCategoryRes> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(purchaseCategoryResponseSchema))],
+  })
+);

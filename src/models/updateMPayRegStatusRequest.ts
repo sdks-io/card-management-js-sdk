@@ -53,17 +53,16 @@ export interface UpdateMPayRegStatusRequest {
   mPayRequests?: UpdateMPayRegStatusRequestMPayRequestsItems[];
 }
 
-export const updateMPayRegStatusRequestSchema: Schema<UpdateMPayRegStatusRequest> = object(
-  {
-    colCoId: ['ColCoId', optional(number())],
-    colCoCode: ['ColCoCode', optional(number())],
-    payerId: ['PayerId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    mPayRequests: [
-      'MPayRequests',
-      optional(
-        array(lazy(() => updateMPayRegStatusRequestMPayRequestsItemsSchema))
-      ),
-    ],
-  }
+export const updateMPayRegStatusRequestSchema: Schema<UpdateMPayRegStatusRequest> = lazy(
+  () =>
+    object({
+      colCoId: ['ColCoId', optional(number())],
+      colCoCode: ['ColCoCode', optional(number())],
+      payerId: ['PayerId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      mPayRequests: [
+        'MPayRequests',
+        optional(array(updateMPayRegStatusRequestMPayRequestsItemsSchema)),
+      ],
+    })
 );

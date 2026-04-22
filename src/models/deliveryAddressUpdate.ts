@@ -48,15 +48,16 @@ export interface DeliveryAddressUpdate {
   updateCardRenewalAddress?: UpdateCardRenewalAddress2;
 }
 
-export const deliveryAddressUpdateSchema: Schema<DeliveryAddressUpdate> = object(
-  {
-    cardId: ['CardId', optional(number())],
-    pAN: ['PAN', optional(string())],
-    cardExpiryDate: ['CardExpiryDate', optional(string())],
-    useCustomerDefaultAddress: ['UseCustomerDefaultAddress', boolean()],
-    updateCardRenewalAddress: [
-      'UpdateCardRenewalAddress',
-      optional(lazy(() => updateCardRenewalAddress2Schema)),
-    ],
-  }
+export const deliveryAddressUpdateSchema: Schema<DeliveryAddressUpdate> = lazy(
+  () =>
+    object({
+      cardId: ['CardId', optional(number())],
+      pAN: ['PAN', optional(string())],
+      cardExpiryDate: ['CardExpiryDate', optional(string())],
+      useCustomerDefaultAddress: ['UseCustomerDefaultAddress', boolean()],
+      updateCardRenewalAddress: [
+        'UpdateCardRenewalAddress',
+        optional(updateCardRenewalAddress2Schema),
+      ],
+    })
 );

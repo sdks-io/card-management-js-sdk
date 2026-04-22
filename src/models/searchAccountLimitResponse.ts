@@ -42,16 +42,17 @@ export interface SearchAccountLimitResponse {
   velocityLimits?: AccountVelocityLimit[];
 }
 
-export const searchAccountLimitResponseSchema: Schema<SearchAccountLimitResponse> = object(
-  {
-    requestId: ['RequestId', optional(nullable(string()))],
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    referenceProduct: ['ReferenceProduct', optional(string())],
-    restrictionCondition: ['RestrictionCondition', optional(string())],
-    velocityLimits: [
-      'VelocityLimits',
-      optional(array(lazy(() => accountVelocityLimitSchema))),
-    ],
-  }
+export const searchAccountLimitResponseSchema: Schema<SearchAccountLimitResponse> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(nullable(string()))],
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      referenceProduct: ['ReferenceProduct', optional(string())],
+      restrictionCondition: ['RestrictionCondition', optional(string())],
+      velocityLimits: [
+        'VelocityLimits',
+        optional(array(accountVelocityLimitSchema)),
+      ],
+    })
 );

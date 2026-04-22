@@ -22,7 +22,6 @@ import {
 export interface ResponseDeliveryAddressUpdate {
   /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the requests. */
   requestId: string;
-  /** Indicates overall status of the request */
   status: DeliveryAddressUpdateStatusEnum;
   /** Main reference number for tracking. */
   mainReference?: number;
@@ -30,11 +29,12 @@ export interface ResponseDeliveryAddressUpdate {
   data?: Datum[];
 }
 
-export const responseDeliveryAddressUpdateSchema: Schema<ResponseDeliveryAddressUpdate> = object(
-  {
-    requestId: ['RequestId', string()],
-    status: ['Status', deliveryAddressUpdateStatusEnumSchema],
-    mainReference: ['MainReference', optional(number())],
-    data: ['Data', optional(array(lazy(() => datumSchema)))],
-  }
+export const responseDeliveryAddressUpdateSchema: Schema<ResponseDeliveryAddressUpdate> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', string()],
+      status: ['Status', deliveryAddressUpdateStatusEnumSchema],
+      mainReference: ['MainReference', optional(number())],
+      data: ['Data', optional(array(datumSchema))],
+    })
 );

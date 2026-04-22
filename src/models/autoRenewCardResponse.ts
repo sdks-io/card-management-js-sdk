@@ -32,14 +32,12 @@ export interface AutoRenewCardResponse {
   data?: AutoRenewCardResponseDataItems[];
 }
 
-export const autoRenewCardResponseSchema: Schema<AutoRenewCardResponse> = object(
-  {
-    mainReference: ['MainReference', optional(number())],
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: [
-      'Data',
-      optional(array(lazy(() => autoRenewCardResponseDataItemsSchema))),
-    ],
-  }
+export const autoRenewCardResponseSchema: Schema<AutoRenewCardResponse> = lazy(
+  () =>
+    object({
+      mainReference: ['MainReference', optional(number())],
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(autoRenewCardResponseDataItemsSchema))],
+    })
 );

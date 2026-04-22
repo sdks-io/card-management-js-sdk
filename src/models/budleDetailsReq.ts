@@ -14,6 +14,6 @@ export interface BudleDetailsReq {
   filters?: BudleDetailsRequest;
 }
 
-export const budleDetailsReqSchema: Schema<BudleDetailsReq> = object({
-  filters: ['Filters', optional(lazy(() => budleDetailsRequestSchema))],
-});
+export const budleDetailsReqSchema: Schema<BudleDetailsReq> = lazy(() =>
+  object({ filters: ['Filters', optional(budleDetailsRequestSchema)] })
+);

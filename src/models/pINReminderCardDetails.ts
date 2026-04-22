@@ -63,14 +63,15 @@ export interface PINReminderCardDetails {
   pINDeliverTo?: PINDeliverTo;
 }
 
-export const pINReminderCardDetailsSchema: Schema<PINReminderCardDetails> = object(
-  {
-    cardId: ['CardId', optional(number())],
-    pANID: ['PANID', optional(number())],
-    pAN: ['PAN', optional(string())],
-    cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],
-    pINAdviceType: ['PINAdviceType', number()],
-    pINContactType: ['PINContactType', optional(number())],
-    pINDeliverTo: ['PINDeliverTo', optional(lazy(() => pINDeliverToSchema))],
-  }
+export const pINReminderCardDetailsSchema: Schema<PINReminderCardDetails> = lazy(
+  () =>
+    object({
+      cardId: ['CardId', optional(number())],
+      pANID: ['PANID', optional(number())],
+      pAN: ['PAN', optional(string())],
+      cardExpiryDate: ['CardExpiryDate', optional(nullable(string()))],
+      pINAdviceType: ['PINAdviceType', number()],
+      pINContactType: ['PINContactType', optional(number())],
+      pINDeliverTo: ['PINDeliverTo', optional(pINDeliverToSchema)],
+    })
 );

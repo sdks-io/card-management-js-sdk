@@ -28,11 +28,12 @@ export interface SearchCardRestrictionRes {
   error?: ErrorStatus;
 }
 
-export const searchCardRestrictionResSchema: Schema<SearchCardRestrictionRes> = object(
-  {
-    requestId: ['RequestId', optional(nullable(string()))],
-    cards: ['cards', optional(array(lazy(() => restrictionCardListSchema)))],
-    restrictions: ['Restrictions', optional(lazy(() => restrictionSchema))],
-    error: ['Error', optional(lazy(() => errorStatusSchema))],
-  }
+export const searchCardRestrictionResSchema: Schema<SearchCardRestrictionRes> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(nullable(string()))],
+      cards: ['cards', optional(array(restrictionCardListSchema))],
+      restrictions: ['Restrictions', optional(restrictionSchema)],
+      error: ['Error', optional(errorStatusSchema)],
+    })
 );

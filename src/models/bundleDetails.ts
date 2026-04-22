@@ -18,8 +18,10 @@ export interface BundleDetails {
   data?: BundleDetailsResponse[];
 }
 
-export const bundleDetailsSchema: Schema<BundleDetails> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => bundleDetailsResponseSchema)))],
-});
+export const bundleDetailsSchema: Schema<BundleDetails> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(bundleDetailsResponseSchema))],
+  })
+);

@@ -28,9 +28,11 @@ export interface CardMoveRes {
   data?: SubmittedMoveCard[];
 }
 
-export const cardMoveResSchema: Schema<CardMoveRes> = object({
-  requestId: ['RequestId', optional(string())],
-  mainReference: ['MainReference', optional(number())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => submittedMoveCardSchema)))],
-});
+export const cardMoveResSchema: Schema<CardMoveRes> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    mainReference: ['MainReference', optional(number())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(submittedMoveCardSchema))],
+  })
+);

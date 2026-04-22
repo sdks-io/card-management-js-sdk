@@ -11,6 +11,6 @@ export interface OrderCardEnquiryRequest {
   filters?: Filters2;
 }
 
-export const orderCardEnquiryRequestSchema: Schema<OrderCardEnquiryRequest> = object(
-  { filters: ['Filters', optional(lazy(() => filters2Schema))] }
+export const orderCardEnquiryRequestSchema: Schema<OrderCardEnquiryRequest> = lazy(
+  () => object({ filters: ['Filters', optional(filters2Schema)] })
 );

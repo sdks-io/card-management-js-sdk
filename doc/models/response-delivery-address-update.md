@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the requests. |
-| `status` | [`DeliveryAddressUpdateStatusEnum`](../../doc/models/delivery-address-update-status-enum.md) | Required | Indicates overall status of the request |
+| `status` | [`DeliveryAddressUpdateStatusEnum`](../../doc/models/delivery-address-update-status-enum.md) | Required | - |
 | `mainReference` | `number \| undefined` | Optional | Main reference number for tracking. |
 | `data` | [`Datum[] \| undefined`](../../doc/models/datum.md) | Optional | List of Delivery address update entity. The fields of this entity are described below. |
 

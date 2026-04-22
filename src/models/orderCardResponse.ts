@@ -28,9 +28,11 @@ export interface OrderCardResponse {
   mainReference?: number;
 }
 
-export const orderCardResponseSchema: Schema<OrderCardResponse> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => createCardResponseSchema)))],
-  mainReference: ['MainReference', optional(number())],
-});
+export const orderCardResponseSchema: Schema<OrderCardResponse> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(createCardResponseSchema))],
+    mainReference: ['MainReference', optional(number())],
+  })
+);

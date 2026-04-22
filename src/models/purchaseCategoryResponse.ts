@@ -14,11 +14,12 @@ export interface PurchaseCategoryResponse {
   purchaseCategories?: PurchaseCategory1AllOf0[];
 }
 
-export const purchaseCategoryResponseSchema: Schema<PurchaseCategoryResponse> = object(
-  {
-    purchaseCategories: [
-      'PurchaseCategories',
-      optional(array(lazy(() => purchaseCategory1AllOf0Schema))),
-    ],
-  }
+export const purchaseCategoryResponseSchema: Schema<PurchaseCategoryResponse> = lazy(
+  () =>
+    object({
+      purchaseCategories: [
+        'PurchaseCategories',
+        optional(array(purchaseCategory1AllOf0Schema)),
+      ],
+    })
 );

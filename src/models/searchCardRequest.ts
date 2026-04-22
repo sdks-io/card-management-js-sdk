@@ -19,8 +19,10 @@ export interface SearchCardRequest {
   page?: string;
 }
 
-export const searchCardRequestSchema: Schema<SearchCardRequest> = object({
-  filters: ['Filters', optional(lazy(() => filtersSchema))],
-  pageSize: ['PageSize', optional(string())],
-  page: ['Page', optional(string())],
-});
+export const searchCardRequestSchema: Schema<SearchCardRequest> = lazy(() =>
+  object({
+    filters: ['Filters', optional(filtersSchema)],
+    pageSize: ['PageSize', optional(string())],
+    page: ['Page', optional(string())],
+  })
+);

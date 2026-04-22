@@ -32,12 +32,14 @@ export interface CardSearchResponse {
   totalRecords?: number;
 }
 
-export const cardSearchResponseSchema: Schema<CardSearchResponse> = object({
-  requestId: ['RequestId', optional(nullable(string()))],
-  status: ['Status', optional(nullable(string()))],
-  data: ['Data', optional(array(lazy(() => cardSchema)))],
-  page: ['Page', optional(number())],
-  pageSize: ['PageSize', optional(number())],
-  totalPages: ['TotalPages', optional(number())],
-  totalRecords: ['TotalRecords', optional(number())],
-});
+export const cardSearchResponseSchema: Schema<CardSearchResponse> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(nullable(string()))],
+    status: ['Status', optional(nullable(string()))],
+    data: ['Data', optional(array(cardSchema))],
+    page: ['Page', optional(number())],
+    pageSize: ['PageSize', optional(number())],
+    totalPages: ['TotalPages', optional(number())],
+    totalRecords: ['TotalRecords', optional(number())],
+  })
+);

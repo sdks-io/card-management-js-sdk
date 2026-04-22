@@ -14,6 +14,7 @@ export interface SearchCardRestrictionReq1 {
   filters?: SearchCardRestrictionReq;
 }
 
-export const searchCardRestrictionReq1Schema: Schema<SearchCardRestrictionReq1> = object(
-  { filters: ['Filters', optional(lazy(() => searchCardRestrictionReqSchema))] }
+export const searchCardRestrictionReq1Schema: Schema<SearchCardRestrictionReq1> = lazy(
+  () =>
+    object({ filters: ['Filters', optional(searchCardRestrictionReqSchema)] })
 );

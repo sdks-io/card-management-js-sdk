@@ -48,13 +48,16 @@ export interface AutoRenewCardRequest {
   autoRenewCards?: AutoRenewCardRequestAutoRenewCardsItems[];
 }
 
-export const autoRenewCardRequestSchema: Schema<AutoRenewCardRequest> = object({
-  colCoId: ['ColCoId', optional(number())],
-  colCoCode: ['ColCoCode', optional(number())],
-  payerNumber: ['PayerNumber', optional(string())],
-  payerId: ['PayerId', optional(number())],
-  autoRenewCards: [
-    'AutoRenewCards',
-    optional(array(lazy(() => autoRenewCardRequestAutoRenewCardsItemsSchema))),
-  ],
-});
+export const autoRenewCardRequestSchema: Schema<AutoRenewCardRequest> = lazy(
+  () =>
+    object({
+      colCoId: ['ColCoId', optional(number())],
+      colCoCode: ['ColCoCode', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      payerId: ['PayerId', optional(number())],
+      autoRenewCards: [
+        'AutoRenewCards',
+        optional(array(autoRenewCardRequestAutoRenewCardsItemsSchema)),
+      ],
+    })
+);

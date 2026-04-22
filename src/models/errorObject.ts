@@ -15,8 +15,10 @@ export interface ErrorObject {
   errors?: ErrorDetails[];
 }
 
-export const errorObjectSchema: Schema<ErrorObject> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  errors: ['Errors', optional(array(lazy(() => errorDetailsSchema)))],
-});
+export const errorObjectSchema: Schema<ErrorObject> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    errors: ['Errors', optional(array(errorDetailsSchema))],
+  })
+);

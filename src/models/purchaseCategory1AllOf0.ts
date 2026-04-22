@@ -57,14 +57,15 @@ export interface PurchaseCategory1AllOf0 {
   description?: string;
 }
 
-export const purchaseCategory1AllOf0Schema: Schema<PurchaseCategory1AllOf0> = object(
-  {
-    id: ['Id', nullable(number())],
-    code: ['Code', nullable(string())],
-    name: ['Name', nullable(string())],
-    isVisible: ['IsVisible', boolean()],
-    productGroups: ['ProductGroups', array(lazy(() => productGroupSchema))],
-    title: ['Title', optional(string())],
-    description: ['Description', optional(string())],
-  }
+export const purchaseCategory1AllOf0Schema: Schema<PurchaseCategory1AllOf0> = lazy(
+  () =>
+    object({
+      id: ['Id', nullable(number())],
+      code: ['Code', nullable(string())],
+      name: ['Name', nullable(string())],
+      isVisible: ['IsVisible', boolean()],
+      productGroups: ['ProductGroups', array(productGroupSchema)],
+      title: ['Title', optional(string())],
+      description: ['Description', optional(string())],
+    })
 );

@@ -28,42 +28,42 @@ export interface CreateBundleResponse {
   cards?: BundleCardRestrictionStatus[];
 }
 
-export const createBundleResponseSchema: Schema<CreateBundleResponse> = object({
-  bundleCreationStatus: [
-    'BundleCreationStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  bundleId: ['BundleId', optional(string())],
-  dayTimeRestrictionStatus: [
-    'DayTimeRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  dayTimeRestrictionProfileId: [
-    'DayTimeRestrictionProfileId',
-    optional(string()),
-  ],
-  locationRestrictionStatus: [
-    'LocationRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  locationRestrictionProfileId: [
-    'LocationRestrictionProfileId',
-    optional(string()),
-  ],
-  usageRestrictionStatus: [
-    'UsageRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  productRestrictionStatus: [
-    'ProductRestrictionStatus',
-    optional(lazy(() => errorStatusSchema)),
-  ],
-  productRestrictionProfileId: [
-    'ProductRestrictionProfileId',
-    optional(string()),
-  ],
-  cards: [
-    'Cards',
-    optional(array(lazy(() => bundleCardRestrictionStatusSchema))),
-  ],
-});
+export const createBundleResponseSchema: Schema<CreateBundleResponse> = lazy(
+  () =>
+    object({
+      bundleCreationStatus: [
+        'BundleCreationStatus',
+        optional(errorStatusSchema),
+      ],
+      bundleId: ['BundleId', optional(string())],
+      dayTimeRestrictionStatus: [
+        'DayTimeRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      dayTimeRestrictionProfileId: [
+        'DayTimeRestrictionProfileId',
+        optional(string()),
+      ],
+      locationRestrictionStatus: [
+        'LocationRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      locationRestrictionProfileId: [
+        'LocationRestrictionProfileId',
+        optional(string()),
+      ],
+      usageRestrictionStatus: [
+        'UsageRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      productRestrictionStatus: [
+        'ProductRestrictionStatus',
+        optional(errorStatusSchema),
+      ],
+      productRestrictionProfileId: [
+        'ProductRestrictionProfileId',
+        optional(string()),
+      ],
+      cards: ['Cards', optional(array(bundleCardRestrictionStatusSchema))],
+    })
+);

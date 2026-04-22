@@ -18,13 +18,11 @@ export interface AccountRestrictionRes {
   data?: AccountRestrictionResponse[];
 }
 
-export const accountRestrictionResSchema: Schema<AccountRestrictionRes> = object(
-  {
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: [
-      'Data',
-      optional(array(lazy(() => accountRestrictionResponseSchema))),
-    ],
-  }
+export const accountRestrictionResSchema: Schema<AccountRestrictionRes> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(accountRestrictionResponseSchema))],
+    })
 );

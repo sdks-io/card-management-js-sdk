@@ -33,16 +33,18 @@ export interface UpdateCardGroupResponse {
   moveCardReferences?: UpdateCardGroupResponseMoveCardReferencesItems[];
 }
 
-export const updateCardGroupResponseSchema: Schema<UpdateCardGroupResponse> = object(
-  {
-    mainReference: ['MainReference', optional(number())],
-    updateCardGroupReference: ['UpdateCardGroupReference', optional(number())],
-    newCardGroupReference: ['NewCardGroupReference', optional(number())],
-    moveCardReferences: [
-      'MoveCardReferences',
-      optional(
-        array(lazy(() => updateCardGroupResponseMoveCardReferencesItemsSchema))
-      ),
-    ],
-  }
+export const updateCardGroupResponseSchema: Schema<UpdateCardGroupResponse> = lazy(
+  () =>
+    object({
+      mainReference: ['MainReference', optional(number())],
+      updateCardGroupReference: [
+        'UpdateCardGroupReference',
+        optional(number()),
+      ],
+      newCardGroupReference: ['NewCardGroupReference', optional(number())],
+      moveCardReferences: [
+        'MoveCardReferences',
+        optional(array(updateCardGroupResponseMoveCardReferencesItemsSchema)),
+      ],
+    })
 );

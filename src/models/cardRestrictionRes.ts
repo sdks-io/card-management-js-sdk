@@ -20,9 +20,11 @@ export interface CardRestrictionRes {
   errors?: ErrorObject;
 }
 
-export const cardRestrictionResSchema: Schema<CardRestrictionRes> = object({
-  requestId: ['RequestId', optional(string())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => restrictioncardsResSchema)))],
-  errors: ['Errors', optional(lazy(() => errorObjectSchema))],
-});
+export const cardRestrictionResSchema: Schema<CardRestrictionRes> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(restrictioncardsResSchema))],
+    errors: ['Errors', optional(errorObjectSchema)],
+  })
+);

@@ -29,11 +29,16 @@ export interface CancelCardResponse {
   errors?: ErrorDetails[];
 }
 
-export const cancelCardResponseSchema: Schema<CancelCardResponse> = object({
-  requestId: ['RequestId', optional(string())],
-  mainReference: ['MainReference', optional(number())],
-  orderReplacementReference: ['OrderReplacementReference', optional(number())],
-  status: ['Status', optional(string())],
-  data: ['Data', optional(array(lazy(() => submittedCardSchema)))],
-  errors: ['Errors', optional(array(lazy(() => errorDetailsSchema)))],
-});
+export const cancelCardResponseSchema: Schema<CancelCardResponse> = lazy(() =>
+  object({
+    requestId: ['RequestId', optional(string())],
+    mainReference: ['MainReference', optional(number())],
+    orderReplacementReference: [
+      'OrderReplacementReference',
+      optional(number()),
+    ],
+    status: ['Status', optional(string())],
+    data: ['Data', optional(array(submittedCardSchema))],
+    errors: ['Errors', optional(array(errorDetailsSchema))],
+  })
+);

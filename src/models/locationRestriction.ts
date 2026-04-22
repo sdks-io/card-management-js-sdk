@@ -29,21 +29,23 @@ export interface LocationRestriction {
   partnerSiteRestrictions?: PartnerSiteRestriction[];
 }
 
-export const locationRestrictionSchema: Schema<LocationRestriction> = object({
-  countryRestrictions: [
-    'CountryRestrictions',
-    optional(lazy(() => countryRestrictionSchema)),
-  ],
-  networkRestrictions: [
-    'NetworkRestrictions',
-    optional(array(lazy(() => networkRestrictionSchema))),
-  ],
-  shellSiteRestrictions: [
-    'ShellSiteRestrictions',
-    optional(array(lazy(() => shellSiteRestrictionSchema))),
-  ],
-  partnerSiteRestrictions: [
-    'PartnerSiteRestrictions',
-    optional(array(lazy(() => partnerSiteRestrictionSchema))),
-  ],
-});
+export const locationRestrictionSchema: Schema<LocationRestriction> = lazy(() =>
+  object({
+    countryRestrictions: [
+      'CountryRestrictions',
+      optional(countryRestrictionSchema),
+    ],
+    networkRestrictions: [
+      'NetworkRestrictions',
+      optional(array(networkRestrictionSchema)),
+    ],
+    shellSiteRestrictions: [
+      'ShellSiteRestrictions',
+      optional(array(shellSiteRestrictionSchema)),
+    ],
+    partnerSiteRestrictions: [
+      'PartnerSiteRestrictions',
+      optional(array(partnerSiteRestrictionSchema)),
+    ],
+  })
+);

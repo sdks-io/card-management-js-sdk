@@ -49,10 +49,11 @@ export interface CardManagementV1CancelRequest {
   reasonText?: string | null;
 }
 
-export const cardManagementV1CancelRequestSchema: Schema<CardManagementV1CancelRequest> = object(
-  {
-    cards: ['Cards', array(lazy(() => updateCardSchema))],
-    reasonId: ['ReasonId', optional(nullable(number()))],
-    reasonText: ['ReasonText', optional(nullable(string()))],
-  }
+export const cardManagementV1CancelRequestSchema: Schema<CardManagementV1CancelRequest> = lazy(
+  () =>
+    object({
+      cards: ['Cards', array(updateCardSchema)],
+      reasonId: ['ReasonId', optional(nullable(number()))],
+      reasonText: ['ReasonText', optional(nullable(string()))],
+    })
 );

@@ -292,59 +292,71 @@ export interface CardDetail {
    * Optional
    */
   clientReferenceId?: string | null;
+  /**
+   * Whether to reissue card automatically when nearing the expiry.
+   * Allowed values: -
+   * 1.    As per card type setting (Default).
+   * 2.    Card will be Reissued when nearing its expiry date.
+   * 3.    Card will not be Reissued.
+   */
   autoRenew?: CardDetailAutoRenewEnum;
 }
 
-export const cardDetailSchema: Schema<CardDetail> = object({
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(nullable(string()))],
-  accountId: ['AccountId', optional(nullable(number()))],
-  accountNumber: ['AccountNumber', optional(nullable(string()))],
-  colCoCode: ['ColCoCode', optional(nullable(number()))],
-  colCoId: ['ColCoId', optional(nullable(number()))],
-  cardTypeId: ['CardTypeId', optional(nullable(number()))],
-  tokenTypeId: ['TokenTypeId', optional(nullable(number()))],
-  embossText: ['EmbossText', optional(nullable(string()))],
-  vRN: ['VRN', optional(nullable(string()))],
-  driverName: ['DriverName', optional(nullable(string()))],
-  odometerInputRequired: ['OdometerInputRequired', optional(boolean())],
-  fleetIdInputRequired: ['FleetIdInputRequired', optional(boolean())],
-  purchaseCategoryId: ['PurchaseCategoryId', optional(nullable(number()))],
-  selfSelectedEncryptedPIN: ['SelfSelectedEncryptedPIN', optional(string())],
-  selfSelectedPINKeyID: ['SelfSelectedPINKeyID', optional(nullable(string()))],
-  selfSelectedPINSessionKey: [
-    'SelfSelectedPINSessionKey',
-    optional(nullable(string())),
-  ],
-  cardGroupId: ['CardGroupId', optional(nullable(number()))],
-  cardGroupName: ['CardGroupName', optional(nullable(string()))],
-  isNewCardGroup: ['IsNewCardGroup', optional(boolean())],
-  embossCardGroup: ['EmbossCardGroup', optional(boolean())],
-  cardDeliveryType: ['CardDeliveryType', nullable(number())],
-  cardContact: ['CardContact', optional(lazy(() => cardContactSchema))],
-  pINDeliveryAddressType: [
-    'PINDeliveryAddressType',
-    optional(nullable(number())),
-  ],
-  pINAdviceType: ['PINAdviceType', nullable(number())],
-  pINContact: ['PINContact', optional(lazy(() => pINContactSchema))],
-  notifyCaller: ['NotifyCaller', optional(boolean())],
-  caller: ['Caller', optional(nullable(string()))],
-  notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
-  validateFleetId: ['ValidateFleetId', optional(boolean())],
-  fleetOption: ['FleetOption', optional(nullable(string()))],
-  bundleId: ['BundleId', optional(nullable(string()))],
-  usageRestrictionAction: [
-    'UsageRestrictionAction',
-    optional(nullable(string())),
-  ],
-  productRestrictionAction: [
-    'ProductRestrictionAction',
-    optional(nullable(string())),
-  ],
-  products: ['Products', optional(array(string()))],
-  productGroups: ['ProductGroups', optional(array(string()))],
-  expiryDate: ['ExpiryDate', optional(nullable(string()))],
-  clientReferenceId: ['ClientReferenceId', optional(nullable(string()))],
-  autoRenew: ['AutoRenew', optional(cardDetailAutoRenewEnumSchema)],
-});
+export const cardDetailSchema: Schema<CardDetail> = lazy(() =>
+  object({
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    cardTypeId: ['CardTypeId', optional(nullable(number()))],
+    tokenTypeId: ['TokenTypeId', optional(nullable(number()))],
+    embossText: ['EmbossText', optional(nullable(string()))],
+    vRN: ['VRN', optional(nullable(string()))],
+    driverName: ['DriverName', optional(nullable(string()))],
+    odometerInputRequired: ['OdometerInputRequired', optional(boolean())],
+    fleetIdInputRequired: ['FleetIdInputRequired', optional(boolean())],
+    purchaseCategoryId: ['PurchaseCategoryId', optional(nullable(number()))],
+    selfSelectedEncryptedPIN: ['SelfSelectedEncryptedPIN', optional(string())],
+    selfSelectedPINKeyID: [
+      'SelfSelectedPINKeyID',
+      optional(nullable(string())),
+    ],
+    selfSelectedPINSessionKey: [
+      'SelfSelectedPINSessionKey',
+      optional(nullable(string())),
+    ],
+    cardGroupId: ['CardGroupId', optional(nullable(number()))],
+    cardGroupName: ['CardGroupName', optional(nullable(string()))],
+    isNewCardGroup: ['IsNewCardGroup', optional(boolean())],
+    embossCardGroup: ['EmbossCardGroup', optional(boolean())],
+    cardDeliveryType: ['CardDeliveryType', nullable(number())],
+    cardContact: ['CardContact', optional(cardContactSchema)],
+    pINDeliveryAddressType: [
+      'PINDeliveryAddressType',
+      optional(nullable(number())),
+    ],
+    pINAdviceType: ['PINAdviceType', nullable(number())],
+    pINContact: ['PINContact', optional(pINContactSchema)],
+    notifyCaller: ['NotifyCaller', optional(boolean())],
+    caller: ['Caller', optional(nullable(string()))],
+    notifyCallerOnSync: ['NotifyCallerOnSync', optional(boolean())],
+    validateFleetId: ['ValidateFleetId', optional(boolean())],
+    fleetOption: ['FleetOption', optional(nullable(string()))],
+    bundleId: ['BundleId', optional(nullable(string()))],
+    usageRestrictionAction: [
+      'UsageRestrictionAction',
+      optional(nullable(string())),
+    ],
+    productRestrictionAction: [
+      'ProductRestrictionAction',
+      optional(nullable(string())),
+    ],
+    products: ['Products', optional(array(string()))],
+    productGroups: ['ProductGroups', optional(array(string()))],
+    expiryDate: ['ExpiryDate', optional(nullable(string()))],
+    clientReferenceId: ['ClientReferenceId', optional(nullable(string()))],
+    autoRenew: ['AutoRenew', optional(cardDetailAutoRenewEnumSchema)],
+  })
+);

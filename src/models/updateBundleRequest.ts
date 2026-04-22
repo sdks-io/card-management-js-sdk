@@ -92,19 +92,18 @@ export interface UpdateBundleRequest {
   restrictions?: BundleRestrictionUpdate;
 }
 
-export const updateBundleRequestSchema: Schema<UpdateBundleRequest> = object({
-  colCoId: ['ColCoId', optional(nullable(number()))],
-  colCoCode: ['ColCoCode', optional(nullable(number()))],
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(nullable(string()))],
-  accountId: ['AccountId', optional(nullable(number()))],
-  accountNumber: ['AccountNumber', optional(nullable(string()))],
-  bundleId: ['BundleId', nullable(string())],
-  requestAction: ['RequestAction', nullable(string())],
-  cards: ['Cards', array(string())],
-  usageRestrictionAction: ['UsageRestrictionAction', nullable(string())],
-  restrictions: [
-    'Restrictions',
-    optional(lazy(() => bundleRestrictionUpdateSchema)),
-  ],
-});
+export const updateBundleRequestSchema: Schema<UpdateBundleRequest> = lazy(() =>
+  object({
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+    accountId: ['AccountId', optional(nullable(number()))],
+    accountNumber: ['AccountNumber', optional(nullable(string()))],
+    bundleId: ['BundleId', nullable(string())],
+    requestAction: ['RequestAction', nullable(string())],
+    cards: ['Cards', array(string())],
+    usageRestrictionAction: ['UsageRestrictionAction', nullable(string())],
+    restrictions: ['Restrictions', optional(bundleRestrictionUpdateSchema)],
+  })
+);

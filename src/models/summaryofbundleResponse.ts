@@ -29,13 +29,14 @@ export interface SummaryofbundleResponse {
   cardBundles?: CardBundle;
 }
 
-export const summaryofbundleResponseSchema: Schema<SummaryofbundleResponse> = object(
-  {
-    payerId: ['PayerId', optional(number())],
-    payerNumber: ['PayerNumber', optional(string())],
-    accountId: ['AccountId', optional(number())],
-    accountNumber: ['AccountNumber', optional(string())],
-    countOfCardsNotInBundle: ['CountOfCardsNotInBundle', optional(number())],
-    cardBundles: ['CardBundles', optional(lazy(() => cardBundleSchema))],
-  }
+export const summaryofbundleResponseSchema: Schema<SummaryofbundleResponse> = lazy(
+  () =>
+    object({
+      payerId: ['PayerId', optional(number())],
+      payerNumber: ['PayerNumber', optional(string())],
+      accountId: ['AccountId', optional(number())],
+      accountNumber: ['AccountNumber', optional(string())],
+      countOfCardsNotInBundle: ['CountOfCardsNotInBundle', optional(number())],
+      cardBundles: ['CardBundles', optional(cardBundleSchema)],
+    })
 );

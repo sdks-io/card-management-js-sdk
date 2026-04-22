@@ -50,10 +50,12 @@ export interface CardRestrictionReq {
   cards?: RestrictionCardsList;
 }
 
-export const cardRestrictionReqSchema: Schema<CardRestrictionReq> = object({
-  colCoId: ['ColCoId', optional(nullable(number()))],
-  colCoCode: ['ColCoCode', optional(nullable(number()))],
-  payerId: ['PayerId', optional(nullable(number()))],
-  payerNumber: ['PayerNumber', optional(nullable(string()))],
-  cards: ['Cards', optional(lazy(() => restrictionCardsListSchema))],
-});
+export const cardRestrictionReqSchema: Schema<CardRestrictionReq> = lazy(() =>
+  object({
+    colCoId: ['ColCoId', optional(nullable(number()))],
+    colCoCode: ['ColCoCode', optional(nullable(number()))],
+    payerId: ['PayerId', optional(nullable(number()))],
+    payerNumber: ['PayerNumber', optional(nullable(string()))],
+    cards: ['Cards', optional(restrictionCardsListSchema)],
+  })
+);

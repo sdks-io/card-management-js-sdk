@@ -26,7 +26,7 @@ const cardController = new CardController(client);
 * [Auto Renew](../../doc/controllers/card.md#auto-renew)
 * [Update Mobile Payment Registration Status](../../doc/controllers/card.md#update-mobile-payment-registration-status)
 * [Get Key](../../doc/controllers/card.md#get-key)
-* [Deliveryaddressupdate V2](../../doc/controllers/card.md#deliveryaddressupdate-v2)
+* [Delivery Address Update V2](../../doc/controllers/card.md#delivery-address-update-v2)
 
 
 # Search Card
@@ -164,16 +164,31 @@ const body: SearchCardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.searchCard(
+  const response = await cardController.searchCard(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -367,16 +382,31 @@ const body: CardSummaryRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardSummary(
+  const response = await cardController.cardSummary(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -561,16 +591,28 @@ const body: CardManagementV1OrdercardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.orderCard(
+  const response = await cardController.orderCard(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -663,16 +705,28 @@ const body: OrderCardEnquiryRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.orderCardEnquiry(
+  const response = await cardController.orderCardEnquiry(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -859,16 +913,31 @@ const body: CardManagementV1CancelRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardCancel(
+  const response = await cardController.cardCancel(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1048,16 +1117,28 @@ const body: CardManagementV1UpdatestatusRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardUpdateStatus(
+  const response = await cardController.cardUpdateStatus(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -1136,13 +1217,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await cardController.purchaseCategory(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await cardController.purchaseCategory(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1201,16 +1297,31 @@ const body: CardDetailsReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardDetails(
+  const response = await cardController.cardDetails(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1430,16 +1541,31 @@ const body: CardMoveRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardMove(
+  const response = await cardController.cardMove(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1554,16 +1680,31 @@ const body: CardManagementV1PinreminderRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.cardPinReminder(
+  const response = await cardController.cardPinReminder(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1680,16 +1821,28 @@ const body: ScheduleCardBlockRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.scheduleCardBlock(
+  const response = await cardController.scheduleCardBlock(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -1788,16 +1941,28 @@ const body: AutoRenewCardRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.autoRenew(
+  const response = await cardController.autoRenew(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -1880,16 +2045,31 @@ const body: UpdateMPayRegStatusRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.updateMobilePaymentRegistrationStatus(
+  const response = await cardController.updateMobilePaymentRegistrationStatus(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -1944,13 +2124,25 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 const requestId = 'RequestId8';
 
 try {
-  const { result, ...httpResponse } = await cardController.getKey(requestId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await cardController.getKey(requestId);
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```
@@ -1975,7 +2167,7 @@ try {
 | 500 | The server encountered an unexpected condition the prevented it from fulfilling the request. | `ApiError` |
 
 
-# Deliveryaddressupdate V2
+# Delivery Address Update V2
 
 This API allows users to update the card’s delivery addresses (card delivery address used for card re-issue and PIN delivery address used when PIN reminder is requested)
 
@@ -1984,7 +2176,7 @@ This API allows users to update the card’s delivery addresses (card delivery a
 * card delivery address update
 
 ```ts
-async deliveryaddressupdateV2(
+async deliveryAddressUpdateV2(
   requestId: string,
   body: DeliveryAddressUpdateRequest,
   requestOptions?: RequestOptions
@@ -2018,16 +2210,31 @@ const body: DeliveryAddressUpdateRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await cardController.deliveryaddressupdateV2(
+  const response = await cardController.deliveryAddressUpdateV2(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```

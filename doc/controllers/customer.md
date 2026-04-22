@@ -12,25 +12,25 @@ const customerController = new CustomerController(client);
 
 ## Methods
 
-* [User-Loggedinuser](../../doc/controllers/customer.md#user-loggedinuser)
-* [Customerpayers](../../doc/controllers/customer.md#customerpayers)
-* [Customerdetail](../../doc/controllers/customer.md#customerdetail)
-* [Post-Card-Accounts](../../doc/controllers/customer.md#post-card-accounts)
-* [Customercardtypev](../../doc/controllers/customer.md#customercardtypev)
-* [Cardgroups](../../doc/controllers/customer.md#cardgroups)
+* [Loggedin User](../../doc/controllers/customer.md#loggedin-user)
+* [Customer Payers](../../doc/controllers/customer.md#customer-payers)
+* [Customer Detail](../../doc/controllers/customer.md#customer-detail)
+* [Post Card Accounts](../../doc/controllers/customer.md#post-card-accounts)
+* [Customer Card Type](../../doc/controllers/customer.md#customer-card-type)
+* [Card Groups](../../doc/controllers/customer.md#card-groups)
 * [Audit Report](../../doc/controllers/customer.md#audit-report)
-* [Customercreatecardgroup](../../doc/controllers/customer.md#customercreatecardgroup)
-* [Customerupdatecardgroup](../../doc/controllers/customer.md#customerupdatecardgroup)
+* [Customer Create Card Group](../../doc/controllers/customer.md#customer-create-card-group)
+* [Customer Update Card Group](../../doc/controllers/customer.md#customer-update-card-group)
 
 
-# User-Loggedinuser
+# Loggedin User
 
 This operation allows querying the user data of the logged in user.
 This operation should be called only after successful authentication of the end user in client application. This operation will return the user access details such as payers and/or accounts.
 This operation will also validate that logged in user has access to the requested operation, on failure it will return HasAPIAccess flag as false in the response.
 
 ```ts
-async userLoggedinuser(
+async loggedinUser(
   requestId: string,
   body: LoggedInUserReq,
   requestOptions?: RequestOptions
@@ -58,16 +58,31 @@ const body: LoggedInUserReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.userLoggedinuser(
+  const response = await customerController.loggedinUser(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -83,7 +98,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Customerpayers
+# Customer Payers
 
 This API allows querying the payer accounts details from the Shell Cards
 Platform. It provides flexible search criteria for searching payer
@@ -98,7 +113,7 @@ data queried from each ColCo when payers passed in the input are from
 multiple ColCos.
 
 ```ts
-async customerpayers(
+async customerPayers(
   requestId: string,
   body: PayerReq,
   requestOptions?: RequestOptions
@@ -128,16 +143,31 @@ const body: PayerReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.customerpayers(
+  const response = await customerController.customerPayers(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -153,12 +183,12 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Customerdetail
+# Customer Detail
 
 This API allows querying the card delivery addresses of a given account from the Shell Cards Platform. Only active delivery addresses will be returned.
 
 ```ts
-async customerdetail(
+async customerDetail(
   requestId: string,
   body: CustomerReq,
   requestOptions?: RequestOptions
@@ -186,16 +216,31 @@ const body: CustomerReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.customerdetail(
+  const response = await customerController.customerDetail(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -211,7 +256,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Post-Card-Accounts
+# Post Card Accounts
 
 This API allows querying the customer account details from the Shell Cards Platform. It provides a flexible search criterion and supports pagination.
 
@@ -246,16 +291,31 @@ const body: AccountReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.postCardAccounts(
+  const response = await customerController.postCardAccounts(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -271,14 +331,14 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Customercardtypev
+# Customer Card Type
 
 This API provides allows querying the active card types that are associated to the given account.
 
 The API returns the card type configurations, purchase categories associated with the card type and the card type restriction limits.
 
 ```ts
-async customercardtypev(
+async customerCardType(
   requestId: string,
   body: CardTypeReq,
   requestOptions?: RequestOptions
@@ -306,16 +366,31 @@ const body: CardTypeReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.customercardtypev(
+  const response = await customerController.customerCardType(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -331,7 +406,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Cardgroups
+# Card Groups
 
 This API allows querying the card group details from the Shell Cards
 Platform. It provides flexible search criteria and supports paging.
@@ -345,7 +420,7 @@ When the account is not passed in the input and card group type is configured as
 configured directly under the payer.
 
 ```ts
-async cardgroups(
+async cardGroups(
   requestId: string,
   body: CardGroupReq,
   requestOptions?: RequestOptions
@@ -375,16 +450,31 @@ const body: CardGroupReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.cardgroups(
+  const response = await customerController.cardGroups(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -453,16 +543,31 @@ const body: AuditReq = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.auditReport(
+  const response = await customerController.auditReport(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -478,7 +583,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Customercreatecardgroup
+# Customer Create Card Group
 
 This API allows creating a new Card Group in the Shell Cards Platform. It will
 also allow moving of cards (up to 500 cards) into the newly created
@@ -497,7 +602,7 @@ passing the below validations
   successfully
 
 ```ts
-async customercreatecardgroup(
+async customerCreateCardGroup(
   requestId: string,
   body: CreateCardGroupRequest,
   requestOptions?: RequestOptions
@@ -532,16 +637,31 @@ const body: CreateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.customercreatecardgroup(
+  const response = await customerController.customerCreateCardGroup(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -557,7 +677,7 @@ try {
 | 500 | The server encountered an unexpected condition that  prevented it from fulfilling the request. | [`ErrorObjectError`](../../doc/models/error-object-error.md) |
 
 
-# Customerupdatecardgroup
+# Customer Update Card Group
 
 This API allows updating or removing a Card Group in the Shell Cards
 Platform.
@@ -568,7 +688,7 @@ The request for updating or removing of the card group, creationg of a new card 
 validations.
 
 ```ts
-async customerupdatecardgroup(
+async customerUpdateCardGroup(
   requestId: string,
   body: UpdateCardGroupRequest,
   requestOptions?: RequestOptions
@@ -612,16 +732,31 @@ const body: UpdateCardGroupRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await customerController.customerupdatecardgroup(
+  const response = await customerController.customerUpdateCardGroup(
     requestId,
     body
   );
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof ErrorObjectError) {
+      console.log(error.result);
+    }
   }
 }
 ```

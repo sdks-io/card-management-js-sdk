@@ -18,10 +18,11 @@ export interface SearchCardRestrictionRes1 {
   data?: SearchCardRestrictionRes[];
 }
 
-export const searchCardRestrictionRes1Schema: Schema<SearchCardRestrictionRes1> = object(
-  {
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: ['Data', optional(array(lazy(() => searchCardRestrictionResSchema)))],
-  }
+export const searchCardRestrictionRes1Schema: Schema<SearchCardRestrictionRes1> = lazy(
+  () =>
+    object({
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(searchCardRestrictionResSchema))],
+    })
 );

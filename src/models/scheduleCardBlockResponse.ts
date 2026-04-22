@@ -32,14 +32,12 @@ export interface ScheduleCardBlockResponse {
   data?: ScheduleCardBlockResponseDataItems[];
 }
 
-export const scheduleCardBlockResponseSchema: Schema<ScheduleCardBlockResponse> = object(
-  {
-    mainReference: ['MainReference', optional(number())],
-    requestId: ['RequestId', optional(string())],
-    status: ['Status', optional(string())],
-    data: [
-      'Data',
-      optional(array(lazy(() => scheduleCardBlockResponseDataItemsSchema))),
-    ],
-  }
+export const scheduleCardBlockResponseSchema: Schema<ScheduleCardBlockResponse> = lazy(
+  () =>
+    object({
+      mainReference: ['MainReference', optional(number())],
+      requestId: ['RequestId', optional(string())],
+      status: ['Status', optional(string())],
+      data: ['Data', optional(array(scheduleCardBlockResponseDataItemsSchema))],
+    })
 );

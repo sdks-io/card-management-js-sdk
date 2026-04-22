@@ -15,7 +15,7 @@
 | `payerNumber` | `string \| undefined` | Optional | Payer Number of the selected payer.<br>Optional if PayerId is passed else Mandatory<br>Example: GB000000123 |
 | `accounts` | [`Accounts \| undefined`](../../doc/models/accounts.md) | Optional | - |
 | `bundleId` | `string \| null \| undefined` | Optional | Identifier of the Card bundle<br>Optional if cards list is given, else mandatory.<br>This input is a search criterion, if given. |
-| `cards` | [`SearchCardRestriction \| undefined`](../../doc/models/search-card-restriction.md) | Optional | - |
+| `cards` | [`SearchCardRestriction[] \| undefined`](../../doc/models/search-card-restriction.md) | Optional | - |
 | `includeLocationRestrictions` | `boolean \| null \| undefined` | Optional | True/False<br>Whether to include location restriction of the cards in the response.<br>Optional<br>Default ‘false’ |
 | `includeBundleDetails` | `boolean \| null \| undefined` | Optional | Default value is False,<br>When the value is True, API will return bundle Id associated with cards in the response, if available.<br>Note: Use ‘Null’ or ‘False’ for optimum performance. A delay in response is expected when set to ‘True’. |
 | `includeInheritedLimits` | `boolean \| null \| undefined` | Optional | Default value is True,<br>When True: service will return the inherited values for the usage limits (from card-program or account as available) when it is not overridden on the card. |
